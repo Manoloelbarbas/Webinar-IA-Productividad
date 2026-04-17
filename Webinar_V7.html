@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimiza tu trabajo con IA — Master Webinar DesafIA</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="css/webinar.css">
+</head>
+<body>
+
+<div id="laser-pointer"></div>
+<div id="laser-dot"></div>
+
+<div id="progress-bar"></div>
+
+<button class="nav-arrow" id="prev-arrow" title="Anterior (←)">‹</button>
+<button class="nav-arrow" id="next-arrow" title="Siguiente (→)">›</button>
+
+<div id="slide-counter">1 / 17</div>
+
+<div id="presentation">
+
+  <!-- ============ SLIDE 1 — PORTADA ============ -->
+  <section class="slide active" id="slide-1">
+    <div class="slide-hero" id="slide-1-hero">
+      <canvas class="slide-hero__canvas" id="slide-1-canvas" aria-hidden="true"></canvas>
+      <div class="slide-hero__orbits" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="slide-hero__inner">
+        <div class="slide-hero__content">
+          <div class="cover-divider" aria-hidden="true"></div>
+          <div class="cover-eyebrow fade-in">
+            <span class="cover-eyebrow__dot" aria-hidden="true"></span>
+            <span>DesafIA &middot; <strong>Master Webinar</strong></span>
+          </div>
+          <h1 class="cover-title fade-in fade-in-delay-1">
+            <span class="cover-title__top">Optimiza tu trabajo</span>
+            <span class="cover-title__line">con IA</span>
+          </h1>
+          <p class="cover-subtitle fade-in fade-in-delay-2">Herramientas <strong>pr&aacute;cticas</strong> para ahorrar tiempo, mejorar la calidad del trabajo y <strong>automatizar tareas reales</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 2 — APERTURA ============ -->
+  <section class="slide slide-dark" id="slide-2" data-focus-step="adoption">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/slide2-enterprise.png" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="context-stage">
+      <div class="context-stage__copy">
+        <div class="slide-tag fade-in">Apertura · El Contexto</div>
+        <h2 class="slide-title fade-in fade-in-delay-1"><span class="s2-title-lead">La IA ya llegó.</span><span class="s2-title-sub">La pregunta es quién la convierte en <span class="s2-accent animated-title-underline">ventaja</span>.</span></h2>
+        <div class="context-metrics fade-in fade-in-delay-2">
+          <div class="context-metrics__main" data-step-trigger="0" tabindex="0" role="button" aria-label="Destacar adopción">
+            <div class="context-metrics__num">78%</div>
+            <p class="context-metrics__lead">de las organizaciones reportó usar IA en 2024.</p>
+          </div>
+        </div>
+        <div class="context-narrative fade-in fade-in-delay-3" id="slide-2-story" data-step-trigger="2" tabindex="0" role="button" aria-label="Destacar impacto productivo">
+          <div class="context-narrative__label" id="slide-2-story-label">Adopción masiva</div>
+          <p class="context-narrative__copy" id="slide-2-story-copy" aria-live="polite">El <strong>78%</strong> de las organizaciones reportó usar IA en 2024.</p>
+        </div>
+        <div class="context-sequence fade-in fade-in-delay-4" id="slide-2-sequence" aria-label="Focos de explicación">
+          <button type="button" class="context-sequence__step is-active" data-step="0">Adopción</button>
+          <button type="button" class="context-sequence__step" data-step="1">Ventaja</button>
+          <button type="button" class="context-sequence__step" data-step="2">Impacto</button>
+        </div>
+        <div class="context-sources fade-in fade-in-delay-5">
+          <a href="https://hai.stanford.edu/ai-index/2025-ai-index-report" target="_blank">Stanford AI Index 2025</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://hai.stanford.edu/news/ai-index-2025-state-of-ai-in-10-charts" target="_blank">State of AI in 10 Charts</a>
+        </div>
+      </div>
+      <div class="context-stage__visual fade-in fade-in-delay-2" data-step-trigger="1" tabindex="0" role="button" aria-label="Destacar ventaja competitiva">
+        <div class="context-stage__beam" aria-hidden="true"></div>
+        <div class="context-stage__image">
+          <img src="images/slide2-enterprise.png" alt="Equipos de empresa trabajando con IA">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 3 — TENSIÓN ============ -->
+  <section class="slide slide-accent" id="slide-3">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/slide3-investment.jpg" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="slide-tag fade-in">Tensión · La Falsa Confianza</div>
+    <h2 class="slide-title slide-3-title fade-in fade-in-delay-1"><span class="slide-3-title__lead">La paradoja de la IA: Todos invierten, muy pocos escalan</span><span class="slide-3-title__follow">pero todavía <span class="animated-title-underline">poca madurez real</span></span></h2>
+
+    <div class="tension-grid fade-in fade-in-delay-2">
+      <div class="tension-card tension-card--muted">
+        <div class="tension-card__eyebrow">▲ Inversión en IA</div>
+        <div class="tension-card__num"><span class="tension-card__num-value">92%</span></div>
+        <p class="tension-card__copy">de las empresas <strong>planea aumentar la inversión en IA</strong> en los próximos 3 años.</p>
+      </div>
+      <div class="tension-grid__connector" aria-hidden="true"><span></span></div>
+      <div class="tension-card tension-card--critical">
+        <div class="tension-card__eyebrow">◆ Madurez Real</div>
+        <div class="tension-card__num"><span class="tension-card__num-value">1%</span></div>
+        <p class="tension-card__copy">de los líderes considera que su empresa tiene un <strong>despliegue maduro</strong> de IA.</p>
+      </div>
+    </div>
+
+    <p class="slide-subtitle slide-3-insight fade-in fade-in-delay-5">
+      El problema no es la falta de herramientas: es la <strong class="slide-3-insight__accent">cultura de adopción</strong>. Las empresas invierten, pero los equipos siguen trabajando igual. <strong class="slide-3-insight__roi">Ahí se pierde el ROI</strong>.
+    </p>
+    <div class="links-section fade-in fade-in-delay-6">
+      <a href="https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work" target="_blank" rel="noopener">McKinsey — Superagency in the Workplace</a>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 4 — URGENCIA ============ -->
+  <section class="slide slide-dark" id="slide-4">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/slide4-speed.jpg" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="slide4-layout">
+      <div class="slide4-copy">
+        <h2 class="slide-title fade-in fade-in-delay-2">La tecnología avanza más rápido<br>que la <span class="slide4-highlight animated-title-underline">capacidad de adopción</span></h2>
+        <ul class="bullet-list fade-in fade-in-delay-3">
+          <li>La <strong>autonomía de la IA</strong> está creciendo muy rápido.</li>
+          <li>El horizonte de tareas que puede completar <strong>se duplica cada 7 meses</strong>.</li>
+          <li>La IA ya no solo responde: empieza a <strong>ejecutar tareas más largas y complejas</strong>.</li>
+        </ul>
+      </div>
+      <div class="slide4-card fade-in fade-in-delay-4">
+        <div class="slide4-card__header">
+          <h3 class="slide4-card__title">Multiplicador de Capacidad (Tareas)</h3>
+          <div class="slide4-legend" aria-label="Leyenda del gráfico">
+            <span class="slide4-legend__item"><span class="slide4-legend__dot slide4-legend__dot--ai" aria-hidden="true"></span>IA Autónoma</span>
+            <span class="slide4-legend__item"><span class="slide4-legend__dot slide4-legend__dot--human" aria-hidden="true"></span>Límite Humano</span>
+          </div>
+        </div>
+        <div class="slide4-chart-shell" id="slide4-chart-shell">
+          <div class="slide4-tooltip" id="slide4-tooltip">
+            <div class="slide4-tooltip__title" id="slide4-tooltip-title">Hoy</div>
+            <div class="slide4-tooltip__row slide4-tooltip__row--ai"><span>IA:</span><strong id="slide4-tooltip-ai">1.0x</strong></div>
+            <div class="slide4-tooltip__row slide4-tooltip__row--human"><span>Humano:</span><strong id="slide4-tooltip-human">1.0x</strong></div>
+          </div>
+          <svg id="slide4-chart-svg" viewBox="0 0 500 300" preserveAspectRatio="none" role="img" aria-label="Curva de capacidad de la IA versus límite humano en el tiempo">
+            <defs>
+              <clipPath id="slide4-reveal-mask">
+                <rect x="0" y="0" width="2" height="300" id="slide4-mask-rect"></rect>
+              </clipPath>
+              <linearGradient id="slide4-ai-gradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#00d4ff"></stop>
+                <stop offset="100%" stop-color="transparent"></stop>
+              </linearGradient>
+            </defs>
+            <path class="slide4-grid-line" d="M0,262.5 L500,262.5"></path>
+            <text x="-28" y="266" class="slide4-axis-label">1x</text>
+            <path class="slide4-grid-line" d="M0,225 L500,225"></path>
+            <text x="-28" y="229" class="slide4-axis-label">2x</text>
+            <path class="slide4-grid-line" d="M0,150 L500,150"></path>
+            <text x="-28" y="154" class="slide4-axis-label">4x</text>
+            <path class="slide4-grid-line" d="M0,0 L500,0"></path>
+            <text x="-28" y="4" class="slide4-axis-label">8x</text>
+            <path id="slide4-area-ai" class="slide4-area-ai" d="" clip-path="url(#slide4-reveal-mask)"></path>
+            <path id="slide4-path-human" class="slide4-path-human" d="" clip-path="url(#slide4-reveal-mask)"></path>
+            <path id="slide4-path-ai" class="slide4-path-ai" d="" clip-path="url(#slide4-reveal-mask)"></path>
+            <g id="slide4-scrubber-group" style="display:none;">
+              <line id="slide4-scrubber-line" class="slide4-scrubber-line" x1="0" y1="0" x2="0" y2="300"></line>
+              <circle id="slide4-ai-point" class="slide4-data-point" cx="0" cy="0" r="5"></circle>
+              <circle id="slide4-human-point" class="slide4-data-point" cx="0" cy="0" r="5"></circle>
+            </g>
+          </svg>
+        </div>
+        <div class="slide4-slider">
+          <div class="slide4-slider__labels" aria-hidden="true">
+            <span id="slide4-label-0" class="is-active">Hoy</span>
+            <span id="slide4-label-7">+7 Meses</span>
+            <span id="slide4-label-14">+14 Meses</span>
+            <span id="slide4-label-21">+21 Meses</span>
+          </div>
+          <input type="range" id="slide4-time-slider" class="slide4-slider__range" min="0" max="21" value="0" step="0.1" aria-label="Control temporal del multiplicador de capacidad">
+        </div>
+      </div>
+    </div>
+    <div class="links-section fade-in fade-in-delay-5">
+      <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" target="_blank" rel="noopener">METR — Measuring AI Ability</a> ·
+      <a href="https://metr.org/time-horizons/" target="_blank" rel="noopener">Time Horizons</a>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 5 — RIESGO ============ -->
+  <!-- ============ SLIDE 4.5 - EVOLUCION DE LA IA ============ -->
+  <section class="slide slide-dark evolution-slide" id="slide-4a">
+    <div class="slide-tag fade-in">Evolucion</div>
+    <h2 class="slide-title fade-in fade-in-delay-1">La Evolucion de la IA:<br>de la Prediccion a la Accion Autonoma</h2>
+    <p class="evolution-slide__intro fade-in fade-in-delay-2">Trayectoria de adopcion e impacto empresarial (proyeccion 2018 - 2030)</p>
+
+    <div class="evolution-layout fade-in fade-in-delay-3">
+      <div class="evolution-chart-card">
+        <button class="evolution-replay" id="evolution-replay" type="button" aria-label="Repetir animacion del grafico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          <span>Repetir</span>
+        </button>
+        <div class="evolution-chart-shell">
+          <canvas id="evolution-chart" aria-label="Grafico de evolucion de la IA" role="img"></canvas>
+        </div>
+      </div>
+
+      <div class="evolution-cards">
+        <article class="evolution-card evolution-card--traditional" data-dataset="0">
+          <h3 class="evolution-card__title">
+            <span class="evolution-card__title-mark" aria-hidden="true"></span>
+            IA Tradicional
+          </h3>
+          <ul class="evolution-card__list">
+            <li>Analisis y prediccion de datos</li>
+            <li>Basada en reglas estrictas</li>
+            <li>Dependencia humana total</li>
+          </ul>
+        </article>
+
+        <article class="evolution-card evolution-card--generative" data-dataset="1">
+          <h3 class="evolution-card__title">
+            <span class="evolution-card__title-mark" aria-hidden="true"></span>
+            IA Generativa
+          </h3>
+          <ul class="evolution-card__list">
+            <li>Creacion de contenido con LLMs</li>
+            <li>Funciona como copiloto</li>
+            <li>Requiere prompts detallados</li>
+          </ul>
+        </article>
+
+        <article class="evolution-card evolution-card--agentic" data-dataset="2">
+          <h3 class="evolution-card__title">
+            <span class="evolution-card__title-mark" aria-hidden="true"></span>
+            IA Agentica
+          </h3>
+          <ul class="evolution-card__list">
+            <li>Planificacion y ejecucion</li>
+            <li>Autonomia y uso de herramientas</li>
+            <li>Orquestacion de procesos</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="evolution-slide__sources fade-in fade-in-delay-4">
+      <div class="evolution-slide__sources-pill">
+        <span>Fuentes y proyecciones 2026:</span>
+        <a href="https://www.capgemini.com/insights/research-institute/" target="_blank">Capgemini</a>
+        <span>|</span>
+        <a href="https://www.mckinsey.com/" target="_blank">McKinsey &amp; Co.</a>
+        <span>|</span>
+        <a href="https://www.gartner.com/" target="_blank">Gartner</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 6 — OPORTUNIDAD ============ -->
+  <section class="slide slide-dark" id="slide-6">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/slide6-adoption-risk.png" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="slide6-layout">
+      <div class="slide6-copy">
+        <div class="slide-tag fade-in">Adopción vs Rezago</div>
+        <h2 class="slide-title fade-in fade-in-delay-1">El riesgo no es no probar IA.<br>El riesgo es <span class="slide6-highlight animated-title-underline">quedarse atrás.</span></h2>
+
+        <div class="slide6-stat fade-in fade-in-delay-2">
+          <div class="slide6-stat__num">26%</div>
+          <div class="slide6-stat__copy">de las <strong>personas</strong> ya usa IA en el trabajo.</div>
+        </div>
+
+        <div class="slide6-data-stack fade-in fade-in-delay-3">
+          <div class="slide6-data-row">
+            <div class="slide6-data-label">
+              <span>Varias veces por semana</span>
+              <strong>26%</strong>
+            </div>
+            <div class="slide6-data-bar">
+              <div class="slide6-data-bar-fill" style="--bar-width:26%; --bar-delay:0.18s;"></div>
+            </div>
+          </div>
+          <div class="slide6-data-row">
+            <div class="slide6-data-label">
+              <span>Diariamente</span>
+              <strong>12%</strong>
+            </div>
+            <div class="slide6-data-bar">
+              <div class="slide6-data-bar-fill" style="--bar-width:12%; --bar-delay:0.34s;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide6-note fade-in fade-in-delay-4">
+          <svg class="slide6-note__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M13 2L5 14h5l-1 8 8-12h-5l1-8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+          </svg>
+          <span>Quien aprende antes, se mueve antes.</span>
+        </div>
+      </div>
+
+      <div class="slide6-visual fade-in fade-in-delay-2">
+        <div class="slide6-visual__media">
+          <img src="images/slide6-adoption-risk.png" alt="Equipo corporativo frente a un escenario de adopción tecnológica">
+        </div>
+        <div class="slide6-visual__overlay"></div>
+
+        <div class="slide6-risk-stack">
+          <div class="slide6-risk-stack__title">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3l9 16H3L12 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              <path d="M12 9v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              <circle cx="12" cy="16.5" r="1" fill="currentColor"></circle>
+            </svg>
+            <span>Impacto en Empresas</span>
+          </div>
+
+          <article class="slide6-risk-card">
+            <div class="slide6-risk-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 15.5A7 7 0 0 1 19 15.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                <path d="M12 15l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                <circle cx="12" cy="15" r="1.6" fill="currentColor"></circle>
+              </svg>
+            </div>
+            <div class="slide6-risk-card__body">
+              <h3>Menor velocidad</h3>
+              <p>Procesos atascados mientras la competencia automatiza y reduce tiempos de ejecución.</p>
+            </div>
+          </article>
+
+          <article class="slide6-risk-card">
+            <div class="slide6-risk-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 7h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                <path d="M7 11l4 4 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M4 17h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <div class="slide6-risk-card__body">
+              <h3>Menor productividad</h3>
+              <p>Equipos agotados resolviendo manualmente tareas que la IA ya puede absorber en segundos.</p>
+            </div>
+          </article>
+
+          <article class="slide6-risk-card">
+            <div class="slide6-risk-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 18V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                <path d="M12 18V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                <path d="M19 18v-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                <path d="M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              </svg>
+            </div>
+            <div class="slide6-risk-card__body">
+              <h3>Menor capacidad competitiva</h3>
+              <p>Pérdida de posición frente a actores más ágiles que ya operan con mejores tiempos y criterio aumentado.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="links-section fade-in fade-in-delay-5">
+      <a href="https://www.gallup.com/workplace/701195/frequent-workplace-continued-rise.aspx" target="_blank" rel="noopener">Gallup — Frequent Workplace AI Use</a>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 5.5 — ADOPCIÓN GLOBAL ============ -->
+  <section class="slide slide-dark" id="slide-5a">
+    <div class="slide-tag fade-in">Brecha Real</div>
+    <h2 class="slide-title fade-in fade-in-delay-1" style="text-align:center; max-width:960px;">La IA ya se volvió masiva,<br>pero el uso avanzado sigue siendo excepcional</h2>
+
+    <div class="adoption-card fade-in fade-in-delay-3" id="adoption-card">
+      <div class="adoption-meta">
+        <div>
+          <h3>Cada punto representa ~3.2 millones de personas</h3>
+          <p>2.500 puntos = 8.1 mil millones de humanos. Color = nivel de interacción con IA, febrero 2026.</p>
+        </div>
+      </div>
+
+      <div class="adoption-grid-shell">
+        <div id="adoption-grid" class="adoption-grid"></div>
+      </div>
+
+      <div class="adoption-legend">
+        <div class="adoption-legend-item" data-filter="grey">
+          <div class="adoption-legend-swatch"></div>
+          <div class="adoption-legend-copy">
+            <strong>Nunca ha usado IA</strong>
+            <span>~6.8B personas · 84%</span>
+          </div>
+        </div>
+        <div class="adoption-legend-item" data-filter="green">
+          <div class="adoption-legend-swatch green"></div>
+          <div class="adoption-legend-copy">
+            <strong>Usa IA gratuita</strong>
+            <span>~1.3B personas · 16%</span>
+          </div>
+        </div>
+        <div class="adoption-legend-item" data-filter="yellow">
+          <div class="adoption-legend-swatch yellow"></div>
+          <div class="adoption-legend-copy">
+            <strong>Paga por IA</strong>
+            <span>~15-25M personas · ~0.3%</span>
+          </div>
+        </div>
+        <div class="adoption-legend-item" data-filter="red">
+          <div class="adoption-legend-swatch red"></div>
+          <div class="adoption-legend-copy">
+            <strong>Usa IA para programar</strong>
+            <span>~2-5M personas · ~0.04%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 8 — PUENTE AL TALLER (4 pasos interactivos) ============ -->
+  <section class="slide slide-accent" id="slide-7">
+    <div class="slide-tag fade-in">Puente al Taller</div>
+    <h2 class="slide-title fade-in fade-in-delay-1" style="text-align:center; max-width:1100px; margin-left:auto; margin-right:auto;">La buena noticia:<br><span class="animated-title-underline">esto se puede aprender</span></h2>
+
+    <div class="learn-path fade-in fade-in-delay-2" id="learn-path">
+      <div class="learn-path__track" aria-hidden="true">
+        <div class="learn-path__progress"></div>
+        <div class="learn-path__pulse"></div>
+      </div>
+      <div class="learn-cards">
+        <div class="learn-card" data-step="1">
+          <div class="learn-card__image">
+            <img src="images/learn-01-prompt.png" alt="Pedir bien: prompts efectivos">
+            <div class="learn-card__num">01</div>
+          </div>
+          <div class="learn-card__body">
+            <div class="learn-card__title">Pedir bien</div>
+            <div class="learn-card__desc">Prompts claros con contexto, objetivo y formato esperado.</div>
+            <div class="learn-card__chips">
+              <span class="learn-card__chip">Contexto</span>
+              <span class="learn-card__chip">Objetivo</span>
+              <span class="learn-card__chip">Formato</span>
+            </div>
+          </div>
+        </div>
+        <div class="learn-card" data-step="2">
+          <div class="learn-card__image">
+            <img src="images/learn-02-data.png" alt="Trabajar con documentos y datos propios">
+            <div class="learn-card__num">02</div>
+          </div>
+          <div class="learn-card__body">
+            <div class="learn-card__title">Trabajar con datos</div>
+            <div class="learn-card__desc">PDFs, Excel, reuniones y presentaciones &mdash; con las fuentes propias del equipo.</div>
+            <div class="learn-card__chips">
+              <span class="learn-card__chip">PDFs</span>
+              <span class="learn-card__chip">Excel</span>
+              <span class="learn-card__chip">Reuniones</span>
+            </div>
+          </div>
+        </div>
+        <div class="learn-card" data-step="3">
+          <div class="learn-card__image">
+            <img src="images/learn-03-output.png" alt="Generar entregables útiles: minutas, reportes, decks">
+            <div class="learn-card__num">03</div>
+          </div>
+          <div class="learn-card__body">
+            <div class="learn-card__title">Generar entregables</div>
+            <div class="learn-card__desc">Minutas, reportes, análisis y decks listos para compartir.</div>
+            <div class="learn-card__chips">
+              <span class="learn-card__chip">Minutas</span>
+              <span class="learn-card__chip">Reportes</span>
+              <span class="learn-card__chip">Decks</span>
+            </div>
+          </div>
+        </div>
+        <div class="learn-card" data-step="4">
+          <div class="learn-card__image">
+            <img src="images/learn-04-automate.png" alt="Automatizar tareas reales con flujos y mini apps">
+            <div class="learn-card__num">04</div>
+          </div>
+          <div class="learn-card__body">
+            <div class="learn-card__title">Automatizar</div>
+            <div class="learn-card__desc">Flujos, mini apps y asistentes internos que trabajan solos.</div>
+            <div class="learn-card__chips">
+              <span class="learn-card__chip">Flujos</span>
+              <span class="learn-card__chip">Mini apps</span>
+              <span class="learn-card__chip">Asistentes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="visual-phrase fade-in fade-in-delay-4" style="text-align:center; margin-top:clamp(22px, 2.4vw, 34px); font-size:clamp(18px,2vw,26px); font-style:normal; color:var(--highlight);">Veamos ahora dónde la IA ya está generando valor hoy &rarr;</p>
+  </section>
+
+  <!-- ============ SLIDE 7b — PUENTE AL TALLER (se aprende haciendo) ============ -->
+  <section class="slide slide-dark" id="slide-7b">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/slide7-learn.jpg" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="slide-tag fade-in">Puente al Taller</div>
+    <h2 class="slide-title fade-in fade-in-delay-1" style="text-align:center; max-width:1120px;">La buena noticia:<br><span class="animated-title-underline">esto se aprende haciendo.</span></h2>
+
+    <div class="bridge-layout fade-in fade-in-delay-2">
+      <div class="bridge-steps">
+        <div class="bridge-step">
+          <div class="bridge-step__num">01</div>
+          <div class="bridge-step__body">
+            <h4>Pedir bien</h4>
+            <p>Prompts claros, con contexto, objetivo y formato esperado.</p>
+          </div>
+        </div>
+        <div class="bridge-step">
+          <div class="bridge-step__num">02</div>
+          <div class="bridge-step__body">
+            <h4>Trabajar con datos</h4>
+            <p>Documentos, PDFs, reuniones, Excel y fuentes propias.</p>
+          </div>
+        </div>
+        <div class="bridge-step">
+          <div class="bridge-step__num">03</div>
+          <div class="bridge-step__body">
+            <h4>Automatizar tareas reales</h4>
+            <p>Flujos prácticos que ahorran horas cada semana.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bridge-visual">
+        <img src="images/slide7-learn.jpg" alt="Aprender IA en la práctica">
+      </div>
+    </div>
+
+    <p class="visual-phrase fade-in fade-in-delay-4" style="text-align:center; margin-top:28px; font-size:clamp(18px,2vw,26px); font-style:normal; color:var(--highlight);">Pasemos de la teoría a su día a día →</p>
+  </section>
+
+  <!-- ============ SLIDE 8 — CASO 1: AUDIO → PLAN ============ -->
+  <section class="slide slide-dark" id="slide-8">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/caso1-audio.png" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="case-layout">
+      <div class="case-layout__content">
+        <div class="slide-tag fade-in">Caso Práctico 1</div>
+        <h2 class="slide-title fade-in fade-in-delay-1">Del caos del audio<br><span class="animated-title-underline">a un plan de acción</span></h2>
+        <div class="case-problem fade-in fade-in-delay-2"><strong>Problema</strong>Tomar notas aísla al profesional y los acuerdos se pierden entre reuniones.</div>
+        <div class="case-io fade-in fade-in-delay-2">
+          <div class="case-io__box">
+            <div class="case-io__label">Input</div>
+            <div class="case-io__text">Audio de la reunión o transcripción cruda.</div>
+          </div>
+          <div class="case-io__arrow" aria-hidden="true">&darr;</div>
+          <div class="case-io__box output">
+            <div class="case-io__label">Resultados</div>
+            <div class="case-io__text">Minuta estructurada, matriz de responsables y correo de seguimiento listo para enviar.</div>
+          </div>
+        </div>
+        <div class="case-tools fade-in fade-in-delay-3">
+          <span class="case-tools__label">Herramientas</span>
+          <span class="case-tool-pill accent">Claude</span>
+          <span class="case-tool-pill">NotebookLM</span>
+          <span class="case-tool-pill">Gemini</span>
+        </div>
+        <p class="visual-phrase fade-in fade-in-delay-4">De conversación a acción &mdash; en minutos</p>
+      </div>
+      <div class="case-layout__visual fade-in fade-in-delay-2">
+        <img src="images/caso1-audio.png" alt="Ondas de audio caóticas transformándose en un checklist ordenado">
+        <div class="case-visual__badge">Audio &rarr; Plan</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 9 — CASO 2: PDF → DATOS ============ -->
+  <section class="slide slide-accent" id="slide-9">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/caso2-docs.png" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="case-layout reversed">
+      <div class="case-layout__content">
+        <div class="slide-tag fade-in">Caso Práctico 2</div>
+        <h2 class="slide-title fade-in fade-in-delay-1">Rescatando horas de tipeo<br><span class="animated-title-underline">magia documental</span></h2>
+        <div class="case-problem fade-in fade-in-delay-2"><strong>Problema</strong>Copiar y cruzar datos desde PDFs escaneados o contratos largos genera errores y cuellos de botella.</div>
+        <div class="case-io fade-in fade-in-delay-2">
+          <div class="case-io__box">
+            <div class="case-io__label">Input</div>
+            <div class="case-io__text">Contratos de 50 páginas o 100 facturas en PDF escaneado.</div>
+          </div>
+          <div class="case-io__arrow" aria-hidden="true">&darr;</div>
+          <div class="case-io__box output">
+            <div class="case-io__label">Resultados</div>
+            <div class="case-io__text">Tablas limpias, detección de cláusulas de riesgo y alertas automáticas.</div>
+          </div>
+        </div>
+        <div class="case-tools fade-in fade-in-delay-3">
+          <span class="case-tools__label">Herramientas</span>
+          <span class="case-tool-pill accent">Claude</span>
+          <span class="case-tool-pill">ChatGPT</span>
+          <span class="case-tool-pill">Adobe Acrobat AI</span>
+        </div>
+        <p class="visual-phrase fade-in fade-in-delay-4">De documento rígido a dato útil</p>
+      </div>
+      <div class="case-layout__visual fade-in fade-in-delay-2">
+        <img src="images/caso2-docs.png" alt="PDF del que se desprenden datos brillantes que caen en una tabla de Excel">
+        <div class="case-visual__badge">PDF &rarr; Tabla</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 10 — CASO 3: DATOS → INSIGHTS ============ -->
+  <section class="slide slide-dark" id="slide-10">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/caso3-data.png" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="case-layout">
+      <div class="case-layout__content">
+        <div class="slide-tag fade-in">Caso Práctico 3</div>
+        <h2 class="slide-title fade-in fade-in-delay-1">Tu analista de datos<br><span class="animated-title-underline">24 / 7</span></h2>
+        <div class="case-problem fade-in fade-in-delay-2"><strong>Problema</strong>Luchar con fórmulas complejas y planillas gigantes que nadie termina de entender.</div>
+        <div class="case-io fade-in fade-in-delay-2">
+          <div class="case-io__box">
+            <div class="case-io__label">Input</div>
+            <div class="case-io__text">Bases de datos crudas (ej. Ventas vs. Inventario).</div>
+          </div>
+          <div class="case-io__arrow" aria-hidden="true">&darr;</div>
+          <div class="case-io__box output">
+            <div class="case-io__label">Resultados</div>
+            <div class="case-io__text">Limpieza, cruces automáticos, gráficos y 3 recomendaciones estratégicas de negocio.</div>
+          </div>
+        </div>
+        <div class="case-tools fade-in fade-in-delay-3">
+          <span class="case-tools__label">Herramientas</span>
+          <span class="case-tool-pill accent">Julius AI</span>
+          <span class="case-tool-pill">ChatGPT</span>
+          <span class="case-tool-pill">Claude</span>
+        </div>
+        <p class="visual-phrase fade-in fade-in-delay-4">De datos grises a decisión dorada</p>
+      </div>
+      <div class="case-layout__visual fade-in fade-in-delay-2">
+        <img src="images/caso3-data.png" alt="Datos grises elevándose para convertirse en un gráfico de barras dorado">
+        <div class="case-visual__badge">Datos &rarr; Insight</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 11 — CASO 4: BRIEF → PRESENTACIÓN ============ -->
+  <section class="slide slide-accent" id="slide-11">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/caso4-deck.png" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="case-layout reversed">
+      <div class="case-layout__content">
+        <div class="slide-tag fade-in">Caso Práctico 4</div>
+        <h2 class="slide-title fade-in fade-in-delay-1">Comunicación ejecutiva<br><span class="animated-title-underline">instantánea</span></h2>
+        <div class="case-problem fade-in fade-in-delay-2"><strong>Problema</strong>Perder el día completo moviendo cajas de texto en una pantalla en blanco.</div>
+        <div class="case-io fade-in fade-in-delay-2">
+          <div class="case-io__box">
+            <div class="case-io__label">Input</div>
+            <div class="case-io__text">Notas sueltas o un documento de texto (brief).</div>
+          </div>
+          <div class="case-io__arrow" aria-hidden="true">&darr;</div>
+          <div class="case-io__box output">
+            <div class="case-io__label">Resultados</div>
+            <div class="case-io__text">Estructura narrativa, paleta corporativa y presentación lista para editar.</div>
+          </div>
+        </div>
+        <div class="case-tools fade-in fade-in-delay-3">
+          <span class="case-tools__label">Herramientas</span>
+          <span class="case-tool-pill accent">Gamma.app</span>
+          <span class="case-tool-pill">Napkin AI</span>
+          <span class="case-tool-pill">Canva</span>
+        </div>
+        <p class="visual-phrase fade-in fade-in-delay-4">De idea a deck impecable en minutos</p>
+      </div>
+      <div class="case-layout__visual fade-in fade-in-delay-2">
+        <img src="images/caso4-deck.png" alt="Ampolleta conectada a un proyector mostrando una presentación impecable">
+        <div class="case-visual__badge">Brief &rarr; Deck</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 12 — CASO BONUS: AUTOMATIZACIÓN ============ -->
+  <section class="slide slide-dark" id="slide-12">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/caso-bonus-automation.png" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="case-layout">
+      <div class="case-layout__content">
+        <div class="slide-tag fade-in" style="color:var(--yellow);">&#9733; Caso Bonus</div>
+        <h2 class="slide-title fade-in fade-in-delay-1">El &ldquo;empleado invisible&rdquo;<br><span class="animated-title-underline">automatización real</span></h2>
+        <div class="case-problem fade-in fade-in-delay-2"><strong>Problema</strong>El desgaste de ser el puente manual entre el correo, el Excel y el WhatsApp.</div>
+        <div class="case-io fade-in fade-in-delay-2">
+          <div class="case-io__box">
+            <div class="case-io__label">Reto</div>
+            <div class="case-io__text">Procesos repetitivos que exigen atención constante y quitan foco al equipo.</div>
+          </div>
+          <div class="case-io__arrow" aria-hidden="true">&darr;</div>
+          <div class="case-io__box output yellow">
+            <div class="case-io__label">Efecto Wow</div>
+            <div class="case-io__text">Conectar plataformas para que el trabajo ocurra 100% en segundo plano. Delegar procesos, no solo tareas.</div>
+          </div>
+        </div>
+        <div class="case-tools fade-in fade-in-delay-3">
+          <span class="case-tools__label">Stack</span>
+          <span class="case-tool-pill yellow">n8n</span>
+          <span class="case-tool-pill yellow">Make</span>
+          <span class="case-tool-pill">Claude Code</span>
+          <span class="case-tool-pill">Google Antigravity</span>
+        </div>
+        <p class="visual-phrase fade-in fade-in-delay-4" style="color:var(--yellow);">De tarea aislada a sistema que trabaja solo</p>
+      </div>
+      <div class="case-layout__visual fade-in fade-in-delay-2">
+        <img src="images/caso-bonus-automation.png" alt="Engranajes digitales minimalistas conectando correo, hojas de cálculo y mensajería">
+        <div class="case-visual__badge yellow">Stack &rarr; Autopiloto</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 13 — CULTURA DE ADOPCIÓN ============ -->
+  <section class="slide slide-accent" id="slide-13">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/cultura-roi.jpg" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="rules-hero">
+      <div class="rules-content">
+        <div class="slide-tag fade-in">Cultura de Adopción</div>
+        <h2 class="slide-title fade-in fade-in-delay-1" style="margin-bottom:18px;">Reglas para capturar<br><span class="animated-title-underline">ROI real</span></h2>
+        <p class="slide-subtitle fade-in fade-in-delay-2" style="margin-bottom:20px;">La IA no reemplaza el criterio: lo amplifica cuando entra bien al equipo.</p>
+        <div class="rules-list">
+          <div class="rule-card">
+            <div class="rule-card__num">01</div>
+            <div class="rule-card__body">
+              <div class="rule-card__title">Parte por lo frecuente y de bajo riesgo</div>
+              <div class="rule-card__desc">Tareas repetitivas y de baja exposición son el campo ideal para aprender haciendo.</div>
+            </div>
+          </div>
+          <div class="rule-card">
+            <div class="rule-card__num">02</div>
+            <div class="rule-card__body">
+              <div class="rule-card__title">Acelera, no apagues tu criterio</div>
+              <div class="rule-card__desc">La IA es copiloto. El juicio profesional sigue siendo la autoridad final.</div>
+            </div>
+          </div>
+          <div class="rule-card">
+            <div class="rule-card__num">03</div>
+            <div class="rule-card__body">
+              <div class="rule-card__title">Mide el impacto</div>
+              <div class="rule-card__desc">Tiempo ahorrado, errores evitados y calidad entregada &mdash; lo que no se mide, no se escala.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rules-visual fade-in fade-in-delay-3">
+        <img src="images/cultura-roi.png" alt="Balanza equilibrando tecnología y talento humano">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 14 — CÓMO SEGUIR AVANZANDO ============ -->
+  <section class="slide slide-dark" id="slide-14">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/siguientes-pasos.png" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="slide-tag fade-in">Siguientes Pasos</div>
+    <h2 class="slide-title fade-in fade-in-delay-1" style="text-align:center; max-width:1100px; margin-left:auto; margin-right:auto;"> consejos a seguir <br><span class="animated-title-underline">en tu empresa</span></h2>
+    <p class="slide-subtitle fade-in fade-in-delay-2" style="text-align:center; max-width:820px; margin:10px auto 0;">Tres niveles de intervención, un mismo objetivo: convertir la IA en ventaja real.</p>
+    <div class="next-path fade-in fade-in-delay-2">
+      <div class="next-card">
+        <div class="next-card__step">01</div>
+        <div class="next-card__audience">Para Gerentes</div>
+        <div class="next-card__title">Visión estratégica &amp; ROI</div>
+        <div class="next-card__desc">Oportunidades de negocio, criterios para priorizar casos y toma de decisiones con IA.</div>
+        <span class="next-card__cta">Liderar la adopción &rarr;</span>
+      </div>
+      <div class="next-card">
+        <div class="next-card__step">02</div>
+        <div class="next-card__audience">Para Equipos</div>
+        <div class="next-card__title">In-Company aplicado</div>
+        <div class="next-card__desc">Uso práctico con los propios datos del equipo &mdash; Excel, PDFs, reuniones y procesos reales.</div>
+        <span class="next-card__cta">Acelerar el día a día &rarr;</span>
+      </div>
+      <div class="next-card">
+        <div class="next-card__step">03</div>
+        <div class="next-card__audience">Para Operaciones</div>
+        <div class="next-card__title">Automatización avanzada</div>
+        <div class="next-card__desc">Consultoría en flujos de trabajo conectados, integraciones y escalamiento del stack.</div>
+        <span class="next-card__cta">Operar en autopiloto &rarr;</span>
+      </div>
+    </div>
+    <p class="visual-phrase fade-in fade-in-delay-4" style="text-align:center; margin-top:22px;">Desde uso práctico hasta automatización real</p>
+  </section>
+
+  <!-- ============ SLIDE 15 — PREGUNTAS Y CIERRE ============ -->
+  <section class="slide slide-dark" id="slide-15">
+    <div class="floating-shapes">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <h2 class="closing-title fade-in" style="position:relative;z-index:1;">¿Preguntas?</h2>
+    <p class="closing-sub fade-in fade-in-delay-2" style="position:relative;z-index:1;">Gracias</p>
+    <div class="fade-in fade-in-delay-4" style="position:relative;z-index:1; margin-top:40px;">
+      <span class="cover-badge" style="font-size:16px; padding:12px 32px;">DesafIA — Master Webinar</span>
+    </div>
+  </section>
+
+</div>
+
+<div id="adoption-tooltip" class="adoption-tooltip"></div>
+
+<script src="js/webinar.js" defer></script>
+</body>
+</html>
