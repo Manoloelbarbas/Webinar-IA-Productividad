@@ -51,12 +51,12 @@
     const coverBadge = heroSection.querySelector('.cover-badge');
 
     const COLORS = {
-      bg: [5, 5, 16],
-      deep: [75, 0, 130],
-      blue: [65, 105, 225],
-      cyan: [0, 191, 255],
-      soft: [204, 204, 255],
-      magenta: [180, 50, 220]
+      bg: [0, 0, 0],
+      deep: [41, 16, 84],
+      blue: [42, 87, 210],
+      cyan: [0, 178, 227],
+      soft: [180, 200, 255],
+      magenta: [105, 41, 196]
     };
 
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -417,7 +417,7 @@
       aura.addColorStop(0, rgba(COLORS.blue, 0.32));
       aura.addColorStop(0.3, rgba(COLORS.deep, 0.26));
       aura.addColorStop(0.65, rgba(COLORS.cyan, 0.12));
-      aura.addColorStop(1, 'rgba(5,5,16,0)');
+      aura.addColorStop(1, rgba(COLORS.bg, 0));
       ctx.fillStyle = aura;
       ctx.fillRect(0, 0, state.width, state.height);
 
@@ -427,14 +427,14 @@
       );
       aura2.addColorStop(0, rgba(COLORS.magenta, 0.18));
       aura2.addColorStop(0.4, rgba(COLORS.deep, 0.12));
-      aura2.addColorStop(1, 'rgba(5,5,16,0)');
+      aura2.addColorStop(1, rgba(COLORS.bg, 0));
       ctx.fillStyle = aura2;
       ctx.fillRect(0, 0, state.width, state.height);
 
       const beam = ctx.createLinearGradient(0, 0, state.width, state.height);
-      beam.addColorStop(0, 'rgba(75,0,130,0.22)');
+      beam.addColorStop(0, rgba(COLORS.deep, 0.22));
       beam.addColorStop(0.52, 'rgba(7,12,30,0.06)');
-      beam.addColorStop(1, 'rgba(0,191,255,0.1)');
+      beam.addColorStop(1, rgba(COLORS.cyan, 0.1));
       ctx.fillStyle = beam;
       ctx.fillRect(0, 0, state.width, state.height);
     }
@@ -858,7 +858,7 @@
       };
     }
 
-    const baseColors = ['#3b82f6', '#f97316', '#22c55e'];
+    const baseColors = ['#00B2E3', '#2A57D2', '#6929C4'];
     const years = [];
     let chart = null;
     let buildTimer = 0;
