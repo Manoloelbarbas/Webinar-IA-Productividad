@@ -1592,81 +1592,140 @@
     const slide = document.getElementById('slide-2');
     if (!slide) return { activate: function() {}, deactivate: function() {} };
 
-    const label = document.getElementById('slide-2-story-label');
-    const copy = document.getElementById('slide-2-story-copy');
+    const stage = slide.querySelector('.s2-metric-stage');
+    const numEl = document.getElementById('slide-2-metric-num');
+    const subEl = document.getElementById('slide-2-metric-sub');
     const buttons = Array.prototype.slice.call(slide.querySelectorAll('.context-sequence__step'));
-    const triggers = Array.prototype.slice.call(slide.querySelectorAll('[data-step-trigger]'));
     const steps = [
       {
         key: 'adoption',
-        label: 'Adopción masiva',
-        copy: 'El <strong>78%</strong> de las organizaciones reportó usar IA en 2024.'
+        num: 78, prefix: '', suffix: '%',
+        sub: 'Empresas operando con IA.'
       },
       {
-        key: 'conversation',
-        label: 'La conversación cambió',
-        copy: 'La conversación ya no es <em>si usar IA</em>, sino <strong>cómo generar valor real</strong>.'
+        key: 'advantage',
+        num: 71, prefix: '', suffix: '%',
+        sub: 'logran ventaja competitiva al escalar la IA.'
       },
       {
         key: 'impact',
-        label: 'Impacto productivo',
-        copy: 'La IA bien aplicada puede habilitar <strong>+5×</strong> más horas productivas.'
+        num: 40, prefix: '+', suffix: '%',
+        sub: 'Mayor precisión y calidad en el trabajo de conocimiento.'
       }
     ];
-    let current = 0;
+    let current = -1;
+    let counterRAF = null;
+    let leavingTimer = null;
 
-    function setStep(index) {
-      const next = Math.max(0, Math.min(index, steps.length - 1));
-      const step = steps[next];
-      current = next;
+    const reducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function cancelCounter() {
+      if (counterRAF !== null) {
+        cancelAnimationFrame(counterRAF);
+        counterRAF = null;
+      }
+    }
+
+    function animateCounter(el, to, prefix, suffix, duration) {
+      cancelCounter();
+      if (!el) return;
+      if (reducedMotion) {
+        el.textContent = prefix + to + suffix;
+        return;
+      }
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = prefix + Math.round(to * eased) + suffix;
+        if (t < 1) {
+          counterRAF = requestAnimationFrame(tick);
+        } else {
+          counterRAF = null;
+        }
+      }
+      counterRAF = requestAnimationFrame(tick);
+    }
+
+    function applyStep(step, duration) {
       slide.dataset.focusStep = step.key;
-      if (label) label.textContent = step.label;
-      if (copy) copy.innerHTML = step.copy;
+      if (subEl) subEl.textContent = step.sub;
+      animateCounter(numEl, step.num, step.prefix, step.suffix, duration);
+    }
+
+    function syncButtons(index) {
       buttons.forEach(function(button, buttonIndex) {
-        const active = buttonIndex === next;
+        const active = buttonIndex === index;
         button.classList.toggle('is-active', active);
         button.setAttribute('aria-pressed', active ? 'true' : 'false');
       });
     }
 
-    function getIndexFromElement(el, attr) {
-      const raw = el.getAttribute(attr);
-      const parsed = parseInt(raw, 10);
-      return Number.isNaN(parsed) ? 0 : parsed;
+    function setStep(index, immediate) {
+      const next = Math.max(0, Math.min(index, steps.length - 1));
+      if (next === current && !immediate) return;
+      const step = steps[next];
+      current = next;
+
+      syncButtons(next);
+
+      if (leavingTimer !== null) {
+        clearTimeout(leavingTimer);
+        leavingTimer = null;
+      }
+
+      if (!stage || reducedMotion || immediate) {
+        if (stage) stage.classList.remove('is-leaving');
+        applyStep(step, immediate ? 1100 : 900);
+        return;
+      }
+
+      stage.classList.add('is-leaving');
+      leavingTimer = setTimeout(function() {
+        applyStep(step, 900);
+        requestAnimationFrame(function() {
+          stage.classList.remove('is-leaving');
+        });
+        leavingTimer = null;
+      }, 150);
     }
 
     buttons.forEach(function(button) {
       button.addEventListener('click', function() {
-        setStep(getIndexFromElement(button, 'data-step'));
-      });
-    });
-
-    triggers.forEach(function(trigger) {
-      trigger.addEventListener('click', function() {
-        setStep(getIndexFromElement(trigger, 'data-step-trigger'));
-      });
-      trigger.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          setStep(getIndexFromElement(trigger, 'data-step-trigger'));
-        }
+        const raw = button.getAttribute('data-step');
+        const parsed = parseInt(raw, 10);
+        setStep(Number.isNaN(parsed) ? 0 : parsed);
       });
     });
 
     document.addEventListener('keydown', function(e) {
       if (!slide.classList.contains('active')) return;
       if (e.key === '1' || e.key === '2' || e.key === '3') {
+        if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
         e.preventDefault();
         setStep(parseInt(e.key, 10) - 1);
       }
     });
 
     function activate() {
-      setStep(0);
+      current = -1;
+      setStep(0, true);
     }
 
     function deactivate() {
-      setStep(0);
+      cancelCounter();
+      if (leavingTimer !== null) {
+        clearTimeout(leavingTimer);
+        leavingTimer = null;
+      }
+      if (stage) stage.classList.remove('is-leaving');
+      current = -1;
+      const step = steps[0];
+      slide.dataset.focusStep = step.key;
+      if (numEl) numEl.textContent = step.prefix + step.num + step.suffix;
+      if (subEl) subEl.textContent = step.sub;
+      syncButtons(0);
     }
 
     return { activate: activate, deactivate: deactivate };
