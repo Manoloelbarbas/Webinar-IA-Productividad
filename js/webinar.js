@@ -1507,6 +1507,9 @@
       if (oldSlide.id === 'slide-2' && newSlide.id !== 'slide-2') {
         slideTwoStory.deactivate();
       }
+      if (oldSlide.id === 'slide-3' && newSlide.id !== 'slide-3') {
+        slideThreeTension.deactivate();
+      }
       if (oldSlide.id === 'slide-4' && newSlide.id !== 'slide-4') {
         slideFourUrgency.deactivate();
       }
@@ -1562,6 +1565,12 @@
       setTimeout(function() {
         slideTwoStory.activate();
       }, 180);
+    }
+
+    if (slide.id === 'slide-3') {
+      setTimeout(function() {
+        slideThreeTension.activate();
+      }, 220);
     }
 
     if (slide.id === 'slide-4') {
@@ -1727,6 +1736,96 @@
       if (subEl) subEl.textContent = step.sub;
       syncButtons(0);
     }
+
+    return { activate: activate, deactivate: deactivate };
+  })();
+
+  // ===== SLIDE 3 TENSION =====
+  const slideThreeTension = (function() {
+    const slide = document.getElementById('slide-3');
+    if (!slide) return { activate: function() {}, deactivate: function() {} };
+
+    const stage = slide.querySelector('.t3-stage');
+    const investValue = slide.querySelector('.t3-card--invest .t3-card__num-value');
+    const matureValue = slide.querySelector('.t3-card--mature .t3-card__num-value');
+    const reducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let counterStates = [];
+    let timers = [];
+
+    function setValue(el, value) {
+      if (el) el.textContent = String(value);
+    }
+
+    function clearTimers() {
+      timers.forEach(function(timerId) { clearTimeout(timerId); });
+      timers = [];
+    }
+
+    function cancelCounters() {
+      counterStates.forEach(function(state) {
+        if (state.rafId !== null) cancelAnimationFrame(state.rafId);
+      });
+      counterStates = [];
+    }
+
+    function animateCounter(el, to, prefix, suffix, duration) {
+      if (!el) return;
+      if (reducedMotion) {
+        el.textContent = prefix + to + suffix;
+        return;
+      }
+      const state = { rafId: null };
+      counterStates.push(state);
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = prefix + Math.round(to * eased) + suffix;
+        if (t < 1) {
+          state.rafId = requestAnimationFrame(tick);
+        } else {
+          state.rafId = null;
+        }
+      }
+      state.rafId = requestAnimationFrame(tick);
+    }
+
+    function revealStage() {
+      if (!stage) return;
+      stage.classList.remove('is-settled');
+      requestAnimationFrame(function() {
+        stage.classList.add('is-revealed');
+      });
+    }
+
+    function activate() {
+      deactivate();
+      revealStage();
+      if (reducedMotion) {
+        if (stage) stage.classList.add('is-settled');
+        setValue(investValue, 92);
+        setValue(matureValue, 1);
+        return;
+      }
+      animateCounter(investValue, 92, '', '', 900);
+      timers.push(setTimeout(function() {
+        animateCounter(matureValue, 1, '', '', 700);
+      }, 250));
+      timers.push(setTimeout(function() {
+        if (stage) stage.classList.add('is-settled');
+      }, 1520));
+    }
+
+    function deactivate() {
+      clearTimers();
+      cancelCounters();
+      if (stage) stage.classList.remove('is-revealed', 'is-settled');
+      setValue(investValue, 0);
+      setValue(matureValue, 0);
+    }
+
+    deactivate();
 
     return { activate: activate, deactivate: deactivate };
   })();
