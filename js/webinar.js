@@ -1830,58 +1830,67 @@
     return { activate: activate, deactivate: deactivate };
   })();
 
-  // ===== LEARN PATH (slide-7) =====
+  // ===== LEARN PATH (slide-7 · cadena de valor) =====
   const learnPath = (function() {
     const root = document.getElementById('learn-path');
     if (!root) return { activate: function() {}, deactivate: function() {} };
-    const cards = Array.prototype.slice.call(root.querySelectorAll('.learn-card'));
+    const phases = Array.prototype.slice.call(root.querySelectorAll('.phase'));
     const progress = root.querySelector('.learn-path__progress');
     const pulse = root.querySelector('.learn-path__pulse');
-    const total = cards.length;
-    let index = 0;
-    let timer = null;
-    let hovering = false;
+    const track = root.querySelector('.learn-path__track');
+    let timeouts = [];
 
-    function setActive(i) {
-      index = i;
-      cards.forEach(function(c, idx) { c.classList.toggle('active', idx === i); });
-      const frac = (i + 0.5) / total;
-      if (progress) progress.style.transform = 'scaleX(' + frac + ')';
-      if (pulse && root) {
-        const trackEl = root.querySelector('.learn-path__track');
-        const w = trackEl ? trackEl.clientWidth : 0;
-        pulse.style.transform = 'translateX(' + (frac * w) + 'px)';
+    function clearTimeouts() {
+      timeouts.forEach(function(t) { clearTimeout(t); });
+      timeouts = [];
+    }
+
+    function setProgress(fraction) {
+      if (progress) progress.style.transform = 'scaleX(' + fraction + ')';
+      if (pulse && track) {
+        var w = track.clientWidth || 0;
+        pulse.style.transform = 'translateX(' + (fraction * w) + 'px)';
       }
     }
 
-    function tick() {
-      if (hovering) return;
-      setActive((index + 1) % total);
-    }
-
-    cards.forEach(function(card, i) {
-      card.addEventListener('mouseenter', function() {
-        hovering = true;
-        setActive(i);
+    phases.forEach(function(phase) {
+      phase.addEventListener('mouseenter', function() { phase.classList.add('is-focus'); });
+      phase.addEventListener('mouseleave', function() { phase.classList.remove('is-focus'); });
+      phase.addEventListener('click', function() {
+        phases.forEach(function(p) { p.classList.remove('is-focus'); });
+        phase.classList.add('is-focus');
       });
-      card.addEventListener('mouseleave', function() { hovering = false; });
-      card.addEventListener('click', function() { setActive(i); });
     });
 
     function activate() {
       deactivate();
-      setActive(0);
-      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!reduce) timer = setInterval(tick, 3600);
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) { setProgress(1); return; }
+      setProgress(0);
+      var steps = [0.25, 0.5, 0.75, 1];
+      steps.forEach(function(val, i) {
+        var t = setTimeout(function() { setProgress(val); }, 200 + i * 200);
+        timeouts.push(t);
+      });
     }
+
     function deactivate() {
-      if (timer) { clearInterval(timer); timer = null; }
+      clearTimeouts();
+      phases.forEach(function(p) { p.classList.remove('is-focus'); });
+      setProgress(0);
     }
-    let resizeRaf = null;
+
+    var resizeRaf = null;
     window.addEventListener('resize', function() {
       if (resizeRaf) cancelAnimationFrame(resizeRaf);
-      resizeRaf = requestAnimationFrame(function() { setActive(index); });
+      resizeRaf = requestAnimationFrame(function() {
+        if (!progress) return;
+        var match = /scaleX\(([\d.]+)\)/.exec(progress.style.transform || '');
+        var frac = match ? parseFloat(match[1]) : 1;
+        setProgress(frac);
+      });
     });
+
     return { activate: activate, deactivate: deactivate };
   })();
 
