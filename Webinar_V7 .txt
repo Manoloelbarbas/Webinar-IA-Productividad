@@ -507,8 +507,8 @@
             <div class="exec-pillar__line"></div>
           </div>
           <div class="exec-pillar__content">
-            <h4 class="exec-pillar__title">Dirección clara</h4>
-            <p class="exec-pillar__desc">Definir qué se necesita, para qué y con qué resultado esperado.</p>
+            <h4 class="exec-pillar__title">Alineación de Contexto</h4>
+            <p class="exec-pillar__desc">Instruir a la IA con precisión estratégica y objetivos de alto nivel.</p>
           </div>
         </div>
 
@@ -518,8 +518,8 @@
             <div class="exec-pillar__line"></div>
           </div>
           <div class="exec-pillar__content">
-            <h4 class="exec-pillar__title">Información propia</h4>
-            <p class="exec-pillar__desc">Trabajar con documentos, datos y conocimiento real de la organización.</p>
+            <h4 class="exec-pillar__title">Análisis de Capital Interno</h4>
+            <p class="exec-pillar__desc">Incorporar bases de conocimiento y documentación estructurada.</p>
           </div>
         </div>
 
@@ -528,15 +528,15 @@
             <div class="exec-pillar__dot"></div>
           </div>
           <div class="exec-pillar__content">
-            <h4 class="exec-pillar__title">Automatización útil</h4>
-            <p class="exec-pillar__desc">Delegar tareas repetitivas para liberar tiempo y acelerar ejecución.</p>
+            <h4 class="exec-pillar__title">Delegación Táctica</h4>
+            <p class="exec-pillar__desc">Diseñar flujos cerrados que liberen cuellos de botella organizacionales.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ SLIDE 10 — EJERCICIO 01: AUDIO → MINUTA ============ -->
+  <!-- ============ SLIDE 8 — EJERCICIO 01: AUDIO → MINUTA ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--01" id="slide-8">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio01-audio.png" alt="" class="slide-bg__img">
@@ -545,7 +545,7 @@
     </div>
     <div class="case-layout">
       <div class="case-layout__content">
-      
+        <div class="slide-tag fade-in">Ejercicio en Vivo · 01</div>
         <h2 class="slide-title fade-in fade-in-delay-1">Una reunión de 60 minutos<br><span class="animated-title-underline">minuta, responsables y seguimiento</span></h2>
         <div class="transform-row fade-in fade-in-delay-2">
           <div class="transform-row__from">
@@ -569,7 +569,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 11 — EJERCICIO 02: PDF → TABLA ============ -->
+  <!-- ============ SLIDE 9 — EJERCICIO 02: PDF → TABLA ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--02" id="slide-9">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio02-pdf.png" alt="" class="slide-bg__img">
@@ -602,7 +602,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 12 — EJERCICIO 03: DATOS → INSIGHT ============ -->
+  <!-- ============ SLIDE 10 — EJERCICIO 03: DATOS → INSIGHT ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--03" id="slide-10">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio03-datos.png" alt="" class="slide-bg__img">
@@ -635,7 +635,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 13 — EJERCICIO 04: BRIEF → DECK ============ -->
+  <!-- ============ SLIDE 11 — EJERCICIO 04: BRIEF → DECK ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--04" id="slide-11">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio04-deck.png" alt="" class="slide-bg__img">
@@ -668,7 +668,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 14 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
+  <!-- ============ SLIDE 12 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--05" id="slide-12">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio05-auto.png" alt="" class="slide-bg__img">
@@ -701,7 +701,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 15 — CULTURA DE ADOPCIÓN ============ -->
+  <!-- ============ SLIDE 13 — CULTURA DE ADOPCIÓN ============ -->
   <section class="slide slide-accent" id="slide-13">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/cultura-roi.jpg" alt="" class="slide-bg__img">
@@ -743,7 +743,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 16 — CÓMO SEGUIR AVANZANDO ============ -->
+  <!-- ============ SLIDE 14 — CÓMO SEGUIR AVANZANDO ============ -->
   <section class="slide slide-dark" id="slide-14">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/siguientes-pasos.png" alt="" class="slide-bg__img">
@@ -779,7 +779,7 @@
     <p class="visual-phrase fade-in fade-in-delay-4" style="text-align:center; margin-top:22px;">Desde uso práctico hasta automatización real</p>
   </section>
 
-  <!-- ============ SLIDE 17 — PREGUNTAS Y CIERRE ============ -->
+  <!-- ============ SLIDE 15 — PREGUNTAS Y CIERRE ============ -->
   <section class="slide slide-dark" id="slide-15">
     <div class="floating-shapes">
       <span></span><span></span><span></span><span></span><span></span>

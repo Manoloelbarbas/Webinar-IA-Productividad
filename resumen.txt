@@ -1,0 +1,123 @@
+¡Qué genial la idea de armar la presentación directamente en HTML, CSS y JS! Es un enfoque súper innovador y te da un control visual que el PPTX tradicional no permite. 
+
+Para que **NotebookLM** procese tu contenido de la manera más óptima y precisa, el mejor formato es texto plano estructurado (como Markdown). Al entregarle solo el contenido "limpio", evitas que la IA se confunda leyendo etiquetas `<div>`, estilos o variables de JavaScript, y le permites enfocarse al 100% en el mensaje, los datos y la estructura narrativa.
+
+Aquí tienes la extracción limpia y estructurada de tu presentación. Solo tienes que copiar este texto, guardarlo como un archivo `.txt` o documento de Google Docs, y subirlo a NotebookLM:
+
+---
+
+# Optimiza tu trabajo con IA — Master Webinar DesafIA
+
+## Slide 1: Portada
+* **Campaña/Evento:** Master Webinar DesafIA
+* **Título Principal:** Optimiza tu trabajo con IA
+
+## Slide 2: Contexto y Adopción
+* **Mensaje Principal:** La IA dejó de ser el futuro. Hoy es el estándar.
+* **Métrica Clave:** 78% de las organizaciones reportaron usar IA en al menos una función en 2024.
+* **Focos de impacto:** Adopción, Ventaja, Impacto.
+* **Fuente:** Stanford AI Index 2025 (State of AI in 10 Charts).
+
+## Slide 3: La Tensión del Mercado (Inversión vs. Retorno)
+* **Mensaje Principal:** Se invierte mucho. Se captura poco.
+* **El Problema:** * 92% de las empresas están aumentando su inversión en IA.
+  * Solo el 1% cuenta con IA madura en operación (Retorno Real).
+* **Conclusión Estratégica:** Sin adopción real, no hay retorno de inversión.
+* **Fuente:** McKinsey — Superagency in the Workplace.
+
+## Slide 4: La Urgencia Estratégica
+* **Mensaje Principal:** Acelerar la adopción es ahora una prioridad estratégica.
+* **Hechos Clave:**
+  * La autonomía de la IA está creciendo muy rápido.
+  * El horizonte de tareas que puede completar se duplica cada 7 meses.
+* **Gráfico de Capacidad:** Comparativa entre el Multiplicador de Capacidad de la "IA Autónoma" versus el "Límite Humano" proyectado a 7, 14 y 21 meses.
+* **Fuente:** METR — Measuring AI Ability (Time Horizons).
+
+## Slide 5: La Evolución de la IA
+* **Mensaje Principal:** De la Predicción a la Acción Autónoma (Proyección de adopción e impacto empresarial 2018 - 2030).
+* **Fase 1: IA Tradicional**
+  * Análisis y predicción de datos.
+  * Basada en reglas estrictas.
+  * Dependencia humana total.
+* **Fase 2: IA Generativa**
+  * Creación de contenido con LLMs.
+  * Funciona como copiloto.
+  * Requiere prompts detallados.
+* **Fase 3: IA Agéntica**
+  * Planificación y ejecución.
+  * Autonomía y uso de herramientas.
+  * Orquestación de procesos.
+* **Fuentes:** Capgemini, McKinsey & Co., Gartner (Proyecciones a 2026).
+
+## Slide 6: Oportunidad y Riesgo
+* **Mensaje Principal:** El costo de llegar tarde.
+* **Métrica Clave:** El 26% de los profesionales ya usa IA frecuentemente en su trabajo. (Fuente: Gallup).
+* **Dashboard de Brecha Competitiva:**
+  * **Líderes I.A.:** Aumento constante de productividad. (Ref: MIT Sloan / BCG Research).
+  * **Deuda I.A.:** El multiplicador de brecha entre líderes y rezagados a lo largo de 24 meses.
+  * **Rezagados:** Pérdida de margen progresiva. (Ref: McKinsey Global Institute).
+* **Conclusión:** El riesgo real es la brecha acumulada con el paso del tiempo.
+
+## Slide 7: Adopción Global
+* **Mensaje Principal:** La IA ya se volvió masiva, pero el uso avanzado sigue siendo excepcional.
+* **Datos Globales (Proyección a febrero 2026):**
+  * 84% (~6.8B personas): Nunca ha usado IA.
+  * 16% (~1.3B personas): Usa IA gratuita.
+  * ~0.3% (15-25M personas): Paga por IA.
+  * ~0.04% (2-5M personas): Usa IA para programar.
+
+## Slide 8: La Cadena de Valor de la IA
+* **Mensaje Principal:** La IA ya genera valor en cuatro frentes:
+  1. **Definir:** Encargo claro a la IA.
+  2. **Nutrir:** Alimentar al modelo con datos propios.
+  3. **Producir:** Generar entregables útiles.
+  4. **Escalar:** Lograr operación autónoma.
+
+## Slide 9: El Puente a la Ejecución
+* **Mensaje Principal:** El valor real ocurre en la ejecución diaria. 
+* **Pilares de Ejecución:**
+  1. **Alineación de Contexto:** Instruir a la IA con precisión estratégica y objetivos de alto nivel.
+  2. **Análisis de Capital Interno:** Incorporar bases de conocimiento y documentación estructurada.
+  3. **Delegación Táctica:** Diseñar flujos cerrados que liberen cuellos de botella organizacionales.
+
+## Slide 10: Ejercicio en Vivo 01
+* **Caso:** Una reunión de 60 minutos -> minuta, responsables y seguimiento.
+* **Transformación:** De "Audio crudo" a "Minuta ejecutiva con responsables asignados".
+* **Beneficio:** Los acuerdos dejan de perderse entre reuniones.
+
+## Slide 11: Ejercicio en Vivo 02
+* **Caso:** Un PDF de 50 páginas -> tabla limpia y datos accionables.
+* **Transformación:** De "Documento escaneado" a "Tabla estructurada con alertas de riesgo".
+* **Beneficio:** Lo que tardaba horas de tipeo, se resuelve en segundos.
+
+## Slide 12: Ejercicio en Vivo 03
+* **Caso:** Datos crudos en una planilla -> análisis, visualización e insight.
+* **Transformación:** De "Hojas de cálculo sin procesar" a "Dashboard ejecutivo con recomendaciones".
+* **Beneficio:** Los datos hablan — cuando alguien los traduce.
+
+## Slide 13: Ejercicio en Vivo 04
+* **Caso:** Notas sueltas o un brief -> presentación lista para directorio.
+* **Transformación:** De "Notas de reunión" a "Deck ejecutivo con narrativa y diseño".
+* **Beneficio:** De la idea al entregable, sin intermediarios.
+
+## Slide 14: Ejercicio en Vivo 05
+* **Caso:** Tareas manuales entre plataformas -> un sistema que opera solo.
+* **Transformación:** De "Procesos repetitivos" a "Flujo automatizado en segundo plano".
+* **Beneficio:** Lo que consume atención, pasa a operar en piloto automático.
+
+## Slide 15: Cultura de Adopción
+* **Mensaje Principal:** Reglas para capturar ROI real. La IA no reemplaza el criterio: lo amplifica cuando entra bien al equipo.
+* **Reglas:**
+  1. **Parte por lo frecuente y de bajo riesgo:** Tareas repetitivas y de baja exposición son el campo ideal para aprender haciendo.
+  2. **Acelera, no apagues tu criterio:** La IA es copiloto. El juicio profesional sigue siendo la autoridad final.
+  3. **Mide el impacto:** Tiempo ahorrado, errores evitados y calidad entregada; lo que no se mide, no se escala.
+
+## Slide 16: Siguientes Pasos
+* **Mensaje Principal:** Consejos a seguir en tu empresa. Tres niveles de intervención, un mismo objetivo: convertir la IA en ventaja real.
+  1. **Para Gerentes (Visión estratégica & ROI):** Oportunidades de negocio, criterios para priorizar casos y toma de decisiones con IA. Liderar la adopción.
+  2. **Para Equipos (In-Company aplicado):** Uso práctico con los propios datos del equipo — Excel, PDFs, reuniones y procesos reales. Acelerar el día a día.
+  3. **Para Operaciones (Automatización avanzada):** Consultoría en flujos de trabajo conectados, integraciones y escalamiento del stack. Operar en autopiloto.
+
+---
+
+¿Te gustaría que te ayude a redactar un *prompt* específico para pegarlo en NotebookLM y pedirle que te genere una lista de las preguntas más difíciles que te podría hacer la audiencia sobre este material?

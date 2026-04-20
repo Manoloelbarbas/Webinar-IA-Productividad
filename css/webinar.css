@@ -3332,91 +3332,204 @@ body:has(#slide-2.active) .nav-arrow:hover {
   }
 }
 
-/* Bridge slide (new after 7) */
-.bridge-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: clamp(32px, 4vw, 72px);
-  width: 100%;
-  max-width: var(--slide-grid-max);
-  align-items: center;
-  margin-top: clamp(14px, 2vh, 26px);
-}
-.bridge-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.bridge-step {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 22px 26px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  transition: all 0.4s ease;
-  opacity: 0;
-  transform: translateX(-30px);
-}
-.slide.active .bridge-step { opacity: 1; transform: translateX(0); }
-.slide.active .bridge-step:nth-child(1) { transition-delay: 0.1s; }
-.slide.active .bridge-step:nth-child(2) { transition-delay: 0.25s; }
-.slide.active .bridge-step:nth-child(3) { transition-delay: 0.4s; }
-.bridge-step:hover {
-  background: rgba(0,178,227,0.1);
-  border-color: rgba(0,178,227,0.4);
-  transform: translateX(8px);
-}
-.bridge-step__num {
-  flex-shrink: 0;
-  width: 58px;
-  height: 58px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 24px;
-  font-weight: 800;
-  background: var(--gradient1);
-  color: #fff;
-  box-shadow: 0 10px 30px rgba(0,178,227,0.25);
-}
-.bridge-step__body h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(18px, 1.5vw, 22px);
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.bridge-step__body p {
-  font-size: clamp(13px, 1.05vw, 16px);
-  color: var(--text-muted);
-  line-height: 1.4;
-}
-.bridge-visual {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  max-height: min(62vh, 620px);
-  border-radius: 32px;
-  overflow: hidden;
-  box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08);
-}
-.bridge-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* Bridge slide (Slide 9 - Exec Transition) */
+.exec-bg-img {
+  opacity: 0.25; 
+  filter: grayscale(50%) contrast(1.1);
   transform: scale(1.05);
   transition: transform 14s ease-out;
 }
-.slide.active .bridge-visual img { transform: scale(1.15); }
-.bridge-visual::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,178,227,0.18), transparent 45%, rgba(112,173,71,0.2));
+.slide.active .exec-bg-img {
+  transform: scale(1.15);
+}
+.exec-bg-overlay {
+  background: radial-gradient(circle at 75% 50%, rgba(8,14,28,0.75) 0%, rgba(6,10,20,0.95) 100%);
+}
+
+.exec-bridge-layout {
+  /* CONTROLES DEL TÍTULO PRINCIPAL */
+  --s9-title-size: clamp(42px, 5.2vw, 80px);
+  --s9-title-offset-x: -200px;
+  --s9-title-offset-y: 0px;
+  --s9-title-width: 140%; /* Aumenta este porcentaje para dejar que el texto invada el lado derecho sin romperse en 3 líneas */
+
+  /* CONTROLES DE LA FRASE CORTA (PASAR A DEMO) */
+  --s9-cta-size: clamp(30px, 2vw, 40px);
+  --s9-cta-offset-x: -200px;
+  --s9-cta-offset-y: 0px;
+
+  /* CONTROLES DE LOS TEXTOS INTERNOS DEL CUADRO (LOS 3 PILARES) */
+  --s9-pillar-title-size: clamp(40px, 1.8vw, 60px);
+  --s9-pillar-title-offset-x: 0px;
+  --s9-pillar-title-offset-y: 0px;
+
+  --s9-pillar-desc-size: clamp(20px, 1.1vw, 18px);
+  --s9-pillar-desc-offset-x: 0px;
+  --s9-pillar-desc-offset-y: 0px;
+
+  /* CONTROLES DEL CUADRO DE VIDRIO (PANEL DERECHO) */
+  --s9-panel-width: 140%;       /* Ej: 120% para hacerlo más ancho, o 400px */
+  --s9-panel-height: auto;      /* Ej: 500px para estirarlo hacia abajo */
+  --s9-panel-offset-x: 0px;
+  --s9-panel-offset-y: 0px;
+
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(40px, 6vw, 100px);
+  width: 100%;
+  max-width: min(1280px, 92vw);
+  margin: clamp(4vh, 8vh, 10vh) auto 0;
+  align-items: center;
+}
+
+.exec-bridge-statement {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.exec-bridge-title {
+  position: relative;
+  top: var(--s9-title-offset-y);
+  left: var(--s9-title-offset-x);
+  text-align: left;
+  font-size: var(--s9-title-size);
+  line-height: 1.05;
+  margin: 24px 0 36px;
+  width: var(--s9-title-width);
+  max-width: none;
+}
+
+/* Solución al texto que desaparecía por clases genéricas */
+.exec-bridge-title .animated-title-underline {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background: none;
+  -webkit-background-clip: border-box;
+}
+.exec-bridge-title .animated-title-underline::after {
+  background: linear-gradient(90deg, #00B2E3, #2A57D2);
+}
+
+.exec-bridge-cta {
+  position: relative;
+  top: var(--s9-cta-offset-y);
+  left: var(--s9-cta-offset-x);
+  font-size: var(--s9-cta-size);
+  color: var(--highlight);
+  font-weight: 500;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.cta-arrow {
+  transition: transform 0.3s ease;
+}
+.slide.active .exec-bridge-cta:hover .cta-arrow {
+  transform: translateX(8px);
+}
+
+/* Glass Panel */
+.exec-bridge-panel {
+  position: relative;
+  top: var(--s9-panel-offset-y);
+  left: var(--s9-panel-offset-x);
+  width: var(--s9-panel-width);
+  height: var(--s9-panel-height);
+  min-height: var(--s9-panel-height);
+  
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(145deg, rgba(20,28,46,0.45) 0%, rgba(10,14,25,0.65) 100%);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 28px;
+  padding: clamp(34px, 4vw, 54px);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  backdrop-filter: blur(24px) saturate(120%);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.exec-pillar {
+  display: flex;
+  gap: clamp(18px, 2.5vw, 24px);
+  padding-bottom: clamp(24px, 4vh, 40px);
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.exec-pillar:last-child {
+  padding-bottom: 0;
+}
+
+.slide.active .exec-pillar {
+  opacity: 1;
+  transform: translateX(0);
+}
+.slide.active .exec-pillar:nth-child(1) { transition-delay: 0.3s; }
+.slide.active .exec-pillar:nth-child(2) { transition-delay: 0.5s; }
+.slide.active .exec-pillar:nth-child(3) { transition-delay: 0.7s; }
+
+.exec-pillar__tracker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 12px;
+}
+.exec-pillar__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 16px var(--accent);
+  flex-shrink: 0;
+}
+.exec-pillar__line {
+  flex-grow: 1;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(0,178,227,0.5), rgba(0,178,227,0.05));
+  margin-top: 12px;
+  border-radius: 2px;
+}
+
+.exec-pillar__content {
+  flex-grow: 1;
+  transform: translateY(-8px);
+}
+
+.exec-pillar__num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.exec-pillar__title {
+  position: relative;
+  top: var(--s9-pillar-title-offset-y);
+  left: var(--s9-pillar-title-offset-x);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--s9-pillar-title-size);
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.015em;
+}
+
+.exec-pillar__desc {
+  position: relative;
+  top: var(--s9-pillar-desc-offset-y);
+  left: var(--s9-pillar-desc-offset-x);
+  font-size: var(--s9-pillar-desc-size);
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 95%;
 }
 
 /* Floating particles effect for bg */
