@@ -1077,9 +1077,12 @@
               bodyColor: '#cbd5e1',
               borderColor: 'rgba(255,255,255,0.08)',
               borderWidth: 1,
-              padding: 12,
-              titleFont: { size: 14 },
-              bodyFont: { size: 13 },
+              /* PARA CONTROLAR EL TAMAÑO DEL CUADRO: Ajustar padding (margen interno) */
+              padding: 16,
+              /* PARA CONTROLAR EL TAMAÑO DE LA FUENTE (Año): */
+              titleFont: { size: 21 },
+              /* PARA CONTROLAR EL TAMAÑO DE LA FUENTE (Datos de IA): */
+              bodyFont: { size: 16 },
               callbacks: {
                 title: function(context) {
                   return 'Ano: ' + context[0].label;

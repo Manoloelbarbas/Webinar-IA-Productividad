@@ -298,14 +298,20 @@ body:has(#slide-2.active) .nav-arrow:hover {
 }
 .links-section {
   margin-top: 20px;
-  font-size: 11px;
-  color: var(--text-muted);
-  opacity: 0.5;
+  
+  /* REFERENCIAS HOMOLOGADAS: Tamaño y formato general */
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
 }
 .links-section a {
-  color: var(--primary);
-  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,0.2);
+  text-underline-offset: 4px;
   word-break: break-all;
+  border-bottom: none; /* Homologado: sin borde extra */
 }
 .links-section a:hover { text-decoration: underline; }
 .visual-phrase {
@@ -525,7 +531,14 @@ body:has(#slide-2.active) .nav-arrow:hover {
 }
 #slide-1 .cover-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(60px, 9.2vw, 180px);
+  
+  /* PARA CAMBIAR TAMAÑO DEL TÍTULO EN LA PORTADA: */
+  font-size: clamp(60px, 9.2vw, 180px); /* Modifica estos números para agrandar o achicar */
+  
+  /* PARA MOVER EL TÍTULO (posicionamiento respecto a su bloque): */
+  margin-top: 0px;  /* Para subir o bajar el título (ej: -20px o 30px) */
+  margin-left: 0px; /* Para empujarlo a la izquierda o derecha */
+  
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.05em;
@@ -1226,18 +1239,22 @@ body:has(#slide-2.active) .nav-arrow:hover {
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px 10px;
-  padding: 12px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.04);
-  color: var(--text-muted);
-  font-size: 12px;
+  /* Pill styling simplificado, homologado a links-section */
+  padding: 8px 0;
+  border: none;
+  background: transparent;
+  
+  /* REFERENCIAS HOMOLOGADAS: Tamaño y formato general */
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
   line-height: 1.5;
 }
 .evolution-slide__sources-pill a {
-  color: rgba(232,232,240,0.92);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: underline;
-  text-decoration-color: rgba(255,255,255,0.24);
+  text-decoration-color: rgba(255,255,255,0.2);
   text-underline-offset: 4px;
 }
 .evolution-slide__sources-pill a:hover {
@@ -1702,11 +1719,13 @@ body:has(#slide-2.active) .nav-arrow:hover {
   gap: 14px;
   align-items: center;
   margin-top: clamp(4px, 0.8vh, 12px);
+  
+  /* REFERENCIAS HOMOLOGADAS: Tamaño y formato general */
   font-family: 'Inter', sans-serif;
-  font-size: 12.5px;
-  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
   letter-spacing: 0.02em;
-  color: rgba(156,163,175,0.78);
+  font-weight: 400;
 }
 #slide-2 .context-sources::before {
   content: 'Fuentes';
@@ -1721,11 +1740,13 @@ body:has(#slide-2.active) .nav-arrow:hover {
   margin-right: 4px;
 }
 #slide-2 .context-sources a {
-  color: rgba(199,239,251,0.92);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(107,216,242,0.25);
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,0.2);
+  text-underline-offset: 4px;
+  border-bottom: none;
   padding-bottom: 1px;
-  transition: color 0.25s ease, border-color 0.25s ease;
+  transition: color 0.25s ease;
 }
 #slide-2 .context-sources a:hover {
   color: #ffffff;
@@ -2438,9 +2459,12 @@ body:has(#slide-2.active) .nav-arrow:hover {
 #slide-4 .slide4-copy .slide-title {
   text-align: left !important;
   max-width: min(840px, 100%) !important;
-  font-size: clamp(54px, 4.9vw, 76px);
+  /* Tamaño de fuente aumentado (antes: clamp(54px, 4.9vw, 76px)) */
+  font-size: clamp(60px, 7vw, 82px);
   line-height: 1.02;
   letter-spacing: -0.04em;
+  /* Para mover el título hacia arriba/abajo (margen superior) */
+  margin-top: 0px; 
   margin-bottom: clamp(18px, 2.1vh, 28px);
 }
 #slide-4 .slide4-copy .slide-title .slide4-highlight {
@@ -2452,7 +2476,10 @@ body:has(#slide-2.active) .nav-arrow:hover {
 #slide-4 .slide4-copy .bullet-list {
   width: min(100%, 720px);
   max-width: 720px;
-  margin-top: clamp(8px, 1.1vh, 14px);
+  /* Para mover la lista hacia arriba/abajo respecto al título */
+  margin-top: clamp(8px, vh, 14px);
+  /* Para mover hacia la derecha/izquierda (añadiendo margen izquierdo) */
+  margin-left: 0px;
   padding-top: clamp(18px, 2vh, 24px);
   gap: 16px;
 }
@@ -2460,7 +2487,8 @@ body:has(#slide-2.active) .nav-arrow:hover {
   display: block;
   position: relative;
   padding-left: 22px;
-  font-size: clamp(16px, 1.32vw, 19px);
+  /* Tamaño de fuente de subtítulos aumentado (antes: clamp(16px, 1.32vw, 19px)) */
+  font-size: clamp(25px, 3vw, 30px);
   line-height: 1.52;
   color: rgba(232,232,240,0.82);
 }
@@ -2778,13 +2806,21 @@ body:has(#slide-2.active) .nav-arrow:hover {
 #slide-6 .slide-title {
   text-align: left !important;
   max-width: min(640px, 100%) !important;
+  
+  /* PARA MOVER EL TÍTULO GLOBAL DE LA SLIDE 6 (arriba/abajo o izq/der) */
+  margin-top: 0px; 
+  margin-left: 130px; 
   margin-bottom: 0;
-  font-size: clamp(40px, 3.9vw, 62px);
+  
+  /* PARA CAMBIAR EL TAMAÑO DE LA FUENTE DEL TÍTULO PRINCIPAL: */
+  font-size: clamp(60px, 6vw, 80px);
+  
   line-height: 1.06;
   letter-spacing: -0.035em;
   display: flex;
   flex-direction: column;
-  gap: 0.08em;
+  /* PARA SEPARAR ESPACIO ENTRE LÍNEAS DEL TÍTULO ("El costo de" y "llegar tarde") */
+  gap: 0.08em; 
 }
 .slide6-title__line {
   display: block;
@@ -2796,13 +2832,19 @@ body:has(#slide-2.active) .nav-arrow:hover {
 }
 .slide6-stat {
   display: flex;
-  align-items: flex-end;
-  gap: clamp(18px, 2vw, 28px);
+  /* Cambio: Coloca el texto de la señal debajo del número */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(8px, 1vw, 12px);
   margin: 0;
 }
 .slide6-stat__num {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(108px, 10.4vw, 168px);
+  /* PARA CAMBIAR TAMAÑO DEL 26%: Modificar los parámetros del clamp */
+  font-size: clamp(20px, 15vw, 250px);
+  /* PARA CAMBIAR POSICIÓN DEL 26%: ajustar margins si es necesario */
+  margin-top: 0px; 
+  margin-left: 100px;
   font-weight: 900;
   line-height: 0.9;
   letter-spacing: -0.055em;
@@ -2820,7 +2862,11 @@ body:has(#slide-2.active) .nav-arrow:hover {
   margin-left: 0.02em;
 }
 .slide6-stat__copy {
-  max-width: 260px;
+  max-width: none; /* ← Eliminado límite de ancho para que no baje de línea */
+  white-space: nowrap; /* ← Fuerza a que todo este en una línea */
+  /* PARA CAMBIAR TAMAÑO GENERAL DE LA CAJA O POSICIÓN DEL TEXTO INFERIOR: */
+  margin-top: 0px; /* para separar más arriba/abajo respecto al número */
+  margin-left: 0px; /* para mover este párrafo a la derecha o izq */
   padding-bottom: 14px;
   display: flex;
   flex-direction: column;
@@ -2828,7 +2874,8 @@ body:has(#slide-2.active) .nav-arrow:hover {
 }
 .slide6-stat__lead {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(17px, 1.25vw, 21px);
+  /* PARA CAMBIAR TAMAÑO DEL TEXTO PRIMARIO DEL PÁRRAFO: */
+  font-size: clamp(40px, 3vw, 60px);
   line-height: 1.3;
   color: #ffffff;
   font-weight: 600;
@@ -4657,13 +4704,15 @@ body:has(#slide-2.active) .nav-arrow:hover {
   font-weight: 600;
 }
 .slide6-dash-source {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 10.5px;
-  color: rgba(255, 255, 255, 0.4);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   margin-top: 4px;
   text-align: right;
   border-top: 1px solid rgba(255,255,255,0.04);
   padding-top: 8px;
+  text-transform: none;
+  
+  /* REFERENCIAS HOMOLOGADAS: Tamaño y formato general */
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
 }
