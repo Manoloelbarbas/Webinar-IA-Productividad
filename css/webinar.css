@@ -533,7 +533,7 @@ body:has(#slide-2.active) .nav-arrow:hover {
   font-family: 'Space Grotesk', sans-serif;
   
   /* PARA CAMBIAR TAMAÑO DEL TÍTULO EN LA PORTADA: */
-  font-size: clamp(60px, 9.2vw, 180px); /* Modifica estos números para agrandar o achicar */
+  font-size: clamp(40px, 9.2vw, 150px); /* Modifica estos números para agrandar o achicar */
   
   /* PARA MOVER EL TÍTULO (posicionamiento respecto a su bloque): */
   margin-top: 0px;  /* Para subir o bajar el título (ej: -20px o 30px) */
@@ -1984,9 +1984,31 @@ body:has(#slide-2.active) .nav-arrow:hover {
   --t3-headline-offset-y: -50px;
   --t3-headline-font-size: clamp(50px, 4.5vw, 200px);
 
-  --t3-takeaway-offset-x: 0px;
-  --t3-takeaway-offset-y: 20px;
-  --t3-takeaway-font-size: clamp(40px, 6vw, 28px);
+  /* CONTROL DEL PÁRRAFO INFERIOR ("Sin adopción real...") */
+  --t3-takeaway-offset-x: 0px;  /* Izquierda / Derecha */
+  --t3-takeaway-offset-y: 20px; /* Arriba / Abajo */
+  --t3-takeaway-font-size: clamp(40px, 4vw, 70px); /* Aumenta ambos px para agrandar */
+  
+  /* CONTROLES PARA TEXTOS SOBRE LOS NÚMEROS (EJ. "CAPEX EN IA") */
+  --t3-eyebrow-offset-y: 0px;
+  --t3-eyebrow-offset-x: 0px;
+  --t3-eyebrow-font-size: 15px; 
+
+  /* CONTROLES PARA TEXTOS DEBAJO DE LOS NÚMEROS (EJ. "empresas aumentando...") */
+  --t3-label-offset-y: 0px;
+  --t3-label-offset-x: 0px;
+  --t3-label-font-size: clamp(15px, 2.5vw, 28px);
+
+  /* CONTROLES PARA TEXTO AL FINAL DE LA CAJA (EJ. "horizonte 3 años") */
+  --t3-foot-offset-y: 0px;
+  --t3-foot-offset-x: 0px;
+  --t3-foot-font-size: clamp(11px, 2vw, 20px);
+
+  /* CONTROLES GLOBALES PARA LAS DOS TARJETAS (POSICIÓN Y ANCHO TOTAL) */
+  --t3-duo-offset-y: 0px;   /* Subir o bajar ambos cuadros juntos */
+  --t3-duo-offset-x: 0px;   /* Mover izquierda/derecha ambos cuadros */
+  --t3-duo-max-width: min(1000px, 92vw); /* Achicar este valor para que no sean tan anchos */
+  --t3-duo-gap: 200px;       /* AUMENTAR PARA QUEDAR MÁS SEPARADOS O REDUCIR PARA QUEDAR MÁS JUNTOS */
 
   --t3-invest-num-offset-x: 30px;
   --t3-invest-num-offset-y: 0px;
@@ -2053,12 +2075,14 @@ body:has(#slide-2.active) .nav-arrow:hover {
 #slide-3 .t3-duo,
 #slide-3 .tension-grid {
   position: relative;
+  top: var(--t3-duo-offset-y);
+  left: var(--t3-duo-offset-x);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: stretch;
-  gap: clamp(18px, 2vw, 36px);
+  gap: var(--t3-duo-gap);
   width: 100%;
-  max-width: min(1240px, 92vw);
+  max-width: var(--t3-duo-max-width);
   margin: 0 auto;
 }
 #slide-3 .t3-card,
@@ -2104,7 +2128,10 @@ body:has(#slide-2.active) .nav-arrow:hover {
 #slide-3 .t3-card__eyebrow,
 #slide-3 .tension-card__eyebrow {
   margin: 0;
-  font-size: 12px;
+  position: relative;
+  top: var(--t3-eyebrow-offset-y);
+  left: var(--t3-eyebrow-offset-x);
+  font-size: var(--t3-eyebrow-font-size);
   font-weight: 700;
   letter-spacing: 2.8px;
   text-transform: uppercase;
@@ -2157,14 +2184,20 @@ body:has(#slide-2.active) .nav-arrow:hover {
 #slide-3 .tension-card__copy {
   max-width: 34ch;
   margin: 0;
-  font-size: clamp(15px, 1.15vw, 18px);
+  position: relative;
+  top: var(--t3-label-offset-y);
+  left: var(--t3-label-offset-x);
+  font-size: var(--t3-label-font-size);
   line-height: 1.45;
   color: rgba(232,232,240,0.84);
 }
 #slide-3 .t3-card__foot {
   margin-top: auto;
   padding-top: 10px;
-  font-size: clamp(11px, 0.82vw, 13px);
+  position: relative;
+  top: var(--t3-foot-offset-y);
+  left: var(--t3-foot-offset-x);
+  font-size: var(--t3-foot-font-size);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: rgba(232,232,240,0.45);
@@ -2286,7 +2319,8 @@ body:has(#slide-2.active) .nav-arrow:hover {
   left: var(--t3-takeaway-offset-x);
   top: var(--t3-takeaway-offset-y);
   text-align: center;
-  max-width: min(860px, 90vw) !important;
+  max-width: none !important;
+  white-space: nowrap;
   margin: 0;
   font-size: var(--t3-takeaway-font-size);
   font-weight: 500;
