@@ -4040,6 +4040,59 @@ body:has(#slide-2.active) .nav-arrow:hover {
   50% { transform: translateX(4px); opacity: 1; }
 }
 
+/* ========================================================
+   CONTROLES MANUALES PARA SLIDE 10 (EJERCICIO 01, id="slide-8")
+   ======================================================== */
+#slide-8 {
+  /* Título Principal */
+  --s10-title-size: clamp(34px, 4vw, 56px);
+  --s10-title-offset-x: 0px;
+  --s10-title-offset-y: 0px;
+  --s10-title-width: 100%;
+
+  /* Texto izquierdo del cuadro ("Audio de reunión") */
+  --s10-from-size: clamp(15px, 1.15vw, 20px);
+  --s10-from-offset-x: 0px;
+  --s10-from-offset-y: 0px;
+
+  /* Texto derecho del cuadro ("Minuta ejecutiva con acuerdos...") */
+  --s10-to-size: clamp(15px, 1.15vw, 20px);
+  --s10-to-offset-x: 0px;
+  --s10-to-offset-y: 0px;
+
+  /* Frase de cierre visual ("Menos ambigüedad...") */
+  --s10-phrase-size: clamp(15px, 1.3vw, 22px);
+  --s10-phrase-offset-x: 0px;
+  --s10-phrase-offset-y: 0px;
+}
+
+#slide-8 .slide-title {
+  position: relative;
+  font-size: var(--s10-title-size);
+  left: var(--s10-title-offset-x);
+  top: var(--s10-title-offset-y);
+  width: var(--s10-title-width);
+  max-width: none;
+}
+#slide-8 .transform-row__from span {
+  position: relative;
+  font-size: var(--s10-from-size);
+  left: var(--s10-from-offset-x);
+  top: var(--s10-from-offset-y);
+}
+#slide-8 .transform-row__to span {
+  position: relative;
+  font-size: var(--s10-to-size);
+  left: var(--s10-to-offset-x);
+  top: var(--s10-to-offset-y);
+}
+#slide-8 .visual-phrase {
+  position: relative;
+  font-size: var(--s10-phrase-size);
+  left: var(--s10-phrase-offset-x);
+  top: var(--s10-phrase-offset-y);
+}
+
 /* Exercise Number Watermark */
 .exercise-num-watermark {
   position: absolute;
