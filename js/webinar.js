@@ -1510,6 +1510,9 @@
       if (oldSlide.id === 'slide-3' && newSlide.id !== 'slide-3') {
         slideThreeTension.deactivate();
       }
+      if (oldSlide.id === 'slide-6' && newSlide.id !== 'slide-6') {
+        slideSixSignal.deactivate();
+      }
       if (oldSlide.id === 'slide-4' && newSlide.id !== 'slide-4') {
         slideFourUrgency.deactivate();
       }
@@ -1571,6 +1574,12 @@
       setTimeout(function() {
         slideThreeTension.activate();
       }, 220);
+    }
+
+    if (slide.id === 'slide-6') {
+      setTimeout(function() {
+        slideSixSignal.activate();
+      }, 280);
     }
 
     if (slide.id === 'slide-4') {
@@ -1823,6 +1832,102 @@
       if (stage) stage.classList.remove('is-revealed', 'is-settled');
       setValue(investValue, 0);
       setValue(matureValue, 0);
+    }
+
+    deactivate();
+
+    return { activate: activate, deactivate: deactivate };
+  })();
+
+  // ===== SLIDE 6 SIGNAL (adopcion vs rezago interactivo) =====
+  const slideSixSignal = (function() {
+    const slide = document.getElementById('slide-6');
+    if (!slide) return { activate: function() {}, deactivate: function() {} };
+
+    const statValue = slide.querySelector('.slide6-stat__num-value');
+    const slider = slide.querySelector('#slide6-timeline');
+    const timeLabel = slide.querySelector('#slide6-time-label');
+    const adoptVal = slide.querySelector('#slide6-metric-adopt');
+    const waitVal = slide.querySelector('#slide6-metric-wait');
+    const gapVal = slide.querySelector('#slide6-metric-gap');
+    const adoptBar = slide.querySelector('#slide6-bar-adopt');
+    const waitBar = slide.querySelector('#slide6-bar-wait');
+    const centerCircle = slide.querySelector('#slide6-center-circle');
+    
+    let rafId = null;
+
+    function updateDashboard(val) {
+      if (!slider) return;
+      
+      const v = parseFloat(val);
+      const progress = v / 24; // 0 to 1
+      
+      if (timeLabel) {
+        timeLabel.textContent = 'Mes ' + Math.round(v);
+      }
+      
+      // Calculate metrics based on MIT and McKinsey ranges
+      const adoptScore = Math.round(progress * 40);
+      const waitScore = Math.round(progress * 20); // shown with negative sign in HTML
+      
+      // Exponential gap multiplier: 1.0x to 3.0x
+      let gapMul = 1.0 + (Math.pow(progress, 1.5) * 2.0);
+      const gapScore = gapMul.toFixed(1);
+      
+      if (adoptVal) adoptVal.textContent = adoptScore;
+      if (waitVal) waitVal.textContent = waitScore;
+      if (gapVal) gapVal.textContent = gapScore;
+      
+      if (adoptBar) adoptBar.style.width = Math.min(100, progress * 100) + '%';
+      if (waitBar) waitBar.style.width = Math.min(100, progress * 100) + '%';
+      
+      if (centerCircle) {
+        if (progress > 0.6) {
+          centerCircle.classList.add('pulsing');
+        } else {
+          centerCircle.classList.remove('pulsing');
+        }
+      }
+    }
+
+    if (slider) {
+      slider.addEventListener('input', function(e) {
+        updateDashboard(e.target.value);
+      });
+    }
+
+    function animateCount(target, duration) {
+      if (!statValue) return;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        if (statValue) statValue.textContent = Math.round(target * eased);
+        if (t < 1) {
+          rafId = requestAnimationFrame(tick);
+        } else {
+          rafId = null;
+        }
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function activate() {
+      deactivate();
+      animateCount(26, 1100);
+      updateDashboard(slider ? slider.value : 0);
+    }
+
+    function deactivate() {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      if (statValue) statValue.textContent = '0';
+      if (slider) {
+        slider.value = 0;
+        updateDashboard(0);
+      }
     }
 
     deactivate();

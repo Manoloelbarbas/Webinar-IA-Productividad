@@ -30,12 +30,15 @@
       </div>
       <div class="slide-hero__inner">
         <div class="slide-hero__content">
-          <img src="images/logo_desafia.png" alt="DesafIA" class="cover-logo fade-in">
-          <div class="cover-divider" aria-hidden="true"></div>
-          <div class="cover-eyebrow fade-in fade-in-delay-1">
-            <span class="cover-eyebrow__dot" aria-hidden="true"></span>
-            <span>Master Webinar</span>
+          <div class="cover-brand-row fade-in">
+            <img src="images/logo_desafia.png" alt="DesafIA" class="cover-logo">
+            <span class="cover-brand-sep" aria-hidden="true"></span>
+            <div class="cover-eyebrow fade-in fade-in-delay-1">
+              <span class="cover-eyebrow__dot" aria-hidden="true"></span>
+              <span>Master Webinar</span>
+            </div>
           </div>
+          <div class="cover-divider" aria-hidden="true"></div>
           <h1 class="cover-title fade-in fade-in-delay-2">
             <span class="cover-title__top">Optimiza tu trabajo</span>
             <span class="cover-title__line">con IA</span>
@@ -274,113 +277,92 @@
   <!-- ============ SLIDE 6 — OPORTUNIDAD ============ -->
   <section class="slide slide-dark" id="slide-6">
     <div class="slide-bg" aria-hidden="true">
-      <img src="images/slide6-adoption-risk.png" alt="" class="slide-bg__img">
-      <div class="slide-bg__overlay"></div>
+      <img src="images/slide6-adoption-risk.png" alt="" class="slide-bg__img slide6-bg__img">
+      <div class="slide-bg__overlay slide6-bg__overlay"></div>
       <div class="slide-bg__grid"></div>
     </div>
     <div class="slide6-layout">
       <div class="slide6-copy">
-        <div class="slide-tag fade-in">Adopción vs Rezago</div>
-        <h2 class="slide-title fade-in fade-in-delay-1">El riesgo no es no probar IA.<br>El riesgo es <span class="slide6-highlight animated-title-underline">quedarse atrás.</span></h2>
+        <div class="slide-tag fade-in">Adopción temprana</div>
+        <h2 class="slide-title fade-in fade-in-delay-1">
+          <span class="slide6-title__line">El riesgo no es probar IA.</span>
+          <span class="slide6-title__line">Es <span class="slide6-highlight animated-title-underline">llegar tarde</span>.</span>
+        </h2>
 
         <div class="slide6-stat fade-in fade-in-delay-2">
-          <div class="slide6-stat__num">26%</div>
-          <div class="slide6-stat__copy">de las <strong>personas</strong> ya usa IA en el trabajo.</div>
-        </div>
-
-        <div class="slide6-data-stack fade-in fade-in-delay-3">
-          <div class="slide6-data-row">
-            <div class="slide6-data-label">
-              <span>Varias veces por semana</span>
-              <strong>26%</strong>
-            </div>
-            <div class="slide6-data-bar">
-              <div class="slide6-data-bar-fill" style="--bar-width:26%; --bar-delay:0.18s;"></div>
-            </div>
+          <div class="slide6-stat__num" aria-label="26 por ciento">
+            <span class="slide6-stat__num-value" data-target="26">0</span><span class="slide6-stat__num-unit">%</span>
           </div>
-          <div class="slide6-data-row">
-            <div class="slide6-data-label">
-              <span>Diariamente</span>
-              <strong>12%</strong>
-            </div>
-            <div class="slide6-data-bar">
-              <div class="slide6-data-bar-fill" style="--bar-width:12%; --bar-delay:0.34s;"></div>
-            </div>
+          <div class="slide6-stat__copy">
+            <span class="slide6-stat__lead">ya usa IA en su trabajo.</span>
+            <span class="slide6-stat__hint">Señal temprana · no un dato aislado.</span>
           </div>
         </div>
 
-        <div class="slide6-note fade-in fade-in-delay-4">
-          <svg class="slide6-note__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M13 2L5 14h5l-1 8 8-12h-5l1-8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
-          </svg>
-          <span>Quien aprende antes, se mueve antes.</span>
+        <div class="links-section fade-in fade-in-delay-4 slide6-source">
+          <a href="https://www.gallup.com/workplace/701195/frequent-workplace-continued-rise.aspx" target="_blank" rel="noopener">Gallup — Frequent Workplace AI Use</a>
         </div>
       </div>
 
-      <div class="slide6-visual fade-in fade-in-delay-2">
-        <div class="slide6-visual__media">
-          <img src="images/slide6-adoption-risk.png" alt="Equipo corporativo frente a un escenario de adopción tecnológica">
-        </div>
-        <div class="slide6-visual__overlay"></div>
-
-        <div class="slide6-risk-stack">
-          <div class="slide6-risk-stack__title">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3l9 16H3L12 3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
-              <path d="M12 9v4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-              <circle cx="12" cy="16.5" r="1" fill="currentColor"></circle>
-            </svg>
-            <span>Impacto en Empresas</span>
+      <div class="slide6-dashboard fade-in fade-in-delay-2" aria-label="Dashboard interactivo de brecha competitiva">
+        
+        <div class="slide6-dash-cards">
+          <!-- Card: Adoptantes -->
+          <div class="slide6-dash-card slide6-dash-card--adopt">
+            <h3 class="slide6-dash-card__title">Líderes I.A.</h3>
+            <div class="slide6-dash-metric">
+              <span class="slide6-dash-metric__label">Aumento Productividad</span>
+              <div class="slide6-dash-metric__value">
+                <span class="slide6-dash-metric__sign">+</span><span id="slide6-metric-adopt">0</span><span class="slide6-dash-metric__unit">%</span>
+              </div>
+            </div>
+            <!-- Simple bar visualizing growth -->
+            <div class="slide6-dash-bar">
+              <div class="slide6-dash-bar__fill" id="slide6-bar-adopt"></div>
+            </div>
+            <div class="slide6-dash-source">Ref: MIT Sloan / BCG Research</div>
           </div>
 
-          <article class="slide6-risk-card">
-            <div class="slide6-risk-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 15.5A7 7 0 0 1 19 15.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-                <path d="M12 15l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-                <circle cx="12" cy="15" r="1.6" fill="currentColor"></circle>
-              </svg>
+          <!-- The Gap Metric Center -->
+          <div class="slide6-dash-center">
+            <div class="slide6-dash-center__circle" id="slide6-center-circle">
+              <span class="slide6-dash-center__label">Deuda I.A.</span>
+              <div class="slide6-dash-center__value">
+                <span id="slide6-metric-gap">1.0</span><span class="slide6-dash-metric__unit" style="font-size:22px; margin-left:1px;">x</span>
+              </div>
             </div>
-            <div class="slide6-risk-card__body">
-              <h3>Menor velocidad</h3>
-              <p>Procesos atascados mientras la competencia automatiza y reduce tiempos de ejecución.</p>
-            </div>
-          </article>
+          </div>
 
-          <article class="slide6-risk-card">
-            <div class="slide6-risk-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M4 7h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-                <path d="M7 11l4 4 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M4 17h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-              </svg>
+          <!-- Card: Rezagados -->
+          <div class="slide6-dash-card slide6-dash-card--wait">
+            <h3 class="slide6-dash-card__title">Rezagados</h3>
+            <div class="slide6-dash-metric">
+              <span class="slide6-dash-metric__label">Pérdida de Margen</span>
+              <div class="slide6-dash-metric__value" style="color: rgba(255,100,100,0.9);">
+                <span class="slide6-dash-metric__sign">-</span><span id="slide6-metric-wait">0</span><span class="slide6-dash-metric__unit">%</span>
+              </div>
             </div>
-            <div class="slide6-risk-card__body">
-              <h3>Menor productividad</h3>
-              <p>Equipos agotados resolviendo manualmente tareas que la IA ya puede absorber en segundos.</p>
+            <!-- Simple bar visualizing cost/drag -->
+            <div class="slide6-dash-bar">
+              <div class="slide6-dash-bar__fill" id="slide6-bar-wait"></div>
             </div>
-          </article>
-
-          <article class="slide6-risk-card">
-            <div class="slide6-risk-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 18V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-                <path d="M12 18V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-                <path d="M19 18v-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-                <path d="M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
-              </svg>
-            </div>
-            <div class="slide6-risk-card__body">
-              <h3>Menor capacidad competitiva</h3>
-              <p>Pérdida de posición frente a actores más ágiles que ya operan con mejores tiempos y criterio aumentado.</p>
-            </div>
-          </article>
+            <div class="slide6-dash-source">Ref: McKinsey Global Institute</div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="links-section fade-in fade-in-delay-5">
-      <a href="https://www.gallup.com/workplace/701195/frequent-workplace-continued-rise.aspx" target="_blank" rel="noopener">Gallup — Frequent Workplace AI Use</a>
+        <div class="slide6-dash-controls">
+          <div class="slide6-dash-controls__labels">
+            <span>Hoy</span>
+            <span id="slide6-time-label" class="slide6-time-highlight">Mes 0</span>
+            <span>Mes 24</span>
+          </div>
+          <input type="range" class="slide6-dash-slider" id="slide6-timeline" min="0" max="24" value="0" step="0.1" aria-label="Línea de tiempo de adopción">
+        </div>
+
+        <p class="slide6-dashboard__closing">
+          Arrastra para ver el tiempo. <span>El riesgo real es la brecha acumulada.</span>
+        </p>
+      </div>
     </div>
   </section>
 
