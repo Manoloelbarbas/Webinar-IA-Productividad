@@ -4045,23 +4045,23 @@ body:has(#slide-2.active) .nav-arrow:hover {
    ======================================================== */
 #slide-8 {
   /* Título Principal */
-  --s10-title-size: clamp(34px, 4vw, 56px);
+  --s10-title-size: clamp(50px, 4vw, 60px);
   --s10-title-offset-x: 0px;
   --s10-title-offset-y: 0px;
   --s10-title-width: 100%;
 
   /* Texto izquierdo del cuadro ("Audio de reunión") */
-  --s10-from-size: clamp(15px, 1.15vw, 20px);
+  --s10-from-size: clamp(20px, 2vw, 30px);
   --s10-from-offset-x: 0px;
   --s10-from-offset-y: 0px;
 
   /* Texto derecho del cuadro ("Minuta ejecutiva con acuerdos...") */
-  --s10-to-size: clamp(15px, 1.15vw, 20px);
+  --s10-to-size: clamp(20px, 2vw, 30px);
   --s10-to-offset-x: 0px;
   --s10-to-offset-y: 0px;
 
   /* Frase de cierre visual ("Menos ambigüedad...") */
-  --s10-phrase-size: clamp(15px, 1.3vw, 22px);
+  --s10-phrase-size: clamp(20px, 1.3vw, 30px);
   --s10-phrase-offset-x: 0px;
   --s10-phrase-offset-y: 0px;
 }
@@ -4091,6 +4091,218 @@ body:has(#slide-2.active) .nav-arrow:hover {
   font-size: var(--s10-phrase-size);
   left: var(--s10-phrase-offset-x);
   top: var(--s10-phrase-offset-y);
+}
+
+/* ========================================================
+   CONTROLES MANUALES PARA SLIDE 11 (EJERCICIO 02, id="slide-9")
+   ======================================================== */
+#slide-9 {
+  /* Título Principal */
+  --s11-title-size: clamp(50px, 4vw, 60px);
+  --s11-title-offset-x: 0px;
+  --s11-title-offset-y: 0px;
+  --s11-title-width: 100%;
+
+  /* Texto izquierdo del cuadro ("Factura + OC") */
+  --s11-from-size: clamp(20px, 2vw, 30px);
+  --s11-from-offset-x: 0px;
+  --s11-from-offset-y: 0px;
+
+  /* Texto derecho del cuadro ("Control automatizado") */
+  --s11-to-size: clamp(20px, 2vw, 30px);
+  --s11-to-offset-x: 0px;
+  --s11-to-offset-y: 0px;
+
+  /* Frase de cierre visual */
+  --s11-phrase-size: clamp(15px, 1.3vw, 22px);
+  --s11-phrase-offset-x: 0px;
+  --s11-phrase-offset-y: 0px;
+}
+
+#slide-9 .slide-title {
+  position: relative;
+  font-size: var(--s11-title-size);
+  left: var(--s11-title-offset-x);
+  top: var(--s11-title-offset-y);
+  width: var(--s11-title-width);
+  max-width: none;
+}
+#slide-9 .transform-row__from span {
+  position: relative;
+  font-size: var(--s11-from-size);
+  left: var(--s11-from-offset-x);
+  top: var(--s11-from-offset-y);
+}
+#slide-9 .transform-row__to span {
+  position: relative;
+  font-size: var(--s11-to-size);
+  left: var(--s11-to-offset-x);
+  top: var(--s11-to-offset-y);
+}
+#slide-9 .visual-phrase {
+  position: relative;
+  font-size: var(--s11-phrase-size);
+  left: var(--s11-phrase-offset-x);
+  top: var(--s11-phrase-offset-y);
+}
+
+/* ========================================================
+   CONTROLES MANUALES PARA SLIDE 12 (EJERCICIO 03, id="slide-10")
+   ======================================================== */
+#slide-10 {
+  /* Título Principal */
+  --s12-title-size: clamp(34px, 4vw, 56px);
+  --s12-title-offset-x: 0px;
+  --s12-title-offset-y: 0px;
+  --s12-title-width: 100%;
+
+  /* Texto izquierdo del cuadro ("Catálogo + precios + cotización") */
+  --s12-from-size: clamp(15px, 1.15vw, 20px);
+  --s12-from-offset-x: 0px;
+  --s12-from-offset-y: 0px;
+
+  /* Texto derecho del cuadro ("Propuesta lista para enviar al cliente") */
+  --s12-to-size: clamp(15px, 1.15vw, 20px);
+  --s12-to-offset-x: 0px;
+  --s12-to-offset-y: 0px;
+
+  /* Frase de cierre visual */
+  --s12-phrase-size: clamp(15px, 1.3vw, 22px);
+  --s12-phrase-offset-x: 0px;
+  --s12-phrase-offset-y: 0px;
+}
+
+#slide-10 .slide-title {
+  position: relative;
+  font-size: var(--s12-title-size);
+  left: var(--s12-title-offset-x);
+  top: var(--s12-title-offset-y);
+  width: var(--s12-title-width);
+  max-width: none;
+}
+#slide-10 .transform-row__from span {
+  position: relative;
+  font-size: var(--s12-from-size);
+  left: var(--s12-from-offset-x);
+  top: var(--s12-from-offset-y);
+}
+#slide-10 .transform-row__to span {
+  position: relative;
+  font-size: var(--s12-to-size);
+  left: var(--s12-to-offset-x);
+  top: var(--s12-to-offset-y);
+}
+#slide-10 .visual-phrase {
+  position: relative;
+  font-size: var(--s12-phrase-size);
+  left: var(--s12-phrase-offset-x);
+  top: var(--s12-phrase-offset-y);
+}
+
+/* ========================================================
+   CONTROLES MANUALES PARA SLIDE 13 (EJERCICIO 04, id="slide-11")
+   ======================================================== */
+#slide-11 {
+  /* Título Principal */
+  --s13-title-size: clamp(34px, 4vw, 56px);
+  --s13-title-offset-x: 0px;
+  --s13-title-offset-y: 0px;
+  --s13-title-width: 100%;
+
+  /* Texto izquierdo del cuadro ("Archivo Excel") */
+  --s13-from-size: clamp(15px, 1.15vw, 20px);
+  --s13-from-offset-x: 0px;
+  --s13-from-offset-y: 0px;
+
+  /* Texto derecho del cuadro ("Dashboard con KPIs...") */
+  --s13-to-size: clamp(15px, 1.15vw, 20px);
+  --s13-to-offset-x: 0px;
+  --s13-to-offset-y: 0px;
+
+  /* Frase de cierre visual */
+  --s13-phrase-size: clamp(15px, 1.3vw, 22px);
+  --s13-phrase-offset-x: 0px;
+  --s13-phrase-offset-y: 0px;
+}
+
+#slide-11 .slide-title {
+  position: relative;
+  font-size: var(--s13-title-size);
+  left: var(--s13-title-offset-x);
+  top: var(--s13-title-offset-y);
+  width: var(--s13-title-width);
+  max-width: none;
+}
+#slide-11 .transform-row__from span {
+  position: relative;
+  font-size: var(--s13-from-size);
+  left: var(--s13-from-offset-x);
+  top: var(--s13-from-offset-y);
+}
+#slide-11 .transform-row__to span {
+  position: relative;
+  font-size: var(--s13-to-size);
+  left: var(--s13-to-offset-x);
+  top: var(--s13-to-offset-y);
+}
+#slide-11 .visual-phrase {
+  position: relative;
+  font-size: var(--s13-phrase-size);
+  left: var(--s13-phrase-offset-x);
+  top: var(--s13-phrase-offset-y);
+}
+
+/* ========================================================
+   CONTROLES MANUALES PARA SLIDE 14 (EJERCICIO 05, id="slide-12")
+   ======================================================== */
+#slide-12 {
+  /* Título Principal */
+  --s14-title-size: clamp(34px, 4vw, 56px);
+  --s14-title-offset-x: 0px;
+  --s14-title-offset-y: 0px;
+  --s14-title-width: 100%;
+
+  /* Texto izquierdo del cuadro ("Correos, formularios o bases de datos") */
+  --s14-from-size: clamp(15px, 1.15vw, 20px);
+  --s14-from-offset-x: 0px;
+  --s14-from-offset-y: 0px;
+
+  /* Texto derecho del cuadro ("Flujo automatizado con IA y n8n") */
+  --s14-to-size: clamp(15px, 1.15vw, 20px);
+  --s14-to-offset-x: 0px;
+  --s14-to-offset-y: 0px;
+
+  /* Frase de cierre visual */
+  --s14-phrase-size: clamp(15px, 1.3vw, 22px);
+  --s14-phrase-offset-x: 0px;
+  --s14-phrase-offset-y: 0px;
+}
+
+#slide-12 .slide-title {
+  position: relative;
+  font-size: var(--s14-title-size);
+  left: var(--s14-title-offset-x);
+  top: var(--s14-title-offset-y);
+  width: var(--s14-title-width);
+  max-width: none;
+}
+#slide-12 .transform-row__from span {
+  position: relative;
+  font-size: var(--s14-from-size);
+  left: var(--s14-from-offset-x);
+  top: var(--s14-from-offset-y);
+}
+#slide-12 .transform-row__to span {
+  position: relative;
+  font-size: var(--s14-to-size);
+  left: var(--s14-to-offset-x);
+  top: var(--s14-to-offset-y);
+}
+#slide-12 .visual-phrase {
+  position: relative;
+  font-size: var(--s14-phrase-size);
+  left: var(--s14-phrase-offset-x);
+  top: var(--s14-phrase-offset-y);
 }
 
 /* Exercise Number Watermark */
@@ -4141,15 +4353,15 @@ body:has(#slide-2.active) .nav-arrow:hover {
 .exercise-slide--03 .visual-phrase { color: rgba(0,178,227,0.9); }
 .exercise-slide--03 .exercise-num-watermark { background: linear-gradient(135deg, rgba(0,178,227,0.08), rgba(42,87,210,0.08)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; }
 
-.exercise-slide--04 .slide-tag { color: #9B6BFF; }
-.exercise-slide--04 .animated-title-underline { color: #9B6BFF; -webkit-text-fill-color: #9B6BFF; }
-.exercise-slide--04 .animated-title-underline::after { background: linear-gradient(90deg, #6929C4, #9B6BFF); }
-.exercise-slide--04 .transform-row__to .transform-row__icon { color: #9B6BFF; }
-.exercise-slide--04 .transform-row__arrow { color: #9B6BFF; }
-.exercise-slide--04 .visual-phrase { color: rgba(155,107,255,0.9); }
-.exercise-slide--04 .exercise-num-watermark { color: rgba(105,41,196,0.08); }
-.exercise-slide--04 .transform-row { border-color: rgba(105,41,196,0.15); background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(105,41,196,0.06)); }
-.exercise-slide--04 .transform-row:hover { border-color: rgba(105,41,196,0.45); }
+.exercise-slide--04 .slide-tag { color: #00B2E3; }
+.exercise-slide--04 .animated-title-underline { color: #00B2E3; -webkit-text-fill-color: #00B2E3; }
+.exercise-slide--04 .animated-title-underline::after { background: linear-gradient(90deg, #00B2E3, #2A57D2); }
+.exercise-slide--04 .transform-row__to .transform-row__icon { color: #00B2E3; }
+.exercise-slide--04 .transform-row__arrow { color: #00B2E3; }
+.exercise-slide--04 .visual-phrase { color: rgba(0,178,227,0.9); }
+.exercise-slide--04 .exercise-num-watermark { color: rgba(0,178,227,0.06); }
+.exercise-slide--04 .transform-row { border-color: rgba(0,178,227,0.15); background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(0,178,227,0.06)); }
+.exercise-slide--04 .transform-row:hover { border-color: rgba(0,178,227,0.45); }
 
 .exercise-slide--05 .slide-tag {
   background: linear-gradient(90deg, #00B2E3, #2A57D2, #6929C4);
@@ -4278,6 +4490,172 @@ body:has(#slide-2.active) .nav-arrow:hover {
   content: '';
   position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(5,5,16,0) 55%, rgba(5,5,16,0.6) 100%);
+}
+
+/* ========================================================
+   SLIDE 15 — CULTURA DE ADOPCIÓN (Nuevo Layout Ejecutivo)
+   ======================================================== */
+#slide-13 {
+  /* CONTROLES DEL TÍTULO */
+  --s15-title-size: clamp(44px, 4.8vw, 76px);
+  --s15-title-offset-x: 0px;
+  --s15-title-offset-y: 0px;
+
+  /* CONTROLES DE LA BAJADA */
+  --s15-sub-size: clamp(17px, 1.4vw, 24px);
+  --s15-sub-offset-x: 0px;
+  --s15-sub-offset-y: 0px;
+
+  /* CONTROLES DE TÍTULOS DE TARJETA */
+  --s15-card-title-size: clamp(18px, 1.55vw, 26px);
+
+  /* CONTROLES DE DESCRIPCIÓN DE TARJETA */
+  --s15-card-desc-size: clamp(14px, 1.1vw, 18px);
+}
+
+.s15-bg-img {
+  opacity: 0.18;
+  filter: grayscale(60%) contrast(1.1);
+  transform: scale(1.05);
+  transition: transform 14s ease-out;
+}
+.slide.active .s15-bg-img { transform: scale(1.12); }
+
+.s15-bg-overlay {
+  background: radial-gradient(ellipse at 60% 45%, rgba(8,12,28,0.7) 0%, rgba(4,6,15,0.96) 100%);
+}
+
+.s15-layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 0.85fr 1.2fr;
+  gap: clamp(28px, 3.5vw, 60px);
+  width: 100%;
+  max-width: min(1380px, 94vw);
+  margin: clamp(2vh, 5vh, 8vh) auto 0;
+  align-items: center;
+}
+
+.s15-statement {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2vh, 28px);
+}
+
+.s15-title {
+  position: relative;
+  font-size: var(--s15-title-size) !important;
+  left: var(--s15-title-offset-x);
+  top: var(--s15-title-offset-y);
+  text-align: left;
+  line-height: 1.05;
+  margin: 0 !important;
+  max-width: none;
+}
+
+.s15-title .animated-title-underline {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background: none;
+  -webkit-background-clip: border-box;
+}
+.s15-title .animated-title-underline::after {
+  background: linear-gradient(90deg, #00B2E3, #2A57D2);
+}
+
+/* Imagen central Slide 15 — controlable desde --s15-title-width */
+.s15-image {
+  --s15-img-height: clamp(260px, 38vh, 480px); /* cambia este valor para ajustar la altura */
+  --s15-img-offset-x: 0px;
+  --s15-img-offset-y: 0px;
+  position: relative;
+  left: var(--s15-img-offset-x);
+  top: var(--s15-img-offset-y);
+  height: var(--s15-img-height);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.07);
+}
+.s15-image__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.04);
+  transition: transform 12s ease-out;
+}
+.slide.active .s15-image__img { transform: scale(1.12); }
+
+.s15-sub {
+  position: relative;
+  left: var(--s15-sub-offset-x);
+  top: var(--s15-sub-offset-y);
+  font-size: var(--s15-sub-size);
+  color: rgba(200,210,230,0.85);
+  line-height: 1.55;
+  max-width: 86%;
+  margin: 0;
+}
+
+/* Cards ejecutivas */
+.s15-cards {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.8vh, 22px);
+}
+
+.s15-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: clamp(20px, 2.2vw, 30px) clamp(22px, 2.5vw, 34px);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(0,178,227,0.04) 100%);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-left: 3px solid rgba(0,178,227,0.5);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  transform: translateX(28px);
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.s15-card:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(0,178,227,0.07) 100%);
+  border-left-color: rgba(0,178,227,0.9);
+  transform: translateX(5px);
+}
+.slide.active .s15-card { opacity: 1; transform: translateX(0); }
+.slide.active .s15-card:nth-child(1) { transition-delay: 0.25s; }
+.slide.active .s15-card:nth-child(2) { transition-delay: 0.42s; }
+.slide.active .s15-card:nth-child(3) { transition-delay: 0.59s; }
+
+.s15-card__index {
+  flex-shrink: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(0,178,227,0.6);
+  letter-spacing: 2px;
+  padding-top: 3px;
+  min-width: 28px;
+}
+
+.s15-card__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--s15-card-title-size);
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.s15-card__desc {
+  font-size: var(--s15-card-desc-size);
+  color: rgba(200,210,230,0.82);
+  line-height: 1.55;
+  margin: 0;
 }
 
 /* ===== NEXT PATH (slide-14 Cómo Seguir Avanzando) ===== */
