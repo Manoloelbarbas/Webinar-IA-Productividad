@@ -1522,9 +1522,6 @@
       if (oldSlide.id === 'slide-4a' && newSlide.id !== 'slide-4a') {
         evolutionSlide.deactivate();
       }
-      if (oldSlide.id === 'slide-7' && newSlide.id !== 'slide-7') {
-        learnPath.deactivate();
-      }
       updateUI();
       triggerSlideAnimations(currentSlide);
       isAnimating = false;
@@ -1601,11 +1598,6 @@
       }, 220);
     }
 
-    if (slide.id === 'slide-7') {
-      setTimeout(function() {
-        learnPath.activate();
-      }, 900);
-    }
   }
 
   // ===== SLIDE 2 STORY FOCUS =====
@@ -1615,23 +1607,19 @@
 
     const stage = slide.querySelector('.s2-metric-stage');
     const numEl = document.getElementById('slide-2-metric-num');
-    const subEl = document.getElementById('slide-2-metric-sub');
     const buttons = Array.prototype.slice.call(slide.querySelectorAll('.context-sequence__step'));
     const steps = [
       {
         key: 'adoption',
-        num: 78, prefix: '', suffix: '%',
-        sub: 'Empresas operando con IA.'
+        num: 82, prefix: '', suffix: '%'
       },
       {
         key: 'advantage',
-        num: 71, prefix: '', suffix: '%',
-        sub: 'logran ventaja competitiva al escalar la IA.'
+        num: 78, prefix: '', suffix: '%'
       },
       {
         key: 'impact',
-        num: 40, prefix: '+', suffix: '%',
-        sub: 'Mayor precisión y calidad en el trabajo de conocimiento.'
+        num: 55, prefix: '', suffix: '%'
       }
     ];
     let current = -1;
@@ -1671,7 +1659,6 @@
 
     function applyStep(step, duration) {
       slide.dataset.focusStep = step.key;
-      if (subEl) subEl.textContent = step.sub;
       animateCounter(numEl, step.num, step.prefix, step.suffix, duration);
     }
 
@@ -1745,7 +1732,6 @@
       const step = steps[0];
       slide.dataset.focusStep = step.key;
       if (numEl) numEl.textContent = step.prefix + step.num + step.suffix;
-      if (subEl) subEl.textContent = step.sub;
       syncButtons(0);
     }
 
@@ -1934,70 +1920,6 @@
     }
 
     deactivate();
-
-    return { activate: activate, deactivate: deactivate };
-  })();
-
-  // ===== LEARN PATH (slide-7 · cadena de valor) =====
-  const learnPath = (function() {
-    const root = document.getElementById('learn-path');
-    if (!root) return { activate: function() {}, deactivate: function() {} };
-    const phases = Array.prototype.slice.call(root.querySelectorAll('.phase'));
-    const progress = root.querySelector('.learn-path__progress');
-    const pulse = root.querySelector('.learn-path__pulse');
-    const track = root.querySelector('.learn-path__track');
-    let timeouts = [];
-
-    function clearTimeouts() {
-      timeouts.forEach(function(t) { clearTimeout(t); });
-      timeouts = [];
-    }
-
-    function setProgress(fraction) {
-      if (progress) progress.style.transform = 'scaleX(' + fraction + ')';
-      if (pulse && track) {
-        var w = track.clientWidth || 0;
-        pulse.style.transform = 'translateX(' + (fraction * w) + 'px)';
-      }
-    }
-
-    phases.forEach(function(phase) {
-      phase.addEventListener('mouseenter', function() { phase.classList.add('is-focus'); });
-      phase.addEventListener('mouseleave', function() { phase.classList.remove('is-focus'); });
-      phase.addEventListener('click', function() {
-        phases.forEach(function(p) { p.classList.remove('is-focus'); });
-        phase.classList.add('is-focus');
-      });
-    });
-
-    function activate() {
-      deactivate();
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce) { setProgress(1); return; }
-      setProgress(0);
-      var steps = [0.25, 0.5, 0.75, 1];
-      steps.forEach(function(val, i) {
-        var t = setTimeout(function() { setProgress(val); }, 200 + i * 200);
-        timeouts.push(t);
-      });
-    }
-
-    function deactivate() {
-      clearTimeouts();
-      phases.forEach(function(p) { p.classList.remove('is-focus'); });
-      setProgress(0);
-    }
-
-    var resizeRaf = null;
-    window.addEventListener('resize', function() {
-      if (resizeRaf) cancelAnimationFrame(resizeRaf);
-      resizeRaf = requestAnimationFrame(function() {
-        if (!progress) return;
-        var match = /scaleX\(([\d.]+)\)/.exec(progress.style.transform || '');
-        var frac = match ? parseFloat(match[1]) : 1;
-        setProgress(frac);
-      });
-    });
 
     return { activate: activate, deactivate: deactivate };
   })();
