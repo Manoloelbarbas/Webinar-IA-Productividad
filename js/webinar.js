@@ -1351,6 +1351,237 @@
     };
   }
 
+  function initPremiumModelsSlide() {
+    const slide = document.getElementById('slide-models-premium');
+    if (!slide || typeof Chart !== 'function') {
+      return {
+        activate: function() {},
+        deactivate: function() {}
+      };
+    }
+
+    const cards = Array.prototype.slice.call(slide.querySelectorAll('.premium-model-card'));
+    const charts = {};
+    const buildTimers = [];
+    const reducedMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let resizeTimer = null;
+
+    const radarLabels = [
+      ['Razonamiento', 'autonomo'],
+      ['Codigo', 'de sistemas'],
+      ['Contexto', 'masivo'],
+      ['Procesamiento', 'multimodal'],
+      'Precision',
+      'Creatividad'
+    ];
+
+    const modelConfigs = {
+      chatgpt: {
+        canvasId: 'premium-radar-chatgpt',
+        accent: '#10A37F',
+        accentRgb: '16,163,127',
+        deltaLabel: '+76,7%',
+        free: [50, 40, 40, 50, 60, 60],
+        paid: [90, 90, 90, 90, 90, 80]
+      },
+      gemini: {
+        canvasId: 'premium-radar-gemini',
+        accent: '#7C6CFF',
+        accentRgb: '124,108,255',
+        deltaLabel: '+51.69%',
+        free: [70, 65, 50, 60, 80, 78],
+        paid: [99, 98, 100, 97, 99, 98]
+      },
+      claude: {
+        canvasId: 'premium-radar-claude',
+        accent: '#D97706',
+        accentRgb: '217,119,6',
+        deltaLabel: '+38,78%',
+        free: [65, 70, 60, 68, 72, 75],
+        paid: [95, 92, 98, 93, 97, 94]
+      }
+    };
+
+    function updateDeltaBadges() {
+      cards.forEach(function(card) {
+        const platform = card.getAttribute('data-premium-platform');
+        const config = modelConfigs[platform];
+        const delta = card.querySelector('.premium-model-card__delta');
+
+        if (!config || !delta) return;
+        delta.textContent = config.deltaLabel;
+      });
+    }
+
+    function clearBuildTimers() {
+      while (buildTimers.length) {
+        clearTimeout(buildTimers.pop());
+      }
+    }
+
+    function destroyCharts() {
+      Object.keys(charts).forEach(function(key) {
+        if (charts[key]) {
+          charts[key].destroy();
+          charts[key] = null;
+        }
+      });
+    }
+
+    function createRadarConfig(config) {
+      const freeBorder = 'rgba(165,176,191,0.82)';
+      const freeFill = 'rgba(148,163,184,0.08)';
+      const freePoint = 'rgba(191,201,213,0.96)';
+      const gridColor = 'rgba(255,255,255,0.08)';
+      const labelColor = 'rgba(232,238,245,0.74)';
+      const tickColor = 'rgba(255,255,255,0.34)';
+      const paidFill = 'rgba(' + config.accentRgb + ',0.18)';
+      const paidPoint = 'rgba(' + config.accentRgb + ',0.98)';
+
+      return {
+        type: 'radar',
+        data: {
+          labels: radarLabels,
+          datasets: [
+            {
+              label: 'Gratis',
+              data: config.free,
+              backgroundColor: freeFill,
+              borderColor: freeBorder,
+              borderWidth: 1.8,
+              borderDash: [6, 4],
+              pointBackgroundColor: freePoint,
+              pointBorderColor: '#08101c',
+              pointRadius: 2.6,
+              pointHoverRadius: 2.6
+            },
+            {
+              label: 'Pago',
+              data: config.paid,
+              backgroundColor: paidFill,
+              borderColor: config.accent,
+              borderWidth: 2.6,
+              pointBackgroundColor: paidPoint,
+              pointBorderColor: '#08101c',
+              pointRadius: 3.6,
+              pointHoverRadius: 3.6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: reducedMotion ? false : {
+            duration: 1100,
+            easing: 'easeOutQuart'
+          },
+          interaction: {
+            mode: 'nearest',
+            intersect: false
+          },
+          elements: {
+            line: {
+              tension: 0.14
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              displayColors: false,
+              backgroundColor: 'rgba(6,10,20,0.94)',
+              titleColor: '#ffffff',
+              bodyColor: 'rgba(232,238,245,0.86)',
+              borderColor: 'rgba(255,255,255,0.1)',
+              borderWidth: 1,
+              padding: 10,
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': ' + context.raw + '/100';
+                }
+              }
+            }
+          },
+          scales: {
+            r: {
+              min: 0,
+              max: 100,
+              ticks: {
+                display: false,
+                stepSize: 20,
+                color: tickColor,
+                backdropColor: 'transparent'
+              },
+              grid: {
+                color: gridColor
+              },
+              angleLines: {
+                color: gridColor
+              },
+              pointLabels: {
+                color: labelColor,
+                font: {
+                  size: 10,
+                  weight: '700',
+                  family: 'Space Grotesk, sans-serif'
+                }
+              }
+            }
+          }
+        }
+      };
+    }
+
+    function buildChart(platform) {
+      const config = modelConfigs[platform];
+      if (!config) return;
+
+      const canvas = document.getElementById(config.canvasId);
+      if (!canvas) return;
+
+      const context = canvas.getContext('2d');
+      if (!context) return;
+
+      charts[platform] = new Chart(context, createRadarConfig(config));
+    }
+
+    function buildAllCharts() {
+      clearBuildTimers();
+      destroyCharts();
+      cards.forEach(function(card, index) {
+        const platform = card.getAttribute('data-premium-platform');
+        const delay = reducedMotion ? 0 : (index * 120);
+        const timer = window.setTimeout(function() {
+          buildChart(platform);
+        }, delay);
+        buildTimers.push(timer);
+      });
+    }
+
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(function() {
+        if (!slide.classList.contains('active')) return;
+        buildAllCharts();
+      }, 180);
+    }, { passive: true });
+
+    updateDeltaBadges();
+
+    return {
+      activate: function() {
+        updateDeltaBadges();
+        buildAllCharts();
+      },
+      deactivate: function() {
+        clearBuildTimers();
+        destroyCharts();
+      }
+    };
+  }
+
   // ===== SLIDE NAVIGATION =====
   const slides = document.querySelectorAll('.slide');
   const totalSlides = slides.length;
@@ -1372,6 +1603,7 @@
   const adoptionLegendItems = document.querySelectorAll('.adoption-legend-item');
   const slideOneHero = initSlideOneHero();
   const slideFourUrgency = initSlideFourUrgency();
+  const premiumModelsSlide = initPremiumModelsSlide();
   const evolutionSlide = initEvolutionSlide();
 
   const adoptionDataConfig = [
@@ -1553,6 +1785,9 @@
       if (oldSlide.id === 'slide-4a' && newSlide.id !== 'slide-4a') {
         evolutionSlide.deactivate();
       }
+      if (oldSlide.id === 'slide-models-premium' && newSlide.id !== 'slide-models-premium') {
+        premiumModelsSlide.deactivate();
+      }
       updateUI();
       triggerSlideAnimations(currentSlide);
       isAnimating = false;
@@ -1627,6 +1862,12 @@
     if (slide.id === 'slide-4a') {
       setTimeout(function() {
         evolutionSlide.activate();
+      }, 220);
+    }
+
+    if (slide.id === 'slide-models-premium') {
+      setTimeout(function() {
+        premiumModelsSlide.activate();
       }, 220);
     }
 
@@ -2062,6 +2303,11 @@
       await wait(420);
     }
 
+    if (slide.id === 'slide-models-premium') {
+      premiumModelsSlide.activate();
+      await wait(mode === 'deck' ? 1500 : 1250);
+    }
+
     await waitForPaint();
   }
 
@@ -2218,6 +2464,9 @@
       if (slide.id === 'slide-1' && slides[currentSlide] !== slide) {
         slideOneHero.deactivate();
       }
+      if (slide.id === 'slide-models-premium' && slides[currentSlide] !== slide) {
+        premiumModelsSlide.deactivate();
+      }
     }
   }
 
@@ -2306,6 +2555,9 @@
     } finally {
       if (slides[currentSlide] && slides[currentSlide].id !== 'slide-1') {
         slideOneHero.deactivate();
+      }
+      if (slides[currentSlide] && slides[currentSlide].id !== 'slide-models-premium') {
+        premiumModelsSlide.deactivate();
       }
       setPdfBusy(false);
     }

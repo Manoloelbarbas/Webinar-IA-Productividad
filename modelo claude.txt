@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude Sonnet 4.6 vs Opus 4.7 — Gráfico de araña</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f4f0;
+      color: #1a1a18;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      border: 0.5px solid rgba(0,0,0,0.12);
+      padding: 2rem 2rem 1.5rem;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .header { text-align: center; margin-bottom: 0.5rem; }
+    .header h1 { font-size: 20px; font-weight: 500; color: #1a1a18; margin-bottom: 4px; }
+    .header p { font-size: 13px; color: #6b6b65; }
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 1rem 0 0.5rem;
+      font-size: 13px;
+      color: #6b6b65;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .chart-wrapper { position: relative; width: 100%; height: 360px; }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+      margin-top: 1.25rem;
+    }
+    .score-card {
+      background: #f5f4f0;
+      border-radius: 8px;
+      padding: 0.6rem 0.75rem;
+    }
+    .score-card .label {
+      font-size: 11px;
+      color: #6b6b65;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .score-card .values { display: flex; gap: 8px; align-items: baseline; }
+    .score-card .v1 { font-size: 15px; font-weight: 500; color: #378ADD; }
+    .score-card .v2 { font-size: 15px; font-weight: 500; color: #1D9E75; }
+    .score-card .diff { font-size: 11px; color: #6b6b65; }
+    .cta { text-align: center; margin-top: 1.25rem; }
+    .cta-box {
+      display: inline-block;
+      background: #e6f1fb;
+      border: 0.5px solid rgba(55,138,221,0.25);
+      border-radius: 12px;
+      padding: 0.75rem 1.5rem;
+      max-width: 480px;
+    }
+    .cta-box p { font-size: 13px; color: #185FA5; line-height: 1.6; }
+    .cta-box strong { font-weight: 500; }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #1a1a18; color: #e8e6df; }
+      .card { background: #26262a; border-color: rgba(255,255,255,0.1); }
+      .header h1 { color: #e8e6df; }
+      .header p, .legend { color: #9a9990; }
+      .score-card { background: #1f1f23; }
+      .score-card .label, .score-card .diff { color: #9a9990; }
+      .cta-box { background: #0c3a5c; border-color: rgba(55,138,221,0.3); }
+      .cta-box p { color: #85B7EB; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <h1>Claude Sonnet 4.6 vs Opus 4.7</h1>
+      <p>¿Por qué vale la pena el plan de pago?</p>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <div class="dot" style="background:#378ADD;"></div>
+        Sonnet 4.6 (gratuito)
+      </div>
+      <div class="legend-item">
+        <div class="dot" style="background:#1D9E75;"></div>
+        Opus 4.7 (plan pago)
+      </div>
+    </div>
+
+    <div class="chart-wrapper">
+      <canvas id="radarChart" role="img"
+        aria-label="Gráfico de araña: Opus 4.7 supera a Sonnet 4.6 en las 6 dimensiones evaluadas">
+        Comparación de 6 capacidades: Razonamiento autónomo, Programación de sistemas, Contexto masivo, Procesamiento multimodal, Precisión y Creatividad.
+      </canvas>
+    </div>
+
+    <div class="score-grid">
+      <div class="score-card">
+        <div class="label">Razonamiento autónomo</div>
+        <div class="values"><span class="v1">65</span><span class="v2">95</span><span class="diff">+46%</span></div>
+      </div>
+      <div class="score-card">
+        <div class="label">Programación de sistemas</div>
+        <div class="values"><span class="v1">70</span><span class="v2">92</span><span class="diff">+31%</span></div>
+      </div>
+      <div class="score-card">
+        <div class="label">Contexto masivo (memoria)</div>
+        <div class="values"><span class="v1">60</span><span class="v2">98</span><span class="diff">+63%</span></div>
+      </div>
+      <div class="score-card">
+        <div class="label">Procesamiento multimodal</div>
+        <div class="values"><span class="v1">68</span><span class="v2">93</span><span class="diff">+37%</span></div>
+      </div>
+      <div class="score-card">
+        <div class="label">Precisión</div>
+        <div class="values"><span class="v1">72</span><span class="v2">97</span><span class="diff">+35%</span></div>
+      </div>
+      <div class="score-card">
+        <div class="label">Creatividad</div>
+        <div class="values"><span class="v1">75</span><span class="v2">94</span><span class="diff">+25%</span></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <div class="cta-box">
+        <p><strong>Opus 4.7 en el plan Pro</strong> desbloquea razonamiento extendido, ventanas de contexto masivas y capacidades multimodales avanzadas — ideal para proyectos que exigen lo mejor.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script>
+    const labels = [
+      'Razonamiento\nautónomo',
+      'Programación\nde sistemas',
+      'Contexto masivo\n(memoria)',
+      'Procesamiento\nmultimodal',
+      'Precisión',
+      'Creatividad'
+    ];
+
+    const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+    const gridColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)';
+    const tickColor = isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)';
+    const labelColor = isDark ? 'rgba(255,255,255,0.75)' : 'rgba(0,0,0,0.65)';
+
+    new Chart(document.getElementById('radarChart'), {
+      type: 'radar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Sonnet 4.6',
+            data: [65, 70, 60, 68, 72, 75],
+            backgroundColor: 'rgba(55,138,221,0.12)',
+            borderColor: '#378ADD',
+            borderWidth: 2,
+            pointBackgroundColor: '#378ADD',
+            pointRadius: 4,
+            borderDash: [5, 4]
+          },
+          {
+            label: 'Opus 4.7',
+            data: [95, 92, 98, 93, 97, 94],
+            backgroundColor: 'rgba(29,158,117,0.15)',
+            borderColor: '#1D9E75',
+            borderWidth: 2.5,
+            pointBackgroundColor: '#1D9E75',
+            pointRadius: 5
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}/100`
+            }
+          }
+        },
+        scales: {
+          r: {
+            min: 0,
+            max: 100,
+            ticks: {
+              stepSize: 20,
+              display: true,
+              color: tickColor,
+              font: { size: 10 },
+              backdropColor: 'transparent'
+            },
+            grid: { color: gridColor },
+            angleLines: { color: gridColor },
+            pointLabels: {
+              color: labelColor,
+              font: { size: 11, weight: '400' }
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
