@@ -1361,6 +1361,11 @@
   const nextArrow = document.getElementById('next-arrow');
   const counter = document.getElementById('slide-counter');
   const progressBar = document.getElementById('progress-bar');
+  const pdfCurrentButton = document.getElementById('pdf-current');
+  const pdfAllButton = document.getElementById('pdf-all');
+  const pdfExportStatus = document.getElementById('pdf-export-status');
+  const summarySlide = document.getElementById('slide-summary');
+  const summaryFocusButtons = document.querySelectorAll('.summary-focus-btn');
   const adoptionCard = document.getElementById('adoption-card');
   const adoptionGrid = document.getElementById('adoption-grid');
   const adoptionTooltip = document.getElementById('adoption-tooltip');
@@ -1378,6 +1383,32 @@
 
   let adoptionBuilt = false;
   let adoptionAnimated = false;
+  let isExporting = false;
+  let pdfStatusTimer = null;
+
+  function setSummaryFocus(focus) {
+    if (!summarySlide) return;
+
+    if (focus) {
+      summarySlide.dataset.summaryFocus = focus;
+    } else {
+      delete summarySlide.dataset.summaryFocus;
+    }
+
+    summaryFocusButtons.forEach(function(button) {
+      const isActive = Boolean(focus) && button.dataset.summaryFocus === focus;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  }
+
+  summaryFocusButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      const requestedFocus = button.dataset.summaryFocus;
+      const currentFocus = summarySlide ? summarySlide.dataset.summaryFocus : '';
+      setSummaryFocus(currentFocus === requestedFocus ? '' : requestedFocus);
+    });
+  });
 
   function buildAdoptionGrid() {
     if (adoptionBuilt || !adoptionGrid) return;
@@ -1455,7 +1486,7 @@
   }
 
   function goToSlide(index, direction) {
-    if (isAnimating || index < 0 || index >= totalSlides || index === currentSlide) return;
+    if (isExporting || isAnimating || index < 0 || index >= totalSlides || index === currentSlide) return;
     isAnimating = true;
 
     const oldSlide = slides[currentSlide];
@@ -1533,6 +1564,7 @@
 
   // Keyboard
   document.addEventListener('keydown', (e) => {
+    if (isExporting) return;
     if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && document.activeElement && document.activeElement.id === 'slide4-time-slider') {
       return;
     }
@@ -1923,6 +1955,369 @@
 
     return { activate: activate, deactivate: deactivate };
   })();
+
+  // ===== PDF EXPORT =====
+  function wait(ms) {
+    return new Promise(function(resolve) {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  function waitForPaint() {
+    return new Promise(function(resolve) {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(resolve);
+      });
+    });
+  }
+
+  function getPdfDateStamp() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  function setPdfStatus(message, autoHideDelay) {
+    if (!pdfExportStatus) return;
+    if (pdfStatusTimer !== null) {
+      clearTimeout(pdfStatusTimer);
+      pdfStatusTimer = null;
+    }
+    pdfExportStatus.textContent = message;
+    pdfExportStatus.classList.add('is-visible');
+    if (autoHideDelay) {
+      pdfStatusTimer = setTimeout(function() {
+        pdfExportStatus.classList.remove('is-visible');
+        pdfStatusTimer = null;
+      }, autoHideDelay);
+    }
+  }
+
+  function setPdfBusy(busy) {
+    isExporting = busy;
+    document.body.classList.toggle('pdf-exporting', busy);
+    if (pdfCurrentButton) pdfCurrentButton.disabled = busy;
+    if (pdfAllButton) pdfAllButton.disabled = busy;
+  }
+
+  function getPdfDependencies() {
+    if (typeof window.html2canvas !== 'function' || !window.jspdf || !window.jspdf.jsPDF) {
+      setPdfStatus('No se pudieron cargar las librerías PDF. Revisa la conexión y recarga la presentación.', 5200);
+      return null;
+    }
+    return {
+      html2canvas: window.html2canvas,
+      jsPDF: window.jspdf.jsPDF
+    };
+  }
+
+  async function waitForExportAssets() {
+    if (document.fonts && document.fonts.ready) {
+      try {
+        await document.fonts.ready;
+      } catch (err) {
+        // Font loading failures should not block PDF generation.
+      }
+    }
+    await waitForPaint();
+  }
+
+  function makeSlideVisibleForExport(slide) {
+    const previousClassName = slide.className;
+    const previousStyle = slide.getAttribute('style');
+    const previousScrollTop = slide.scrollTop;
+
+    slide.classList.add('active');
+    slide.classList.remove('animating', 'exit-left', 'exit-right');
+    slide.style.transition = 'none';
+    slide.style.transform = 'translateX(0)';
+    slide.style.opacity = '1';
+    slide.style.pointerEvents = 'all';
+    slide.style.zIndex = '60';
+    slide.style.overflow = 'hidden';
+    slide.scrollTop = 0;
+
+    return function restoreSlide() {
+      slide.className = previousClassName;
+      if (previousStyle === null) {
+        slide.removeAttribute('style');
+      } else {
+        slide.setAttribute('style', previousStyle);
+      }
+      slide.scrollTop = previousScrollTop;
+    };
+  }
+
+  async function prepareOriginalSlideForExport(slide, mode) {
+    if (slide.id === 'slide-1') {
+      slideOneHero.activate();
+      await wait(mode === 'deck' ? 420 : 180);
+    }
+
+    if (slide.id === 'slide-4a') {
+      evolutionSlide.activate();
+      await wait(mode === 'deck' ? 2800 : 320);
+    }
+
+    if (slide.id === 'slide-5a') {
+      playAdoptionGrid();
+      await wait(420);
+    }
+
+    await waitForPaint();
+  }
+
+  function setCloneSlideActive(clonedDocument, slideId) {
+    const clonedSlides = clonedDocument.querySelectorAll('.slide');
+    clonedSlides.forEach(function(clonedSlide) {
+      clonedSlide.classList.remove('active', 'animating', 'exit-left', 'exit-right');
+      clonedSlide.style.transition = 'none';
+      clonedSlide.style.transform = 'translateX(100%)';
+      clonedSlide.style.opacity = '0';
+      clonedSlide.style.pointerEvents = 'none';
+      clonedSlide.style.zIndex = '1';
+    });
+
+    const clonedSlide = clonedDocument.getElementById(slideId);
+    if (!clonedSlide) return null;
+
+    clonedSlide.classList.add('active');
+    clonedSlide.style.transition = 'none';
+    clonedSlide.style.transform = 'translateX(0)';
+    clonedSlide.style.opacity = '1';
+    clonedSlide.style.pointerEvents = 'all';
+    clonedSlide.style.zIndex = '2';
+    clonedSlide.style.overflow = 'hidden';
+    clonedSlide.scrollTop = 0;
+
+    return clonedSlide;
+  }
+
+  function revealCloneAnimations(clonedSlide) {
+    clonedSlide.querySelectorAll('.fade-in').forEach(function(el) {
+      el.classList.add('visible');
+    });
+    clonedSlide.querySelectorAll('.big-number').forEach(function(el) {
+      el.classList.add('visible');
+    });
+    clonedSlide.querySelectorAll('.bullet-list li').forEach(function(el) {
+      el.classList.add('visible');
+    });
+    clonedSlide.querySelectorAll('[data-target]').forEach(function(el) {
+      if (el.dataset && el.dataset.target) {
+        el.textContent = el.dataset.target;
+      }
+    });
+  }
+
+  function forceDeckCloneState(clonedSlide, slideId) {
+    if (slideId === 'slide-3') {
+      const stage = clonedSlide.querySelector('.t3-stage');
+      if (stage) stage.classList.add('is-revealed', 'is-settled');
+    }
+
+    if (slideId === 'slide-4') {
+      const maskRect = clonedSlide.querySelector('#slide4-mask-rect');
+      const scrubberGroup = clonedSlide.querySelector('#slide4-scrubber-group');
+      const scrubberLine = clonedSlide.querySelector('#slide4-scrubber-line');
+      const aiPoint = clonedSlide.querySelector('#slide4-ai-point');
+      const humanPoint = clonedSlide.querySelector('#slide4-human-point');
+      const tooltip = clonedSlide.querySelector('#slide4-tooltip');
+
+      if (maskRect) maskRect.setAttribute('width', '500');
+      if (scrubberGroup) scrubberGroup.style.display = 'block';
+      if (scrubberLine) {
+        scrubberLine.setAttribute('x1', '500');
+        scrubberLine.setAttribute('x2', '500');
+      }
+      if (aiPoint) {
+        aiPoint.setAttribute('cx', '500');
+        aiPoint.setAttribute('cy', '0');
+      }
+      if (humanPoint) {
+        humanPoint.setAttribute('cx', '500');
+        humanPoint.setAttribute('cy', '206.25');
+      }
+      if (tooltip) tooltip.classList.remove('is-visible');
+
+      [0, 7, 14, 21].forEach(function(anchor) {
+        const label = clonedSlide.querySelector('#slide4-label-' + anchor);
+        if (label) label.classList.toggle('is-active', anchor === 21);
+      });
+    }
+
+    if (slideId === 'slide-5a') {
+      const card = clonedSlide.querySelector('#adoption-card');
+      if (card) card.classList.add('play');
+      clonedSlide.querySelectorAll('.adoption-dot').forEach(function(dot) {
+        dot.style.opacity = '1';
+        dot.style.transform = 'scale(1)';
+      });
+    }
+
+    if (slideId === 'slide-6') {
+      const timeLabel = clonedSlide.querySelector('#slide6-time-label');
+      const adoptVal = clonedSlide.querySelector('#slide6-metric-adopt');
+      const waitVal = clonedSlide.querySelector('#slide6-metric-wait');
+      const gapVal = clonedSlide.querySelector('#slide6-metric-gap');
+      const adoptBar = clonedSlide.querySelector('#slide6-bar-adopt');
+      const waitBar = clonedSlide.querySelector('#slide6-bar-wait');
+      const centerCircle = clonedSlide.querySelector('#slide6-center-circle');
+      const slider = clonedSlide.querySelector('#slide6-timeline');
+
+      if (slider) slider.value = '24';
+      if (timeLabel) timeLabel.textContent = 'Mes 24';
+      if (adoptVal) adoptVal.textContent = '40';
+      if (waitVal) waitVal.textContent = '20';
+      if (gapVal) gapVal.textContent = '3.0';
+      if (adoptBar) adoptBar.style.width = '100%';
+      if (waitBar) waitBar.style.width = '100%';
+      if (centerCircle) centerCircle.classList.add('pulsing');
+    }
+  }
+
+  function prepareCloneForExport(clonedDocument, slideId, mode) {
+    clonedDocument.body.classList.add('pdf-exporting');
+    clonedDocument.documentElement.style.width = window.innerWidth + 'px';
+    clonedDocument.documentElement.style.height = window.innerHeight + 'px';
+    clonedDocument.body.style.width = window.innerWidth + 'px';
+    clonedDocument.body.style.height = window.innerHeight + 'px';
+
+    const clonedSlide = setCloneSlideActive(clonedDocument, slideId);
+    if (!clonedSlide) return;
+
+    revealCloneAnimations(clonedSlide);
+    if (mode === 'deck') {
+      forceDeckCloneState(clonedSlide, slideId);
+    } else if (slideId === 'slide-5a') {
+      forceDeckCloneState(clonedSlide, slideId);
+    }
+  }
+
+  async function captureSlideCanvas(slide, mode, dependencies) {
+    const restoreSlide = makeSlideVisibleForExport(slide);
+    try {
+      await prepareOriginalSlideForExport(slide, mode);
+      return await dependencies.html2canvas(slide, {
+        backgroundColor: '#000000',
+        scale: Math.min(2, Math.max(1.25, window.devicePixelRatio || 1.5)),
+        useCORS: true,
+        allowTaint: false,
+        imageTimeout: 15000,
+        logging: false,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        windowWidth: window.innerWidth,
+        windowHeight: window.innerHeight,
+        scrollX: 0,
+        scrollY: 0,
+        onclone: function(clonedDocument) {
+          prepareCloneForExport(clonedDocument, slide.id, mode);
+        }
+      });
+    } finally {
+      restoreSlide();
+      if (slide.id === 'slide-1' && slides[currentSlide] !== slide) {
+        slideOneHero.deactivate();
+      }
+    }
+  }
+
+  function createPdfDocument(canvas, dependencies) {
+    const pageWidth = 960;
+    const pageHeight = Math.round(pageWidth * (canvas.height / canvas.width));
+    const orientation = pageWidth >= pageHeight ? 'landscape' : 'portrait';
+    const pdf = new dependencies.jsPDF({
+      orientation: orientation,
+      unit: 'pt',
+      format: [pageWidth, pageHeight],
+      compress: true
+    });
+
+    return {
+      pdf: pdf,
+      pageWidth: pageWidth,
+      pageHeight: pageHeight,
+      orientation: orientation
+    };
+  }
+
+  function addCanvasPage(pdfState, canvas, isFirstPage) {
+    const imageData = canvas.toDataURL('image/jpeg', 0.95);
+    if (!isFirstPage) {
+      pdfState.pdf.addPage([pdfState.pageWidth, pdfState.pageHeight], pdfState.orientation);
+    }
+    pdfState.pdf.addImage(imageData, 'JPEG', 0, 0, pdfState.pageWidth, pdfState.pageHeight);
+    canvas.width = 1;
+    canvas.height = 1;
+  }
+
+  async function downloadCurrentSlidePdf() {
+    if (isExporting) return;
+    const dependencies = getPdfDependencies();
+    if (!dependencies) return;
+
+    const slideIndex = currentSlide;
+    const slide = slides[slideIndex];
+
+    try {
+      setPdfBusy(true);
+      setPdfStatus('Preparando PDF de la lámina actual...');
+      await waitForExportAssets();
+      const canvas = await captureSlideCanvas(slide, 'current', dependencies);
+      const pdfState = createPdfDocument(canvas, dependencies);
+      addCanvasPage(pdfState, canvas, true);
+      pdfState.pdf.save('desafia-webinar-lamina-' + String(slideIndex + 1).padStart(2, '0') + '-' + getPdfDateStamp() + '.pdf');
+      setPdfStatus('PDF de la lámina descargado.', 3200);
+    } catch (err) {
+      console.error('PDF current slide export failed:', err);
+      setPdfStatus('No se pudo generar el PDF de la lámina. Intenta nuevamente.', 5200);
+    } finally {
+      setPdfBusy(false);
+    }
+  }
+
+  async function downloadAllSlidesPdf() {
+    if (isExporting) return;
+    const dependencies = getPdfDependencies();
+    if (!dependencies) return;
+
+    let pdfState = null;
+
+    try {
+      setPdfBusy(true);
+      await waitForExportAssets();
+
+      for (let i = 0; i < slides.length; i += 1) {
+        const slide = slides[i];
+        setPdfStatus('Generando PDF completo: lámina ' + (i + 1) + ' de ' + totalSlides + '...');
+        const canvas = await captureSlideCanvas(slide, 'deck', dependencies);
+        if (!pdfState) {
+          pdfState = createPdfDocument(canvas, dependencies);
+        }
+        addCanvasPage(pdfState, canvas, i === 0);
+      }
+
+      if (pdfState) {
+        pdfState.pdf.save('desafia-webinar-presentacion-completa-' + getPdfDateStamp() + '.pdf');
+      }
+      setPdfStatus('PDF completo descargado.', 3600);
+    } catch (err) {
+      console.error('PDF deck export failed:', err);
+      setPdfStatus('No se pudo generar el PDF completo. Intenta nuevamente.', 5600);
+    } finally {
+      if (slides[currentSlide] && slides[currentSlide].id !== 'slide-1') {
+        slideOneHero.deactivate();
+      }
+      setPdfBusy(false);
+    }
+  }
+
+  if (pdfCurrentButton) {
+    pdfCurrentButton.addEventListener('click', downloadCurrentSlidePdf);
+  }
+
+  if (pdfAllButton) {
+    pdfAllButton.addEventListener('click', downloadAllSlidesPdf);
+  }
 
   // ===== INIT =====
   updateUI();

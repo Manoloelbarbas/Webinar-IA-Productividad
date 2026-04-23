@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Optimiza tu trabajo con IA — Master Webinar DesafIA</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" defer></script>
 <link rel="stylesheet" href="css/webinar.css">
 </head>
 <body>
@@ -17,7 +19,27 @@
 <button class="nav-arrow" id="prev-arrow" title="Anterior (←)">‹</button>
 <button class="nav-arrow" id="next-arrow" title="Siguiente (→)">›</button>
 
-<div id="slide-counter">1 / 17</div>
+<div class="pdf-actions" id="pdf-actions" aria-label="Descargas PDF">
+  <button class="pdf-action" id="pdf-current" type="button" title="Descargar lámina actual en PDF">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M14 2v5h5M12 11v6m0 0 3-3m-3 3-3-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>Lámina</span>
+  </button>
+  <button class="pdf-action" id="pdf-all" type="button" title="Descargar presentación completa en PDF">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M8 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M4 9h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M9 12v5m0 0 2-2m-2 2-2-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>Completa</span>
+  </button>
+</div>
+
+<div class="pdf-export-status" id="pdf-export-status" role="status" aria-live="polite"></div>
+
+<div id="slide-counter">1 / 19</div>
 
 <div id="presentation">
 
@@ -58,13 +80,13 @@
     <div class="speaker-card-layout">
       <div class="speaker-card-media">
         <figure class="speaker-card-photo fade-in fade-in-delay-1">
-          <img src="images/andres.jpg" alt="Andrés Hidalgo">
+          <img src="images/andres.png" alt="Andrés Hidalgo">
         </figure>
       </div>
 
       <div class="speaker-card-copy">
         <h2 class="speaker-card-name fade-in">Andrés Hidalgo</h2>
-        <p class="speaker-card-role fade-in">DIRECTOR DE DESAFIA | CONSULTOR EN TRANSFORMACIÓN DIGITAL &amp; IA</p>
+        <p class="speaker-card-role fade-in">Director de DesafIA · Transformación digital &amp; IA</p>
         <div class="speaker-card-rule fade-in fade-in-delay-1" aria-hidden="true"></div>
         <ul class="speaker-summary-list fade-in fade-in-delay-2">
           <li>Director de DesafIA</li>
@@ -99,7 +121,7 @@
 
       <div class="speaker-card-media">
         <figure class="speaker-card-photo fade-in fade-in-delay-1">
-          <img src="images/manuel.jpg" alt="Manuel Céspedes">
+          <img src="images/manuel.png" alt="Manuel Céspedes">
         </figure>
       </div>
     </div>
@@ -115,7 +137,107 @@
 
 
 
-  <!-- ============ SLIDE 2 — APERTURA ============ -->
+  <!-- ============ SLIDE 4 — RESUMEN DEL WEBINAR ============ -->
+  <section class="slide slide-dark summary-slide" id="slide-summary">
+    <div class="summary-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+      <div class="summary-bg__scan"></div>
+    </div>
+
+    <div class="summary-shell">
+      <div class="summary-copy">
+        <h2 class="slide-title summary-title fade-in fade-in-delay-1">
+          Resumen ejecutivo del webinar
+        </h2>
+        <div class="summary-focus-controls fade-in fade-in-delay-2" aria-label="Ampliar sección del resumen">
+          <button class="summary-focus-btn" type="button" data-summary-focus="theory" aria-pressed="false">Teórico</button>
+          <button class="summary-focus-btn" type="button" data-summary-focus="practice" aria-pressed="false">Práctico</button>
+        </div>
+      </div>
+
+      <div class="summary-board fade-in fade-in-delay-2" aria-label="Mapa de contenidos del webinar">
+        <article class="summary-lane summary-lane--theory" tabindex="0">
+          <div class="summary-lane__header">
+            <div>
+              <h3>Teórico</h3>
+              <p>Contexto, urgencia y criterio de adopción.</p>
+            </div>
+          </div>
+          <ol class="summary-topic-list">
+            <li tabindex="0">
+              <strong>IA como estándar</strong>
+              <em>Adopción empresarial y cambio de expectativas.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Brecha de retorno</strong>
+              <em>Mucha inversión, poca captura de valor.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Prioridad estratégica</strong>
+              <em>Velocidad, capacidad y presión competitiva.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Evolución de la IA</strong>
+              <em>De predicción a acción autónoma.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Costo de llegar tarde</strong>
+              <em>Ventaja acumulada versus rezago operativo.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Uso masivo, uso avanzado</strong>
+              <em>Brecha entre experimentar y dominar.</em>
+            </li>
+          </ol>
+        </article>
+
+        <article class="summary-lane summary-lane--practice" tabindex="0">
+          <div class="summary-lane__header">
+            <div>
+              <h3>Práctico</h3>
+              <p>Demostraciones guiadas con casos de trabajo reales.</p>
+            </div>
+          </div>
+          <ol class="summary-topic-list">
+            <li tabindex="0">
+              <strong>Aprender haciendo</strong>
+              <em>Puente desde estrategia hacia taller en vivo.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Audio a minuta</strong>
+              <em>Acuerdos, responsables y próximos pasos.</em>
+            </li>
+            <li tabindex="0">
+              <strong>PDF a control</strong>
+              <em>Facturas y OC convertidas en tabla útil.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Datos a propuesta</strong>
+              <em>Información dispersa ordenada para vender.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Excel a dashboard</strong>
+              <em>KPIs, gráficos y hallazgos ejecutivos.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Automatización operativa</strong>
+              <em>Flujos con IA y n8n para reducir tareas manuales.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Cultura de adopción</strong>
+              <em>Procesos concretos, supervisión y medición.</em>
+            </li>
+            <li tabindex="0">
+              <strong>Preguntas y cierre</strong>
+              <em>Resolución de dudas y próximos pasos.</em>
+            </li>
+          </ol>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 5 — APERTURA ============ -->
   <section class="slide slide-dark" id="slide-2" data-focus-step="adoption">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/slide2-enterprise.png" alt="" class="slide-bg__img">
@@ -151,7 +273,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 3 — TENSIÓN ============ -->
+  <!-- ============ SLIDE 6 — TENSIÓN ============ -->
   <section class="slide slide-accent" id="slide-3">
     <div class="t3-stage">
       <div class="t3-eyebrow fade-in"></div>
@@ -194,7 +316,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 4 — URGENCIA ============ -->
+  <!-- ============ SLIDE 7 — URGENCIA ============ -->
   <section class="slide slide-dark" id="slide-4">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/slide4-speed.jpg" alt="" class="slide-bg__img">
@@ -269,7 +391,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 5 — RIESGO ============ -->
+  <!-- ============ SLIDE 8 — RIESGO ============ -->
   
   <section class="slide slide-dark evolution-slide" id="slide-4a">
     
@@ -335,7 +457,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 6 — OPORTUNIDAD ============ -->
+  <!-- ============ SLIDE 9 — OPORTUNIDAD ============ -->
   <section class="slide slide-dark" id="slide-6">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/slide6-adoption-risk.png" alt="" class="slide-bg__img slide6-bg__img">
@@ -422,7 +544,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 7 — ADOPCIÓN GLOBAL ============ -->
+  <!-- ============ SLIDE 10 — ADOPCIÓN GLOBAL ============ -->
   <section class="slide slide-dark" id="slide-5a">
     
     <h2 class="slide-title fade-in fade-in-delay-1" style="text-align:center; max-width:960px;">La IA ya se volvió masiva,<br>pero el uso avanzado sigue siendo excepcional</h2>
@@ -472,7 +594,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 8 — PUENTE AL TALLER (se aprende haciendo) ============ -->
+  <!-- ============ SLIDE 11 — PUENTE AL TALLER (se aprende haciendo) ============ -->
   <section class="slide slide-dark" id="slide-7b">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/slide7-learn.jpg" alt="" class="slide-bg__img exec-bg-img">
@@ -538,7 +660,33 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 9 — EJERCICIO 01: AUDIO → MINUTA ============ -->
+  <!-- ============ SLIDE 12 — INICIO DE EJERCICIOS ============ -->
+  <section class="slide slide-dark workshop-start-slide" id="slide-workshop-start">
+    <div class="workshop-start-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="workshop-start-layout">
+      <div class="workshop-start-copy">
+        <div class="slide-tag fade-in">Ejercicios en vivo</div>
+        <h2 class="slide-title workshop-start-title fade-in fade-in-delay-1">
+          Desde ahora,<br><span>trabajamos con archivos reales</span>
+        </h2>
+        <p class="workshop-start-lead fade-in fade-in-delay-2">
+          Escanea el QR para acceder al material de práctica y seguir cada ejercicio.
+        </p>
+      </div>
+
+      <div class="workshop-qr-panel fade-in fade-in-delay-2">
+        <div class="workshop-qr-frame">
+          <img src="images/logo_qr_desafia.png" alt="QR para descargar los archivos de ejercicios">
+        </div>
+        <p>Archivos para ejercicios</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 13 — EJERCICIO 01: AUDIO → MINUTA ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--01" id="slide-8">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio01-audio.png" alt="" class="slide-bg__img">
@@ -571,7 +719,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 10 — EJERCICIO 02: PDF → TABLA ============ -->
+  <!-- ============ SLIDE 14 — EJERCICIO 02: PDF → TABLA ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--02" id="slide-9">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio02-pdf.png" alt="" class="slide-bg__img">
@@ -604,7 +752,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 11 — EJERCICIO 03: DATOS → INSIGHT ============ -->
+  <!-- ============ SLIDE 15 — EJERCICIO 03: DATOS → INSIGHT ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--03" id="slide-10">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio03-datos.png" alt="" class="slide-bg__img">
@@ -637,7 +785,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 12 — EJERCICIO 04: BRIEF → DECK ============ -->
+  <!-- ============ SLIDE 16 — EJERCICIO 04: BRIEF → DECK ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--04" id="slide-11">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio04-deck.png" alt="" class="slide-bg__img">
@@ -670,7 +818,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 13 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
+  <!-- ============ SLIDE 17 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--05" id="slide-12">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio05-auto.png" alt="" class="slide-bg__img">
@@ -703,7 +851,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 14 — CULTURA DE ADOPCIÓN ============ -->
+  <!-- ============ SLIDE 18 — CULTURA DE ADOPCIÓN ============ -->
   <section class="slide slide-dark" id="slide-13">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/cultura-roi.jpg" alt="" class="slide-bg__img s15-bg-img">
@@ -748,7 +896,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 15 — PREGUNTAS Y CIERRE ============ -->
+  <!-- ============ SLIDE 19 — PREGUNTAS Y CIERRE ============ -->
   <section class="slide slide-dark" id="slide-15">
     <div class="floating-shapes">
       <span></span><span></span><span></span><span></span><span></span>
