@@ -859,6 +859,8 @@
     }
 
     const baseColors = ['#00B2E3', '#2A57D2', '#6929C4'];
+    const currentYear = 2026;
+    const currentYearLabel = '2026 - Hoy';
     const years = [];
     let chart = null;
     let buildTimer = 0;
@@ -906,6 +908,15 @@
       });
     }
 
+    function showAllDatasets() {
+      if (!chart) return;
+
+      chart.data.datasets.forEach(function(dataset, index) {
+        dataset.hidden = false;
+        chart.setDatasetVisibility(index, true);
+      });
+    }
+
     function restoreChartHighlight() {
       clearCardHighlight();
       if (!chart) return;
@@ -942,46 +953,53 @@
       afterDraw: function(chartInstance) {
         const xAxis = chartInstance.scales.x;
         const yAxis = chartInstance.scales.y;
-        const meta = chartInstance.getDatasetMeta(0);
-        if (!xAxis || !yAxis || !meta || !meta.data.length) return;
+        const chartArea = chartInstance.chartArea;
+        if (!xAxis || !yAxis || !chartArea) return;
 
-        let index2026 = -1;
+        let currentYearIndex = -1;
         for (let i = 0; i < chartInstance.data.labels.length; i += 1) {
-          if (Math.abs(chartInstance.data.labels[i] - 2026) < 0.05) {
-            index2026 = i;
+          if (Math.abs(chartInstance.data.labels[i] - currentYear) < 0.05) {
+            currentYearIndex = i;
             break;
           }
         }
 
-        if (index2026 === -1 || !meta.data[index2026]) return;
+        if (currentYearIndex === -1) return;
 
         const chartCtx = chartInstance.ctx;
-        const xPixel = meta.data[index2026].x;
-        const labelWidth = 106;
-        const labelHeight = 24;
-        const labelX = xPixel - labelWidth / 2;
-        const labelY = yAxis.top + 10;
+        const xPixel = xAxis.getPixelForValue(currentYearIndex);
+        if (!Number.isFinite(xPixel)) return;
+
+        const labelWidth = 116;
+        const labelHeight = 28;
+        const labelX = chartArea.right - labelWidth - 6;
+        const labelY = chartArea.top + 8;
 
         chartCtx.save();
+        chartCtx.shadowColor = 'rgba(239, 68, 68, 0.52)';
+        chartCtx.shadowBlur = 14;
         chartCtx.beginPath();
-        chartCtx.moveTo(xPixel, yAxis.top);
-        chartCtx.lineTo(xPixel, yAxis.bottom);
-        chartCtx.lineWidth = 2;
-        chartCtx.strokeStyle = 'rgba(239, 68, 68, 0.82)';
-        chartCtx.setLineDash([6, 6]);
+        chartCtx.moveTo(xPixel, chartArea.top);
+        chartCtx.lineTo(xPixel, chartArea.bottom);
+        chartCtx.lineWidth = 4;
+        chartCtx.lineCap = 'round';
+        chartCtx.strokeStyle = 'rgba(248, 55, 65, 1)';
+        chartCtx.setLineDash([]);
         chartCtx.stroke();
 
+        chartCtx.shadowBlur = 0;
         chartCtx.setLineDash([]);
-        chartCtx.fillStyle = 'rgba(9, 15, 28, 0.92)';
+        chartCtx.fillStyle = 'rgba(127, 29, 29, 0.94)';
         chartCtx.fillRect(labelX, labelY, labelWidth, labelHeight);
-        chartCtx.strokeStyle = 'rgba(239, 68, 68, 0.55)';
+        chartCtx.strokeStyle = 'rgba(248, 113, 113, 0.88)';
         chartCtx.strokeRect(labelX, labelY, labelWidth, labelHeight);
 
-        chartCtx.fillStyle = 'rgba(248, 113, 113, 1)';
+        chartCtx.fillStyle = '#ffffff';
         chartCtx.font = 'bold 12px "Inter", sans-serif';
         chartCtx.textAlign = 'center';
         chartCtx.textBaseline = 'middle';
-        chartCtx.fillText('2026 (Actual)', xPixel, labelY + labelHeight / 2);
+        chartCtx.fillText(currentYearLabel, labelX + labelWidth / 2, labelY + labelHeight / 2);
+
         chartCtx.restore();
       }
     };
@@ -1061,6 +1079,16 @@
           plugins: {
             legend: {
               position: 'top',
+              onClick: function(event, legendItem, legend) {
+                const datasetIndex = legendItem.datasetIndex;
+                if (typeof datasetIndex !== 'number') return;
+
+                const chartInstance = legend.chart;
+                const shouldShow = !chartInstance.isDatasetVisible(datasetIndex);
+                chartInstance.setDatasetVisibility(datasetIndex, shouldShow);
+                clearCardHighlight();
+                chartInstance.update();
+              },
               labels: {
                 color: '#cbd5e1',
                 font: {
@@ -1166,7 +1194,10 @@
     });
 
     if (replayBtn) {
-      replayBtn.addEventListener('click', function() {
+      replayBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        showAllDatasets();
         buildChart(true);
       });
     }
@@ -1434,7 +1465,7 @@
       const freeFill = 'rgba(148,163,184,0.08)';
       const freePoint = 'rgba(191,201,213,0.96)';
       const gridColor = 'rgba(255,255,255,0.08)';
-      const labelColor = 'rgba(232,238,245,0.74)';
+      const labelColor = 'rgba(232,238,245,0.84)';
       const tickColor = 'rgba(255,255,255,0.34)';
       const paidFill = 'rgba(' + config.accentRgb + ',0.18)';
       const paidPoint = 'rgba(' + config.accentRgb + ',0.98)';
@@ -1504,6 +1535,14 @@
               }
             }
           },
+          layout: {
+            padding: {
+              top: 24,
+              right: 28,
+              bottom: 24,
+              left: 28
+            }
+          },
           scales: {
             r: {
               min: 0,
@@ -1523,8 +1562,9 @@
               pointLabels: {
                 color: labelColor,
                 font: {
-                  size: 10,
-                  weight: '700',
+                  size: 13,
+                  weight: '800',
+                  lineHeight: 1.14,
                   family: 'Space Grotesk, sans-serif'
                 }
               }
@@ -1895,6 +1935,7 @@
         num: 55, prefix: '', suffix: '%'
       }
     ];
+    const initialStepIndex = 2;
     let current = -1;
     let counterRAF = null;
     let leavingTimer = null;
@@ -1991,7 +2032,7 @@
 
     function activate() {
       current = -1;
-      setStep(0, true);
+      setStep(initialStepIndex, true);
     }
 
     function deactivate() {
@@ -2002,10 +2043,10 @@
       }
       if (stage) stage.classList.remove('is-leaving');
       current = -1;
-      const step = steps[0];
+      const step = steps[initialStepIndex];
       slide.dataset.focusStep = step.key;
       if (numEl) numEl.textContent = step.prefix + step.num + step.suffix;
-      syncButtons(0);
+      syncButtons(initialStepIndex);
     }
 
     return { activate: activate, deactivate: deactivate };
