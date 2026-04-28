@@ -1535,7 +1535,7 @@ body.pdf-exporting #laser-dot {
   font-weight: bold;
 }
 
-/* ===== SLIDE 19: CIERRE ===== */
+/* ===== SLIDE 20: CIERRE ===== */
 #slide-15 {
   justify-content: center;
   align-items: center;
@@ -5469,7 +5469,7 @@ body.pdf-exporting #laser-dot {
 }
 
 /* ========================================================
-   CONTROLES MANUALES PARA SLIDE 15 (EJERCICIO 03, id="slide-10")
+   CONTROLES MANUALES PARA SLIDE 16 (EJERCICIO 03, id="slide-10")
    ======================================================== */
 #slide-10 {
   /* Título Principal */
@@ -5478,12 +5478,12 @@ body.pdf-exporting #laser-dot {
   --s12-title-offset-y: 0px;
   --s12-title-width: 100%;
 
-  /* Texto izquierdo del cuadro ("Catálogo + precios + cotización") */
+  /* Texto izquierdo del cuadro ("Archivo Excel") */
   --s12-from-size: clamp(15px, 1.15vw, 20px);
   --s12-from-offset-x: 0px;
   --s12-from-offset-y: 0px;
 
-  /* Texto derecho del cuadro ("Propuesta lista para enviar al cliente") */
+  /* Texto derecho del cuadro ("Dashboard con KPIs...") */
   --s12-to-size: clamp(15px, 1.15vw, 20px);
   --s12-to-offset-x: 0px;
   --s12-to-offset-y: 0px;
@@ -5522,7 +5522,7 @@ body.pdf-exporting #laser-dot {
 }
 
 /* ========================================================
-   CONTROLES MANUALES PARA SLIDE 16 (EJERCICIO 04, id="slide-11")
+   CONTROLES MANUALES PARA SLIDE 17 (EJERCICIO 04, id="slide-11")
    ======================================================== */
 #slide-11 {
   /* Título Principal */
@@ -5531,12 +5531,12 @@ body.pdf-exporting #laser-dot {
   --s13-title-offset-y: 0px;
   --s13-title-width: 100%;
 
-  /* Texto izquierdo del cuadro ("Archivo Excel") */
+  /* Texto izquierdo del cuadro ("Catálogo + precios + cotización") */
   --s13-from-size: clamp(15px, 1.15vw, 20px);
   --s13-from-offset-x: 0px;
   --s13-from-offset-y: 0px;
 
-  /* Texto derecho del cuadro ("Dashboard con KPIs...") */
+  /* Texto derecho del cuadro ("Propuesta lista para enviar al cliente") */
   --s13-to-size: clamp(15px, 1.15vw, 20px);
   --s13-to-offset-x: 0px;
   --s13-to-offset-y: 0px;
@@ -5575,7 +5575,7 @@ body.pdf-exporting #laser-dot {
 }
 
 /* ========================================================
-   CONTROLES MANUALES PARA SLIDE 17 (EJERCICIO 05, id="slide-12")
+   CONTROLES MANUALES PARA SLIDE 18 (EJERCICIO 05, id="slide-12")
    ======================================================== */
 #slide-12 {
   /* Título Principal */
@@ -6070,7 +6070,7 @@ body.pdf-exporting #laser-dot {
 }
 
 /* ========================================================
-   SLIDE 18 — CULTURA DE ADOPCIÓN (Nuevo Layout Ejecutivo)
+   SLIDE 19 — CULTURA DE ADOPCIÓN (Nuevo Layout Ejecutivo)
    ======================================================== */
 #slide-13 {
   /* CONTROLES DEL TÍTULO */
@@ -6272,10 +6272,10 @@ body.pdf-exporting #laser-dot {
   --s15-sub-size: clamp(18px, 1.35vw, 24px);
   --s15-sub-offset-x: 0px;
   --s15-sub-offset-y: 0px;
-  --s15-box-title-size: clamp(22px, 1.75vw, 30px);
+  --s15-box-title-size: clamp(28px, 2.05vw, 38px);
   --s15-box-title-offset-x: 0px;
   --s15-box-title-offset-y: 0px;
-  --s15-box-desc-size: clamp(14px, 0.98vw, 17px);
+  --s15-box-desc-size: clamp(17px, 1.18vw, 21px);
   --s15-box-desc-offset-x: 0px;
   --s15-box-desc-offset-y: 0px;
 }
@@ -6324,18 +6324,27 @@ body.pdf-exporting #laser-dot {
 }
 
 .s12-bridge-cards .s15-card {
-  min-height: clamp(246px, 30vh, 320px);
+  min-height: clamp(216px, 25vh, 270px);
+  padding: clamp(26px, 2.2vw, 36px);
+}
+
+.s12-bridge-cards .s15-card__body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .s12-bridge-cards .s15-card__desc {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(10px, 1.1vh, 14px);
+  line-height: 1.38;
 }
 
 .s12-bridge-cards .s15-card__desc strong {
   color: rgba(255,255,255,0.96);
-  font-weight: 700;
+  font-weight: 800;
+  line-height: 1.18;
 }
 
 .s12-bridge-cards .s15-card__desc span {
@@ -6346,8 +6355,8 @@ body.pdf-exporting #laser-dot {
 @media (max-width: 1280px) {
   #slide-7b {
     --s15-title-size: clamp(40px, 4.4vw, 60px);
-    --s15-box-title-size: clamp(18px, 1.45vw, 24px);
-    --s15-box-desc-size: clamp(13px, 1.02vw, 15px);
+    --s15-box-title-size: clamp(24px, 2.3vw, 30px);
+    --s15-box-desc-size: clamp(15px, 1.5vw, 18px);
   }
   .s12-bridge-layout {
     grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.68fr);
@@ -6357,7 +6366,7 @@ body.pdf-exporting #laser-dot {
     --s15-img-width: clamp(280px, 28vw, 380px);
   }
   .s12-bridge-cards .s15-card {
-    min-height: clamp(228px, 28vh, 292px);
+    min-height: clamp(200px, 23vh, 245px);
   }
   #slide-13 {
     --s15-title-size: clamp(42px, 4.7vw, 62px);
@@ -6384,8 +6393,8 @@ body.pdf-exporting #laser-dot {
     overflow-y: auto;
     justify-content: flex-start;
     --s15-title-size: clamp(36px, 8vw, 54px);
-    --s15-box-title-size: clamp(19px, 5vw, 24px);
-    --s15-box-desc-size: clamp(14px, 3.8vw, 16px);
+    --s15-box-title-size: clamp(24px, 6vw, 30px);
+    --s15-box-desc-size: clamp(15px, 4.4vw, 18px);
   }
   .s12-bridge-cta {
     font-size: clamp(20px, 4.8vw, 28px);
