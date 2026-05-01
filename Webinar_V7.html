@@ -39,7 +39,7 @@
 
 <div class="pdf-export-status" id="pdf-export-status" role="status" aria-live="polite"></div>
 
-<div id="slide-counter">1 / 20</div>
+<div id="slide-counter">1 / 29</div>
 
 <div id="presentation">
 
@@ -57,7 +57,7 @@
             <span class="cover-brand-sep" aria-hidden="true"></span>
             <div class="cover-eyebrow fade-in fade-in-delay-1">
               <span class="cover-eyebrow__dot" aria-hidden="true"></span>
-              <span>Master Webinar</span>
+              <span>Conecta</span>
             </div>
           </div>
           <div class="cover-divider" aria-hidden="true"></div>
@@ -137,115 +137,75 @@
 
 
 
-  <!-- ============ SLIDE 4 — RESUMEN DEL WEBINAR ============ -->
-  <section class="slide slide-dark summary-slide" id="slide-summary">
+  <!-- ============ SLIDE 4 — PRESENTACIÓN PARTICIPANTES ============ -->
+  <section class="slide slide-dark title-only-slide intro-minute-slide" id="slide-intro-minute">
+    <div class="title-only-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+      <span class="title-only-beam title-only-beam--one"></span>
+      <span class="title-only-beam title-only-beam--two"></span>
+    </div>
+
+    <h2 class="slide-title title-only-heading fade-in">
+      Tomémonos un minuto<br>para presentarnos
+    </h2>
+  </section>
+
+  <!-- ============ SLIDE 5 — RESUMEN DEL WEBINAR ============ -->
+  <section class="slide slide-dark summary-slide course-summary-slide" id="slide-summary">
     <div class="summary-bg" aria-hidden="true">
       <div class="slide-bg__grid"></div>
       <div class="summary-bg__scan"></div>
     </div>
 
-    <div class="summary-shell">
-      <div class="summary-copy">
-        <h2 class="slide-title summary-title fade-in fade-in-delay-1">
-          Resumen ejecutivo del <span class="summary-title__word">webinar</span>
+    <div class="summary-shell course-summary-shell">
+      <div class="course-summary-head fade-in">
+        <div class="course-summary-kicker">CURSO:</div>
+        <h2 class="slide-title course-summary-title fade-in fade-in-delay-1">
+          Taller IA aplicada para<br><span class="animated-title-underline">Equipos de trabajo</span>
         </h2>
-        <div class="summary-focus-controls fade-in fade-in-delay-2" aria-label="Ampliar sección del resumen">
-          <button class="summary-focus-btn" type="button" data-summary-focus="theory" aria-pressed="false">Teórico</button>
-          <button class="summary-focus-btn" type="button" data-summary-focus="practice" aria-pressed="false">Práctico</button>
+        <div class="course-summary-meta fade-in fade-in-delay-2" aria-label="Datos del curso">
+          <span>Duración: 12 horas</span>
+          <span>Modalidad: Taller práctico sincrónico</span>
         </div>
       </div>
 
-      <div class="summary-board fade-in fade-in-delay-2" aria-label="Mapa de contenidos del webinar">
-        <article class="summary-lane summary-lane--theory" tabindex="0">
-          <div class="summary-lane__header">
-            <div>
-              <h3>Teórico</h3>
-              <p>Contexto, urgencia y criterio de adopción.</p>
-            </div>
-          </div>
-          <ol class="summary-topic-list">
-            <li tabindex="0">
-              <strong>IA como estándar competitivo</strong>
-            </li>
-            <li tabindex="0">
-              <strong>Brecha entre inversión y captura de valor</strong>
-            </li>
-            <li tabindex="0">
-              <strong>Prioridad estratégica</strong>
-            </li>
-            <li tabindex="0">
-              <strong>De predicción a acción</strong>
-            </li>
-            <li tabindex="0">
-              <strong>Costo de llegar tarde</strong>
-            </li>
-            <li tabindex="0">
-              <strong>Del uso masivo al uso avanzado</strong>
-            </li>
-          </ol>
+      <div class="course-summary-grid fade-in fade-in-delay-2" aria-label="Temario del curso">
+        <article class="course-module">
+          <h3>Fundamentos de IA Generativa</h3>
+          <ul>
+            <li>Tendencias relevantes 2026 y su impacto.</li>
+            <li>Qué es la IA generativa, oportunidades y riesgos.</li>
+            <li>Demostraciones de aplicaciones utilizando prompting, herramientas, agentes y automatización.</li>
+          </ul>
         </article>
 
-        <article class="summary-lane summary-lane--practice" tabindex="0">
-          <div class="summary-lane__header">
-            <div>
-              <h3>Práctico</h3>
-              <p>Demostraciones guiadas con casos de trabajo reales.</p>
-            </div>
-          </div>
-          <ol class="summary-topic-list">
-            <li tabindex="0">
-              <strong><span class="summary-topic-index" aria-hidden="true">01</span><span>Audio de reunión a ejecución</span></strong>
-            </li>
-            <li tabindex="0">
-              <strong><span class="summary-topic-index" aria-hidden="true">02</span><span>Control de Facturas y OC</span></strong>
-            </li>
-            <li tabindex="0">
-              <strong><span class="summary-topic-index" aria-hidden="true">03</span><span>Excel a dashboard</span></strong>
-            </li>
-            <li tabindex="0">
-              <strong><span class="summary-topic-index" aria-hidden="true">04</span><span>De datos a una propuesta comercial</span></strong>
-            </li>
-            <li tabindex="0">
-              <strong><span class="summary-topic-index" aria-hidden="true">05</span><span>De tareas manuales a automatización</span></strong>
-            </li>
-          </ol>
+        <article class="course-module">
+          <h3>Prompting, herramientas y aplicaciones</h3>
+          <ul>
+            <li>Cómo hablarle a la IA: Prompting efectivo usando metodología ROSEF.</li>
+            <li>Análisis de datos y resultados utilizando IA.</li>
+            <li>IA aplicada en herramientas (ChatGPT, Otter, Gamma) para minutas, presentaciones y contenidos.</li>
+            <li>Casos de uso en generación de minutas, propuestas, presentaciones, análisis, verificaciones y otros.</li>
+          </ul>
         </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ SLIDE 5 — APERTURA ============ -->
-  <section class="slide slide-dark" id="slide-2" data-focus-step="impact">
-    <div class="slide-bg" aria-hidden="true">
-      <img src="images/slide2-enterprise.png" alt="" class="slide-bg__img">
-      <div class="slide-bg__overlay"></div>
-      <div class="slide-bg__grid"></div>
-    </div>
-    <div class="context-stage">
-      <div class="context-stage__copy">
-        <h2 class="slide-title fade-in fade-in-delay-1"><span class="s2-title-lead">La IA dejó de ser el futuro.</span><span class="s2-title-sub">Hoy es el <span class="s2-accent animated-title-underline">estándar</span>.</span></h2>
-        <div class="s2-metric-stage fade-in fade-in-delay-2" id="slide-2-metric">
-          <div class="s2-metric-stage__num" id="slide-2-metric-num" aria-live="polite">55%</div>
-        </div>
-        <div class="s2-divider-hairline fade-in fade-in-delay-3" aria-hidden="true"></div>
-        <div class="context-sequence fade-in fade-in-delay-3" id="slide-2-sequence" aria-label="Focos de explicación">
-          <button type="button" class="context-sequence__step" data-step="0" aria-pressed="false">2025</button>
-          <button type="button" class="context-sequence__step" data-step="1" aria-pressed="false">2024</button>
-          <button type="button" class="context-sequence__step is-active" data-step="2" aria-pressed="true">2023</button>
-        </div>
-        <div class="context-sources fade-in fade-in-delay-5">
-          <a href="https://hai.stanford.edu/ai-index/2025-ai-index-report" target="_blank">Stanford AI Index 2025</a>
-          <span aria-hidden="true">·</span>
-          <a href="https://hai.stanford.edu/news/ai-index-2025-state-of-ai-in-10-charts" target="_blank">State of AI in 10 Charts</a>
-          <span aria-hidden="true">·</span>
-          <a href="https://knowledge.wharton.upenn.edu/special-report/2025-ai-adoption-report/" target="_blank">Estudio de Wharton (2025 AI Adoption Report)</a>
-        </div>
-      </div>
-      <div class="context-stage__visual fade-in fade-in-delay-2">
-        <div class="context-stage__beam" aria-hidden="true"></div>
-        <div class="context-stage__image">
-          <img src="images/slide2-enterprise.png" alt="Equipos de empresa trabajando con IA">
-        </div>
+        <article class="course-module">
+          <h3>Agentes, APIs, automatización y casos de uso</h3>
+          <ul>
+            <li>Introducción a los agentes de IA, desde el prompt a procesos empaquetados.</li>
+            <li>Ejercicios prácticos de construcción de agentes (ChatGPT, Copilot y Gemini).</li>
+            <li>Introducción a herramientas de automatización No-Code y APIs.</li>
+            <li>Demostraciones de casos reales de uso con automatización No-Code.</li>
+          </ul>
+        </article>
+
+        <article class="course-module course-module--project">
+          <h3>Proyecto aplicado</h3>
+          <ul>
+            <li>Ejercicios de automatización y revisión de oportunidades de quick wins en la empresa.</li>
+            <li>Proyecto en equipos; aplicar la materia a un caso real de uso y presentación.</li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
@@ -293,82 +253,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 7 — URGENCIA ============ -->
-  <section class="slide slide-dark" id="slide-4">
-    <div class="slide-bg" aria-hidden="true">
-      <img src="images/slide4-speed.jpg" alt="" class="slide-bg__img">
-      <div class="slide-bg__overlay"></div>
-      <div class="slide-bg__grid"></div>
-    </div>
-    <div class="slide4-layout">
-      <div class="slide4-copy">
-        <h2 class="slide-title fade-in fade-in-delay-2">Acelerar la adopción <br>es ahora, una<span class="slide4-highlight animated-title-underline">prioridad estratégica</span></h2>
-        <ul class="bullet-list fade-in fade-in-delay-3">
-          <li>La <strong>autonomía de la IA</strong> está creciendo muy rápido.</li>
-          <li>El horizonte de tareas que puede completar <strong>se duplica cada 7 meses</strong>.</li>
-        </ul>
-      </div>
-      <div class="slide4-card fade-in fade-in-delay-4">
-        <div class="slide4-card__header">
-          <h3 class="slide4-card__title">Multiplicador de Capacidad (Tareas)</h3>
-          <div class="slide4-legend" aria-label="Leyenda del gráfico">
-            <span class="slide4-legend__item"><span class="slide4-legend__dot slide4-legend__dot--ai" aria-hidden="true"></span>IA Autónoma</span>
-            <span class="slide4-legend__item"><span class="slide4-legend__dot slide4-legend__dot--human" aria-hidden="true"></span>Límite Humano</span>
-          </div>
-        </div>
-        <div class="slide4-chart-shell" id="slide4-chart-shell">
-          <div class="slide4-tooltip" id="slide4-tooltip">
-            <div class="slide4-tooltip__title" id="slide4-tooltip-title">Hoy</div>
-            <div class="slide4-tooltip__row slide4-tooltip__row--ai"><span>IA:</span><strong id="slide4-tooltip-ai">1.0x</strong></div>
-            <div class="slide4-tooltip__row slide4-tooltip__row--human"><span>Humano:</span><strong id="slide4-tooltip-human">1.0x</strong></div>
-          </div>
-          <svg id="slide4-chart-svg" viewBox="0 0 500 300" preserveAspectRatio="none" role="img" aria-label="Curva de capacidad de la IA versus límite humano en el tiempo">
-            <defs>
-              <clipPath id="slide4-reveal-mask">
-                <rect x="0" y="0" width="2" height="300" id="slide4-mask-rect"></rect>
-              </clipPath>
-              <linearGradient id="slide4-ai-gradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#00B2E3"></stop>
-                <stop offset="100%" stop-color="transparent"></stop>
-              </linearGradient>
-            </defs>
-            <path class="slide4-grid-line" d="M0,262.5 L500,262.5"></path>
-            <text x="-28" y="266" class="slide4-axis-label">1x</text>
-            <path class="slide4-grid-line" d="M0,225 L500,225"></path>
-            <text x="-28" y="229" class="slide4-axis-label">2x</text>
-            <path class="slide4-grid-line" d="M0,150 L500,150"></path>
-            <text x="-28" y="154" class="slide4-axis-label">4x</text>
-            <path class="slide4-grid-line" d="M0,0 L500,0"></path>
-            <text x="-28" y="4" class="slide4-axis-label">8x</text>
-            <path id="slide4-area-ai" class="slide4-area-ai" d="" clip-path="url(#slide4-reveal-mask)"></path>
-            <path id="slide4-path-human" class="slide4-path-human" d="" clip-path="url(#slide4-reveal-mask)"></path>
-            <path id="slide4-path-ai" class="slide4-path-ai" d="" clip-path="url(#slide4-reveal-mask)"></path>
-            <g id="slide4-scrubber-group" style="display:none;">
-              <line id="slide4-scrubber-line" class="slide4-scrubber-line" x1="0" y1="0" x2="0" y2="300"></line>
-              <circle id="slide4-ai-point" class="slide4-data-point" cx="0" cy="0" r="5"></circle>
-              <circle id="slide4-human-point" class="slide4-data-point" cx="0" cy="0" r="5"></circle>
-            </g>
-          </svg>
-        </div>
-        <div class="slide4-slider">
-          <div class="slide4-slider__labels" aria-hidden="true">
-            <span id="slide4-label-0" class="is-active">Hoy</span>
-            <span id="slide4-label-7">+7 Meses</span>
-            <span id="slide4-label-14">+14 Meses</span>
-            <span id="slide4-label-21">+21 Meses</span>
-          </div>
-          <input type="range" id="slide4-time-slider" class="slide4-slider__range" min="0" max="21" value="0" step="0.1" aria-label="Control temporal del multiplicador de capacidad">
-        </div>
-      </div>
-    </div>
-    <div class="slide4-sources fade-in fade-in-delay-5">
-      <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" target="_blank" rel="noopener">METR — Measuring AI Ability</a>
-      <span aria-hidden="true">·</span>
-      <a href="https://metr.org/time-horizons/" target="_blank" rel="noopener">Time Horizons</a>
-    </div>
-  </section>
-
-  <!-- ============ SLIDE 8 — RIESGO ============ -->
+  <!-- ============ SLIDE 7 — RIESGO ============ -->
   
   <section class="slide slide-dark evolution-slide" id="slide-4a">
     
@@ -434,94 +319,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 9 — OPORTUNIDAD ============ -->
-  <section class="slide slide-dark" id="slide-6">
-    <div class="slide-bg" aria-hidden="true">
-      <img src="images/slide6-adoption-risk.png" alt="" class="slide-bg__img slide6-bg__img">
-      <div class="slide-bg__overlay slide6-bg__overlay"></div>
-      <div class="slide-bg__grid"></div>
-    </div>
-    <h2 class="slide-title fade-in fade-in-delay-1">
-      <span class="slide6-title__line">El costo de <span class="slide6-highlight animated-title-underline">llegar tarde</span></span>
-    </h2>
-    <div class="slide6-layout">
-      <div class="slide6-copy">
-        <div class="slide6-stat fade-in fade-in-delay-2">
-          <div class="slide6-stat__num" aria-label="26 por ciento">
-            <span class="slide6-stat__num-value" data-target="26">0</span><span class="slide6-stat__num-unit">%</span>
-          </div>
-          <div class="slide6-stat__copy">
-            <span class="slide6-stat__lead">Ya usa IA en su trabajo.</span>
-            
-          </div>
-        </div>
-      </div>
-
-      <div class="slide6-dashboard fade-in fade-in-delay-2" aria-label="Dashboard interactivo de brecha competitiva">
-        
-        <div class="slide6-dash-cards">
-          <!-- Card: Adoptantes -->
-          <div class="slide6-dash-card slide6-dash-card--adopt">
-            <h3 class="slide6-dash-card__title">Líderes I.A.</h3>
-            <div class="slide6-dash-metric">
-              <span class="slide6-dash-metric__label">Aumento Productividad</span>
-              <div class="slide6-dash-metric__value">
-                <span class="slide6-dash-metric__sign">+</span><span id="slide6-metric-adopt">0</span><span class="slide6-dash-metric__unit">%</span>
-              </div>
-            </div>
-            <!-- Simple bar visualizing growth -->
-            <div class="slide6-dash-bar">
-              <div class="slide6-dash-bar__fill" id="slide6-bar-adopt"></div>
-            </div>
-            <div class="slide6-dash-source">Ref: MIT Sloan / BCG Research</div>
-          </div>
-
-          <!-- The Gap Metric Center -->
-          <div class="slide6-dash-center">
-            <div class="slide6-dash-center__circle" id="slide6-center-circle">
-              <span class="slide6-dash-center__label">Deuda I.A.</span>
-              <div class="slide6-dash-center__value">
-                <span id="slide6-metric-gap">1.0</span><span class="slide6-dash-metric__unit">x</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card: Rezagados -->
-          <div class="slide6-dash-card slide6-dash-card--wait">
-            <h3 class="slide6-dash-card__title">Rezagados</h3>
-            <div class="slide6-dash-metric">
-              <span class="slide6-dash-metric__label">Pérdida de Margen</span>
-              <div class="slide6-dash-metric__value" style="color: rgba(255,100,100,0.9);">
-                <span class="slide6-dash-metric__sign">-</span><span id="slide6-metric-wait">0</span><span class="slide6-dash-metric__unit">%</span>
-              </div>
-            </div>
-            <!-- Simple bar visualizing cost/drag -->
-            <div class="slide6-dash-bar">
-              <div class="slide6-dash-bar__fill" id="slide6-bar-wait"></div>
-            </div>
-            <div class="slide6-dash-source">Ref: McKinsey Global Institute</div>
-          </div>
-        </div>
-
-        <div class="slide6-dash-controls">
-          <div class="slide6-dash-controls__labels">
-            <span>Hoy</span>
-            <span id="slide6-time-label" class="slide6-time-highlight">Mes 0</span>
-            <span>Mes 24</span>
-          </div>
-          <input type="range" class="slide6-dash-slider" id="slide6-timeline" min="0" max="24" value="0" step="0.1" aria-label="Línea de tiempo de adopción">
-        </div>
-
-        
-        </p>
-      </div>
-    </div>
-    <div class="slide6-source fade-in fade-in-delay-4">
-      <a href="https://www.gallup.com/workplace/701195/frequent-workplace-continued-rise.aspx" target="_blank" rel="noopener">Gallup — Frequent Workplace AI Use</a>
-    </div>
-  </section>
-
-  <!-- ============ SLIDE 10 — COMPARATIVA DE MODELOS PREMIUM ============ -->
+  <!-- ============ SLIDE 8 — COMPARATIVA DE MODELOS PREMIUM ============ -->
   <section class="slide slide-dark premium-models-slide" id="slide-models-premium">
     <div class="premium-models-bg" aria-hidden="true">
       <div class="slide-bg__grid"></div>
@@ -628,7 +426,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 11 — ADOPCIÓN GLOBAL ============ -->
+  <!-- ============ SLIDE 9 — ADOPCIÓN GLOBAL ============ -->
   <section class="slide slide-dark" id="slide-5a">
     
     <h2 class="slide-title fade-in fade-in-delay-1" style="text-align:center; max-width:960px;">La IA ya se volvió masiva,<br>pero el uso avanzado sigue siendo excepcional</h2>
@@ -678,63 +476,20 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 12 — PUENTE AL TALLER (se aprende haciendo) ============ -->
-  <section class="slide slide-dark s12-bridge-slide" id="slide-7b">
-    <div class="slide-bg" aria-hidden="true">
-      <div class="slide-bg__overlay s15-bg-overlay s12-bridge-overlay"></div>
+  <!-- ============ SLIDE 10 — SECCIÓN 2 ============ -->
+  <section class="slide slide-dark title-only-slide section-break-slide" id="slide-section-2">
+    <div class="title-only-bg" aria-hidden="true">
       <div class="slide-bg__grid"></div>
+      <span class="title-only-beam title-only-beam--one"></span>
+      <span class="title-only-beam title-only-beam--two"></span>
     </div>
-    
-    <div class="s15-layout s12-bridge-layout">
-      <div class="s15-statement s12-bridge-statement fade-in">
-        <h2 class="slide-title s15-title fade-in fade-in-delay-1">
-          Tres condiciones para<br><span class="animated-title-underline">capturar valor real con IA</span>
-        </h2>
-        <p class="s12-bridge-cta fade-in fade-in-delay-2">
-          Pedir bien → Herramientas con IA → Automatizar bien
-        </p>
-      </div>
 
-      <div class="s15-image s12-bridge-image fade-in fade-in-delay-2">
-        <img src="images/slide7-learn.png" alt="Equipo aplicando IA en tareas reales de trabajo" class="s15-image__img">
-      </div>
-
-      <div class="s15-cards s12-bridge-cards fade-in fade-in-delay-3">
-        <div class="s15-card">
-          <div class="s15-card__body">
-            <div class="s15-card__title">Pedir bien</div>
-            <div class="s15-card__desc">
-              <strong>ROSEF como estructura mínima de trabajo</strong>
-              <span>Rol, Objetivo, Contexto, Ejemplo y Formato.</span>
-              <span>La respuesta será tan buena como la pregunta.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="s15-card">
-          <div class="s15-card__body">
-            <div class="s15-card__title">Usar herramientas con IA</div>
-            <div class="s15-card__desc">
-              <strong>La IA debe trabajar con herramientas reales</strong>
-              <span>El prompt define la intención; la herramienta ejecuta la tarea.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="s15-card">
-          <div class="s15-card__body">
-            <div class="s15-card__title">Automatizar lo repetitivo</div>
-            <div class="s15-card__desc">
-              <strong>Cuando el patrón ya funciona, se puede escalar</strong>
-              <span>Cuando el flujo ya está claro y se repite, se automatiza.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h2 class="slide-title title-only-heading section-break-heading fade-in fade-in-delay-1">
+      <br> Sección 2
+    </h2>
   </section>
 
-  <!-- ============ SLIDE 13 — INICIO DE EJERCICIOS ============ -->
+  <!-- ============ SLIDE 11 — INICIO DE EJERCICIOS ============ -->
   <section class="slide slide-dark workshop-start-slide" id="slide-workshop-start">
     <div class="workshop-start-bg" aria-hidden="true">
       <div class="slide-bg__grid"></div>
@@ -760,7 +515,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 14 — EJERCICIO 01: AUDIO → MINUTA ============ -->
+  <!-- ============ SLIDE 12 — EJERCICIO 01: AUDIO → MINUTA ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--01" id="slide-8">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio01-audio.png" alt="" class="slide-bg__img">
@@ -793,7 +548,169 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 15 — EJERCICIO 02: PDF → TABLA ============ -->
+  <!-- ============ SLIDE 13 — CONTEXTO EJERCICIO 01: COMISIÓN DE HACIENDA ============ -->
+  <section class="slide slide-dark exercise-context-slide exercise-context-slide--senado" id="slide-exercise-01-context">
+    <div class="exercise-context-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+      <span class="exercise-context-bg__glow exercise-context-bg__glow--one"></span>
+      <span class="exercise-context-bg__glow exercise-context-bg__glow--two"></span>
+    </div>
+
+    <div class="exercise-context-shell">
+      <figure class="exercise-context-media fade-in fade-in-delay-1">
+        <img src="images/sesion_senado.png" alt="Sesión de la Comisión de Hacienda del Senado">
+      </figure>
+
+      <div class="exercise-context-copy">
+        <div class="slide-tag fade-in">Ejercicio 01 · De reunión a ejecución, en minutos</div>
+        <h2 class="slide-title exercise-context-title fade-in fade-in-delay-1">
+          Análisis de la Situación Fiscal:
+          <span>Comisión de Hacienda (08/04/2026)</span>
+        </h2>
+
+        <a class="exercise-context-link fade-in fade-in-delay-2" href="https://youtu.be/jkyFAZqGyOg?si=abMIw6SwX8T4AHDf" target="_blank" rel="noopener">
+          <span>Fuente YouTube</span>
+          <strong>https://youtu.be/jkyFAZqGyOg?si=abMIw6SwX8T4AHDf</strong>
+        </a>
+
+        <div class="exercise-context-participants fade-in fade-in-delay-3">
+          <h3>Participantes</h3>
+          <ul>
+            <li>Paula Benavides, Presidenta del Consejo</li>
+            <li>Sebastián Izquierdo, Vicepresidente del Consejo</li>
+            <li>Señor Ministro de Hacienda (Ministro Quirós)</li>
+            <li>Senador Edwards</li>
+            <li>Senadora Gatica</li>
+            <li>Senadora Boganovich</li>
+            <li>Senador Carter</li>
+            <li>Senadora Chicardini</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 14 — DE REUNIÓN A PLAN DE ACCIÓN ============ -->
+  <section class="slide slide-dark audio-action-slide" id="slide-audio-action-prompt">
+    <div class="audio-action-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="audio-action-shell">
+      <h2 class="slide-title audio-action-title fade-in">
+        De reunión a plan de acción
+      </h2>
+
+      <div class="audio-action-prompt fade-in fade-in-delay-1">
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
+          <div>
+            <h3>Rol</h3>
+            <p>Eres un asistente experto en transformar audios o transcripciones de reuniones en documentos ejecutivos claros, ordenados y accionables.</p>
+            <p>Distingues entre temas tratados, acuerdos, decisiones, compromisos, pendientes y acciones sugeridas.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">O</div>
+          <div>
+            <h3>Objetivo</h3>
+            <p>Analizar la reunión completa y generar un documento útil para gestión y seguimiento.</p>
+            <p>Debes identificar qué ocurrió, quién participó, qué se decidió, qué quedó pendiente y qué acciones deben realizarse.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">C</div>
+          <div>
+            <h3>Contexto</h3>
+            <p>Te entregaré un audio, archivo o transcripción de una reunión formal, técnica, institucional o estratégica.</p>
+            <p>No inventes nombres, cargos, fechas, responsables ni acuerdos; si un dato no aparece, escribe “No indicado”.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">E</div>
+          <div>
+            <h3>Ejemplos / Reglas</h3>
+            <p>Si una acción no fue dicha literalmente pero se desprende de la conversación, márcala como “acción derivada” o “acción sugerida”.</p>
+            <p>Si hay cifras, fechas, documentos o compromisos que requieren confirmación, inclúyelos en “Pendientes de validación”.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block audio-prompt-block--format">
+          <div class="audio-prompt-block__mark" aria-hidden="true">F</div>
+          <div>
+            <h3>Formato</h3>
+            <p>Entrega el resultado en este orden: título, datos generales, resumen ejecutivo, participantes, temas tratados, acuerdos o conclusiones, acciones de seguimiento, riesgos, pendientes y próximos pasos.</p>
+            <p>Para las acciones usa tabla visual o fichas por acción con: acción, origen, responsable, área, plazo, estado, prioridad y observaciones. Luego genera un PDF descargable con el mismo contenido.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 15 — RESULTADO ============ -->
+  <section class="slide slide-dark audio-result-slide" id="slide-audio-result">
+    <div class="audio-result-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="audio-result-shell">
+      <h2 class="slide-title audio-result-title fade-in">Resultado</h2>
+
+      <div class="audio-result-pages fade-in fade-in-delay-1" aria-label="Resultado del informe de audio en tres páginas">
+        <figure class="audio-result-page audio-result-page--1">
+          <img src="images/Informe_audio_1.png" alt="Página 1 del informe generado desde el audio">
+        </figure>
+        <figure class="audio-result-page audio-result-page--2">
+          <img src="images/Informe_audio_2.png" alt="Página 2 del informe generado desde el audio">
+        </figure>
+        <figure class="audio-result-page audio-result-page--3">
+          <img src="images/Informe_audio_3.png" alt="Página 3 del informe generado desde el audio">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 16 — CUENTA REGRESIVA 10 MINUTOS ============ -->
+  <section class="slide slide-dark countdown-slide" id="slide-countdown-5" data-countdown-seconds="600">
+    <div class="countdown-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+      <span class="countdown-bg__beam countdown-bg__beam--one"></span>
+      <span class="countdown-bg__beam countdown-bg__beam--two"></span>
+    </div>
+
+    <div class="countdown-stage" aria-label="Cuenta regresiva de diez minutos">
+      <svg class="countdown-ring" viewBox="0 0 240 240" role="img" aria-hidden="true">
+        <circle class="countdown-ring__track" cx="120" cy="120" r="104"></circle>
+        <circle class="countdown-ring__progress" id="countdown-ring-progress" cx="120" cy="120" r="104"></circle>
+      </svg>
+      <div class="countdown-time" id="countdown-time" aria-live="polite">10:00</div>
+    </div>
+
+    <div class="countdown-controls" aria-label="Controles de cuenta regresiva">
+      <button type="button" class="countdown-control countdown-pause" id="countdown-pause" aria-label="Pausar cuenta regresiva" aria-pressed="false">
+        <svg class="countdown-pause__icon countdown-pause__icon--pause" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <svg class="countdown-pause__icon countdown-pause__icon--play" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 5v14l11-7-11-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span>Pausar</span>
+      </button>
+
+      <button type="button" class="countdown-control countdown-restart" id="countdown-restart" aria-label="Reiniciar cuenta regresiva">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Reiniciar</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 17 — EJERCICIO 02: PDF → TABLA ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--02" id="slide-9">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio02-pdf.png" alt="" class="slide-bg__img">
@@ -826,7 +743,126 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 16 — EJERCICIO 03: BRIEF → DECK ============ -->
+  <!-- ============ SLIDE 18 — CONTEXTO EJERCICIO 02: AUDITORÍA DE FACTURAS ============ -->
+  <section class="slide slide-dark exercise-context-slide exercise-context-slide--facturas" id="slide-exercise-02-context">
+    <div class="exercise-context-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+      <span class="exercise-context-bg__glow exercise-context-bg__glow--one"></span>
+      <span class="exercise-context-bg__glow exercise-context-bg__glow--two"></span>
+    </div>
+
+    <div class="exercise-context-shell">
+      <figure class="exercise-context-media fade-in fade-in-delay-1">
+        <img src="images/facturas.png" alt="Facturas y órdenes de compra para auditoría con IA">
+      </figure>
+
+      <div class="exercise-context-copy">
+        <div class="slide-tag fade-in">Ejercicio 02 · Auditoría de facturas</div>
+        <h2 class="slide-title exercise-context-title fade-in fade-in-delay-1">
+          Auditoría de Facturas con IA
+          <span>(ROCEF simple)</span>
+        </h2>
+
+        <div class="exercise-context-brief rocef-brief fade-in fade-in-delay-2" aria-label="Prompt ROCEF simple para auditoría de facturas">
+          <article class="rocef-step">
+            <span class="rocef-step__letter">R</span>
+            <div>
+              <h3>Rol</h3>
+              <p>Eres un auditor experto en comparar facturas vs órdenes de compra, capaz de detectar diferencias textuales y numéricas.</p>
+            </div>
+          </article>
+
+          <article class="rocef-step">
+            <span class="rocef-step__letter">O</span>
+            <div>
+              <h3>Objetivo</h3>
+              <p>Verificar si la factura coincide con la orden de compra en glosa y precio.</p>
+            </div>
+          </article>
+
+          <article class="rocef-step rocef-step--wide">
+            <span class="rocef-step__letter">C</span>
+            <div>
+              <h3>Contexto</h3>
+              <p>Recibes facturas en PDF y debes compararlas contra una tabla fija de órdenes de compra. La glosa debe coincidir textualmente y el precio debe ser exacto.</p>
+            </div>
+          </article>
+
+          <article class="rocef-step rocef-step--wide">
+            <span class="rocef-step__letter">E</span>
+            <div>
+              <h3>Ejemplo</h3>
+              <p><strong>Entrada:</strong> Factura con glosa distinta y precio diferente.</p>
+              <p><strong>Salida esperada:</strong> “No coincide con OC. Glosa diferente. Sugerencia: podría corresponder a OC 001 por similitud de descripción.”</p>
+              <p>Si no coinciden, marca el error y sugiere la OC más probable.</p>
+            </div>
+          </article>
+
+          <article class="rocef-step rocef-step--wide">
+            <span class="rocef-step__letter">F</span>
+            <div>
+              <h3>Formato</h3>
+              <p>Devuelve una tabla para ver en pantalla y en PDF con las columnas:</p>
+              <p class="rocef-format-line">Factura | OC asignada | Coincide (Sí/No) | Motivo del error | Sugerencia</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 19 — RESULTADO ============ -->
+  <section class="slide slide-dark invoice-result-slide" id="slide-invoice-audit-result">
+    <div class="invoice-result-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="invoice-result-shell">
+      <h2 class="slide-title invoice-result-title fade-in">Resultado</h2>
+      <figure class="invoice-result-figure fade-in fade-in-delay-1">
+        <img src="images/Auditoria_facturas.png" alt="Resultado de auditoría de facturas con IA">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 20 — CUENTA REGRESIVA 10 MINUTOS ============ -->
+  <section class="slide slide-dark countdown-slide" id="slide-countdown-facturas-20" data-countdown-seconds="600" data-slide-number="20">
+    <div class="countdown-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+      <span class="countdown-bg__beam countdown-bg__beam--one"></span>
+      <span class="countdown-bg__beam countdown-bg__beam--two"></span>
+    </div>
+
+    <div class="countdown-stage" aria-label="Cuenta regresiva de diez minutos">
+      <svg class="countdown-ring" viewBox="0 0 240 240" role="img" aria-hidden="true">
+        <circle class="countdown-ring__track" cx="120" cy="120" r="104"></circle>
+        <circle class="countdown-ring__progress" cx="120" cy="120" r="104"></circle>
+      </svg>
+      <div class="countdown-time" aria-live="polite">10:00</div>
+    </div>
+
+    <div class="countdown-controls" aria-label="Controles de cuenta regresiva">
+      <button type="button" class="countdown-control countdown-pause" aria-label="Pausar cuenta regresiva" aria-pressed="false">
+        <svg class="countdown-pause__icon countdown-pause__icon--pause" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <svg class="countdown-pause__icon countdown-pause__icon--play" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 5v14l11-7-11-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span>Pausar</span>
+      </button>
+
+      <button type="button" class="countdown-control countdown-restart" aria-label="Reiniciar cuenta regresiva">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Reiniciar</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 21 — EJERCICIO 03: BRIEF → DECK ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--03" id="slide-10">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio04-deck.png" alt="" class="slide-bg__img">
@@ -859,7 +895,126 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 17 — EJERCICIO 04: DATOS → INSIGHT ============ -->
+  <!-- ============ SLIDE 22 — ARCHIVO EXCEL SQM ============ -->
+  <section class="slide sqm-excel-source-slide" id="slide-sqm-excel-source">
+    <div class="sqm-excel-grid" aria-label="Capturas de la planilla Excel SQM">
+      <figure class="sqm-excel-tile">
+        <img src="images/SQM_excel_1.png" alt="Captura 1 de la planilla Excel SQM">
+      </figure>
+      <figure class="sqm-excel-tile">
+        <img src="images/SQM_excel_2.png" alt="Captura 2 de la planilla Excel SQM">
+      </figure>
+      <figure class="sqm-excel-tile">
+        <img src="images/SQM_excel_3.png" alt="Captura 3 de la planilla Excel SQM">
+      </figure>
+      <figure class="sqm-excel-tile">
+        <img src="images/SQM_excel_4.png" alt="Captura 4 de la planilla Excel SQM">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 23 — DE EXCEL A DASHBOARD EJECUTIVO ============ -->
+  <section class="slide slide-dark audio-action-slide sqm-dashboard-prompt-slide" id="slide-sqm-dashboard-prompt">
+    <div class="audio-action-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="audio-action-shell">
+      <h2 class="slide-title audio-action-title fade-in">
+        De Excel a dashboard ejecutivo
+      </h2>
+
+      <div class="audio-action-prompt fade-in fade-in-delay-1">
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
+          <div>
+            <h3>Rol</h3>
+            <p>Eres un CFO y analista financiero senior especializado en visualización ejecutiva de datos. Tu estilo es sobrio, claro y orientado a facilitar decisiones, sin emitir opiniones personales.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">O</div>
+          <div>
+            <h3>Objetivo</h3>
+            <p>Analizar la planilla Excel adjunta y generar un dashboard financiero ejecutivo en formato HTML, claro, visual e interactivo, que permita comprender los principales resultados de la empresa.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">C</div>
+          <div>
+            <h3>Contexto</h3>
+            <p>La planilla contiene información financiera en distintas pestañas. Además, entregaré una paleta de colores corporativa y un logo que deben integrarse al diseño del dashboard.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">E</div>
+          <div>
+            <h3>Ejemplo</h3>
+            <p>Si existen ingresos, costos, EBITDA, utilidad, activos, pasivos o flujo de caja, represéntalos mediante tarjetas KPI, tablas resumidas y gráficos claros de evolución y comparación.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block audio-prompt-block--format">
+          <div class="audio-prompt-block__mark" aria-hidden="true">F</div>
+          <div>
+            <h3>Formato</h3>
+            <p>Entrega un archivo HTML completo y listo para visualizar en navegador, incorporando la paleta de colores y el logo entregados. No incluyas opiniones, conclusiones ni recomendaciones; solo estructura visual para apoyar la toma de decisiones.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 24 — DASHBOARD EJECUTIVO SQM ============ -->
+  <section class="slide sqm-dashboard-slide" id="slide-sqm-dashboard-result">
+    <iframe
+      class="sqm-dashboard-frame"
+      src="Webinar Optimiza tu trabajo con IA/De Excel a dashboard/Resultado/SQM_dashboard_ejecutivo.html"
+      title="Dashboard financiero ejecutivo SQM"
+      loading="eager"></iframe>
+  </section>
+
+  <!-- ============ SLIDE 25 — CUENTA REGRESIVA 10 MINUTOS ============ -->
+  <section class="slide slide-dark countdown-slide" id="slide-countdown-sqm-25" data-countdown-seconds="600" data-slide-number="25">
+    <div class="countdown-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+      <span class="countdown-bg__beam countdown-bg__beam--one"></span>
+      <span class="countdown-bg__beam countdown-bg__beam--two"></span>
+    </div>
+
+    <div class="countdown-stage" aria-label="Cuenta regresiva de diez minutos">
+      <svg class="countdown-ring" viewBox="0 0 240 240" role="img" aria-hidden="true">
+        <circle class="countdown-ring__track" cx="120" cy="120" r="104"></circle>
+        <circle class="countdown-ring__progress" cx="120" cy="120" r="104"></circle>
+      </svg>
+      <div class="countdown-time" aria-live="polite">10:00</div>
+    </div>
+
+    <div class="countdown-controls" aria-label="Controles de cuenta regresiva">
+      <button type="button" class="countdown-control countdown-pause" aria-label="Pausar cuenta regresiva" aria-pressed="false">
+        <svg class="countdown-pause__icon countdown-pause__icon--pause" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <svg class="countdown-pause__icon countdown-pause__icon--play" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 5v14l11-7-11-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span>Pausar</span>
+      </button>
+
+      <button type="button" class="countdown-control countdown-restart" aria-label="Reiniciar cuenta regresiva">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Reiniciar</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 26 — EJERCICIO 04: DATOS → INSIGHT ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--04" id="slide-11">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio03-datos.png" alt="" class="slide-bg__img">
@@ -892,7 +1047,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 18 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
+  <!-- ============ SLIDE 27 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--05" id="slide-12">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio05-auto.png" alt="" class="slide-bg__img">
@@ -925,7 +1080,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 19 — CULTURA DE ADOPCIÓN ============ -->
+  <!-- ============ SLIDE 28 — CULTURA DE ADOPCIÓN ============ -->
   <section class="slide slide-dark" id="slide-13">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/cultura-roi.jpg" alt="" class="slide-bg__img s15-bg-img">
@@ -970,7 +1125,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 20 — PREGUNTAS Y CIERRE ============ -->
+  <!-- ============ SLIDE 29 — PREGUNTAS Y CIERRE ============ -->
   <section class="slide slide-dark" id="slide-15">
     <div class="floating-shapes">
       <span></span><span></span><span></span><span></span><span></span>
@@ -978,7 +1133,7 @@
     <h2 class="closing-title fade-in" style="position:relative;z-index:1;">¿Preguntas?</h2>
     <p class="closing-sub fade-in fade-in-delay-2" style="position:relative;z-index:1;">Gracias</p>
     <div class="fade-in fade-in-delay-4" style="position:relative;z-index:1; margin-top:40px;">
-      <span class="cover-badge" style="font-size:16px; padding:12px 32px;">DesafIA — Master Webinar</span>
+      <span class="cover-badge" style="font-size:16px; padding:12px 32px;">DesafIA — Conecta</span>
     </div>
   </section>
 

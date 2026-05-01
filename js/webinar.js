@@ -1637,6 +1637,7 @@
   const pdfExportStatus = document.getElementById('pdf-export-status');
   const summarySlide = document.getElementById('slide-summary');
   const summaryFocusButtons = document.querySelectorAll('.summary-focus-btn');
+  const countdownSlides = Array.prototype.slice.call(document.querySelectorAll('.countdown-slide'));
   const adoptionCard = document.getElementById('adoption-card');
   const adoptionGrid = document.getElementById('adoption-grid');
   const adoptionTooltip = document.getElementById('adoption-tooltip');
@@ -1681,6 +1682,160 @@
       setSummaryFocus(currentFocus === requestedFocus ? '' : requestedFocus);
     });
   });
+
+  function createCountdownController(countdownSlide) {
+    const countdownTime = countdownSlide ? countdownSlide.querySelector('.countdown-time') : null;
+    const countdownRingProgress = countdownSlide ? countdownSlide.querySelector('.countdown-ring__progress') : null;
+
+    if (!countdownSlide || !countdownTime || !countdownRingProgress) {
+      return {
+        activate: function() {},
+        deactivate: function() {},
+        restart: function() {}
+      };
+    }
+
+    const radius = Number(countdownRingProgress.getAttribute('r')) || 104;
+    const circumference = 2 * Math.PI * radius;
+    const totalSeconds = Number(countdownSlide.dataset.countdownSeconds) || 300;
+    const restartButton = countdownSlide.querySelector('.countdown-restart');
+    const pauseButton = countdownSlide.querySelector('.countdown-pause');
+    const pauseButtonLabel = pauseButton ? pauseButton.querySelector('span') : null;
+    let intervalId = null;
+    let endTime = 0;
+    let remainingSeconds = totalSeconds;
+    let isPaused = false;
+
+    countdownRingProgress.style.setProperty('--countdown-circumference', circumference.toFixed(2));
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const remainder = seconds % 60;
+      return String(minutes).padStart(2, '0') + ':' + String(remainder).padStart(2, '0');
+    }
+
+    function updatePauseButton() {
+      if (!pauseButton) return;
+      const isFinished = remainingSeconds <= 0;
+      pauseButton.disabled = isFinished;
+      pauseButton.classList.toggle('is-paused', isPaused && !isFinished);
+      pauseButton.setAttribute('aria-pressed', isPaused && !isFinished ? 'true' : 'false');
+      pauseButton.setAttribute('aria-label', isPaused && !isFinished ? 'Reanudar cuenta regresiva' : 'Pausar cuenta regresiva');
+      if (pauseButtonLabel) {
+        pauseButtonLabel.textContent = isPaused && !isFinished ? 'Reanudar' : 'Pausar';
+      }
+    }
+
+    function render(seconds) {
+      const safeRemaining = Math.max(0, Math.min(totalSeconds, seconds));
+      const elapsedRatio = totalSeconds > 0 ? (totalSeconds - safeRemaining) / totalSeconds : 1;
+      const remainingRatio = totalSeconds > 0 ? safeRemaining / totalSeconds : 0;
+      remainingSeconds = safeRemaining;
+      countdownTime.textContent = formatTime(safeRemaining);
+      countdownSlide.style.setProperty('--countdown-deg', (remainingRatio * 360).toFixed(2) + 'deg');
+      countdownSlide.style.setProperty('--countdown-offset', (circumference * elapsedRatio).toFixed(2));
+      countdownRingProgress.style.strokeDashoffset = (circumference * elapsedRatio).toFixed(2);
+      countdownSlide.classList.toggle('is-finished', safeRemaining === 0);
+      countdownSlide.classList.toggle('is-running', safeRemaining > 0 && !isPaused);
+      countdownSlide.classList.toggle('is-paused', safeRemaining > 0 && isPaused);
+      updatePauseButton();
+    }
+
+    function tick() {
+      const remaining = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+      if (remaining <= 0) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+        isPaused = false;
+        render(0);
+        return;
+      }
+
+      render(remaining);
+    }
+
+    function deactivate() {
+      if (intervalId !== null) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+      }
+      countdownSlide.classList.remove('is-running');
+      countdownSlide.classList.remove('is-paused');
+      isPaused = false;
+      updatePauseButton();
+    }
+
+    function activate() {
+      deactivate();
+      countdownSlide.classList.remove('is-finished');
+      remainingSeconds = totalSeconds;
+      isPaused = false;
+      render(totalSeconds);
+      endTime = Date.now() + totalSeconds * 1000;
+      intervalId = window.setInterval(tick, 250);
+    }
+
+    function pause() {
+      if (isPaused || remainingSeconds <= 0) return;
+      remainingSeconds = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+      if (intervalId !== null) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+      }
+      isPaused = true;
+      render(remainingSeconds);
+    }
+
+    function resume() {
+      if (!isPaused || remainingSeconds <= 0) return;
+      isPaused = false;
+      endTime = Date.now() + remainingSeconds * 1000;
+      intervalId = window.setInterval(tick, 250);
+      render(remainingSeconds);
+    }
+
+    function togglePause() {
+      if (isPaused) {
+        resume();
+      } else {
+        pause();
+      }
+    }
+
+    if (pauseButton) {
+      pauseButton.addEventListener('click', togglePause);
+    }
+
+    if (restartButton) {
+      restartButton.addEventListener('click', function() {
+        restartButton.classList.add('is-spinning');
+        window.setTimeout(function() {
+          restartButton.classList.remove('is-spinning');
+        }, 600);
+        activate();
+      });
+    }
+
+    render(totalSeconds);
+
+    return {
+      activate: activate,
+      deactivate: deactivate,
+      restart: activate
+    };
+  }
+
+  const countdownControllers = countdownSlides.reduce(function(controllers, countdownSlide) {
+    if (countdownSlide.id) {
+      controllers[countdownSlide.id] = createCountdownController(countdownSlide);
+    }
+    return controllers;
+  }, {});
+
+  function getCountdownController(slide) {
+    if (!slide || !slide.id) return null;
+    return countdownControllers[slide.id] || null;
+  }
 
   function buildAdoptionGrid() {
     if (adoptionBuilt || !adoptionGrid) return;
@@ -1828,6 +1983,10 @@
       if (oldSlide.id === 'slide-models-premium' && newSlide.id !== 'slide-models-premium') {
         premiumModelsSlide.deactivate();
       }
+      const oldCountdownController = getCountdownController(oldSlide);
+      if (oldCountdownController && oldSlide.id !== newSlide.id) {
+        oldCountdownController.deactivate();
+      }
       updateUI();
       triggerSlideAnimations(currentSlide);
       isAnimating = false;
@@ -1909,6 +2068,11 @@
       setTimeout(function() {
         premiumModelsSlide.activate();
       }, 220);
+    }
+
+    const activeCountdownController = getCountdownController(slide);
+    if (activeCountdownController) {
+      activeCountdownController.activate();
     }
 
   }

@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start \"\" \"g:/Mi unidad/desafIA/Presentaciones/presentacion_conecta/Webinar_V7.html\")",
+      "Read(//g/Mi unidad/desafía/Presentaciones/presentacion_conecta/css/**)",
+      "Bash(awk '{count+=gsub\\(/\\\\{/,\"{\"\\); count-=gsub\\(/\\\\}/,\"}\"\\)} END{print \"Brace balance:\", count}' \"g:/Mi unidad/desafIA/Presentaciones/presentacion_conecta/css/webinar.css\")",
+      "Bash(node --check \"g:/Mi unidad/desafIA/Presentaciones/presentacion_conecta/js/webinar.js\")",
+      "Bash(where chrome *)",
+      "Bash(where msedge *)",
+      "Read(//c/Program Files/Google/Chrome/Application/**)",
+      "Read(//c/Program Files \\(x86\\)/Microsoft/Edge/Application/**)",
+      "Bash(mkdir -p \"/tmp/webinar-debug\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1920,1080 --screenshot=\"/tmp/webinar-debug/initial.png\" \"file:///g:/Mi unidad/desafIA/Presentaciones/presentacion_conecta/Webinar_V7.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1920,1080 --virtual-time-budget=3000 --screenshot=\"/tmp/webinar-debug/slide14-only.png\" \"file:///C:/Users/veros/AppData/Local/Temp/webinar-debug/slide14.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1920,1080 --virtual-time-budget=3000 --screenshot=\"/tmp/webinar-debug/slide17-only.png\" \"file:///C:/Users/veros/AppData/Local/Temp/webinar-debug/slide14.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1920,1080 --virtual-time-budget=15000 --screenshot=\"/tmp/webinar-debug/nav-slide14.png\" \"file:///C:/Users/veros/AppData/Local/Temp/webinar-debug/nav-test.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1920,1080 --virtual-time-budget=20000 --screenshot=\"/tmp/webinar-debug/nav-slide14-v2.png\" \"file:///C:/Users/veros/AppData/Local/Temp/webinar-debug/nav-test.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1920,1080 --virtual-time-budget=22000 --screenshot=\"/tmp/webinar-debug/nav-debug.png\" \"file:///C:/Users/veros/AppData/Local/Temp/webinar-debug/nav-test.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1920,1080 --virtual-time-budget=22000 --screenshot=\"/tmp/webinar-debug/nav-debug2.png\" \"file:///C:/Users/veros/AppData/Local/Temp/webinar-debug/nav-test.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --window-size=1920,1080 --virtual-time-budget=25000 --screenshot=/tmp/webinar-debug/nav-debug2.png \"file:///C:/Users/veros/AppData/Local/Temp/webinar-debug/nav-test.html\")"
+    ],
+    "additionalDirectories": [
+      "\\tmp\\webinar-debug",
+      "C:\\Users\\veros\\AppData\\Local\\Temp\\webinar-debug"
+    ]
+  }
+}
