@@ -2269,17 +2269,17 @@ body.pdf-exporting #laser-dot {
 
 /* ===== SQM EXCEL AND DASHBOARD SLIDES ===== */
 .sqm-excel-source-slide {
-  padding: 0;
+  padding: clamp(20px, 2.4vw, 46px);
   overflow: hidden;
-  background: #050510;
+  background: #f7f9fc;
 }
 .sqm-excel-grid {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 0;
+  gap: clamp(10px, 1.2vw, 22px);
 }
 .sqm-excel-tile {
   min-width: 0;
@@ -2287,12 +2287,21 @@ body.pdf-exporting #laser-dot {
   margin: 0;
   overflow: hidden;
   background: #ffffff;
+  border: 1px solid rgba(91, 105, 125, 0.24);
+  border-radius: 6px;
+  box-shadow: 0 16px 34px rgba(10, 18, 32, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .sqm-excel-tile img {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
   display: block;
-  object-fit: fill;
+  object-fit: contain;
+  object-position: center;
 }
 .sqm-dashboard-slide {
   padding: 0;
@@ -2305,6 +2314,218 @@ body.pdf-exporting #laser-dot {
   border: 0;
   display: block;
   background: #f7f7f7;
+}
+
+.commercial-excel-slide {
+  padding: clamp(28px, 4vw, 72px);
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.commercial-excel-image {
+  width: min(1601px, 100%);
+  height: auto;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: 0 18px 42px rgba(10, 18, 32, 0.18);
+}
+.commercial-dashboard-slide {
+  padding: 0;
+  overflow: hidden;
+  background: #f9fafb;
+}
+.commercial-dashboard-frame {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  display: block;
+  background: #f9fafb;
+}
+
+.proposal-transcript-slide {
+  padding: clamp(34px, 4.2vw, 78px);
+  overflow: hidden;
+  background:
+    linear-gradient(125deg, rgba(0,94,158,0.08), transparent 42%),
+    linear-gradient(245deg, rgba(242,140,40,0.08), transparent 46%),
+    #f7f9fc;
+  color: #102a43;
+}
+.proposal-transcript-layout {
+  width: min(100%, 1720px);
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.55fr) minmax(0, 1fr);
+  gap: clamp(32px, 4.4vw, 84px);
+  align-items: center;
+}
+.proposal-transcript-media {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.proposal-transcript-media img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 44px rgba(16,42,67,0.22));
+}
+.proposal-transcript-copy {
+  min-width: 0;
+  align-self: center;
+}
+.proposal-transcript-title {
+  margin: 10px 0 clamp(18px, 2.8vh, 34px);
+  background: none;
+  color: #102a43;
+  -webkit-text-fill-color: #102a43;
+  font-size: clamp(44px, 4.8vw, 86px);
+  line-height: 0.96;
+}
+.proposal-transcript-text {
+  max-width: 1060px;
+  color: rgba(16,42,67,0.86);
+  font-size: clamp(13px, 0.92vw, 17px);
+  line-height: 1.34;
+  font-weight: 520;
+}
+.proposal-transcript-text p {
+  margin: 0 0 0.72em;
+}
+.proposal-transcript-text p:last-child {
+  margin-bottom: 0;
+}
+.proposal-prompt-slide .audio-action-shell {
+  gap: clamp(16px, 2.5vh, 34px);
+}
+.proposal-prompt-slide .audio-action-title {
+  font-size: clamp(42px, 4.35vw, 78px);
+}
+.proposal-prompt-slide .audio-action-prompt {
+  gap: clamp(12px, 1.75vh, 24px);
+  overflow-y: auto;
+  padding-right: clamp(6px, 0.7vw, 14px);
+}
+.proposal-prompt-slide .audio-prompt-block {
+  gap: 0 10px;
+}
+.proposal-prompt-slide .audio-prompt-block__mark,
+.proposal-prompt-slide .audio-prompt-block h3 {
+  font-size: clamp(16px, 1.18vw, 23px);
+}
+.proposal-prompt-slide .audio-prompt-block p {
+  font-size: clamp(13px, 0.94vw, 18px);
+  line-height: 1.24;
+}
+.proposal-assets-slide {
+  padding: clamp(28px, 3vw, 58px);
+  overflow: hidden;
+  background:
+    linear-gradient(125deg, rgba(16,42,67,0.08), transparent 40%),
+    linear-gradient(245deg, rgba(0,94,158,0.08), transparent 48%),
+    #f7f9fc;
+}
+.proposal-assets-shell {
+  width: min(100%, 1780px);
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: clamp(16px, 2vh, 30px);
+}
+.proposal-assets-heading .slide-title {
+  margin: 8px 0 0;
+  background: none;
+  color: #102a43;
+  -webkit-text-fill-color: #102a43;
+  font-size: clamp(38px, 4vw, 72px);
+  line-height: 0.98;
+}
+.proposal-assets-grid {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.82fr) repeat(2, minmax(260px, 1fr));
+  gap: clamp(16px, 1.9vw, 34px);
+  align-items: stretch;
+}
+.proposal-assets-figure {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: clamp(8px, 1vh, 14px);
+  align-items: end;
+}
+.proposal-assets-figure img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  background: #ffffff;
+  border: 1px solid rgba(91,105,125,0.22);
+  border-radius: 6px;
+  box-shadow: 0 18px 36px rgba(10,18,32,0.16);
+}
+.proposal-assets-figure figcaption {
+  color: rgba(16,42,67,0.78);
+  font-size: clamp(13px, 0.9vw, 16px);
+  font-weight: 760;
+  text-align: center;
+  letter-spacing: 0;
+}
+.proposal-dashboard-slide {
+  padding: 0;
+  overflow: hidden;
+  background: #cbd5e1;
+}
+.proposal-dashboard-frame {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  display: block;
+  background: #cbd5e1;
+}
+body:has(.proposal-transcript-slide.active) #laser-pointer,
+body:has(.proposal-assets-slide.active) #laser-pointer {
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #ff1f1f 0%, #ff1f1f 38%, rgba(255,31,31,0.58) 66%, transparent 100%);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.88), 0 0 10px 4px rgba(255,31,31,0.7), 0 0 26px 8px rgba(255,31,31,0.32);
+  mix-blend-mode: normal;
+}
+body:has(.proposal-transcript-slide.active) #laser-dot,
+body:has(.proposal-assets-slide.active) #laser-dot {
+  width: 5px;
+  height: 5px;
+  background: #7a0000;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.88), 0 0 8px rgba(255,31,31,0.72);
+  mix-blend-mode: normal;
+}
+@media (max-width: 980px) {
+  .proposal-transcript-slide,
+  .proposal-assets-slide {
+    overflow-y: auto;
+  }
+  .proposal-transcript-layout,
+  .proposal-assets-grid {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .proposal-transcript-media {
+    height: min(62vh, 640px);
+  }
 }
 
 /* ===== COUNTDOWN SLIDE ===== */

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Campaña Poleras</title>
+    <!-- Tailwind CSS para los estilos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js para los gráficos interactivos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome para iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 flex flex-col md:flex-row md:items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                    <i class="fas fa-chart-line text-brand-600"></i>
+                    Rendimiento: Campaña "Poleras"
+                </h1>
+                <p class="text-gray-500 mt-2">Análisis de prospección comercial - Marzo 2025</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex gap-4">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                    <p class="text-sm text-gray-500 font-medium">Total Enviados</p>
+                    <p class="text-2xl font-bold text-gray-800">10</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                    <p class="text-sm text-gray-500 font-medium">Total Abiertos</p>
+                    <p class="text-2xl font-bold text-green-600">5</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                    <p class="text-sm text-gray-500 font-medium">Tasa de Apertura</p>
+                    <p class="text-2xl font-bold text-brand-600">50%</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Charts Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- Chart 1: Rendimiento por Día -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Rendimiento por Día</h2>
+                <div class="relative h-64">
+                    <canvas id="dailyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 2: Tasa de Apertura por Segmento -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Aperturas por Segmento (%)</h2>
+                <div class="relative h-64">
+                    <canvas id="segmentChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Chart 3: Desempeño de Asuntos -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 lg:col-span-1">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Enfoque del Asunto</h2>
+                <div class="relative h-56">
+                    <canvas id="subjectChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-500 mt-4">Creativos (Edición Limitada/Preventa) vs. Tradicionales (Catálogo/Corporativo)</p>
+            </div>
+
+            <!-- Analysis & Insights -->
+            <div class="bg-brand-900 text-white p-8 rounded-2xl shadow-md lg:col-span-2 relative overflow-hidden">
+                <div class="absolute top-0 right-0 opacity-10 pointer-events-none transform translate-x-1/4 -translate-y-1/4">
+                    <i class="fas fa-lightbulb text-9xl"></i>
+                </div>
+                
+                <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <i class="fas fa-brain text-yellow-400"></i> Análisis Final y Patrones
+                </h2>
+                
+                <div class="space-y-6 relative z-10">
+                    <div>
+                        <h3 class="text-lg font-semibold text-brand-100 mb-2">1. La barrera de la "Formalidad" (Segmento)</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Existe una polarización extrema. Las empresas modernas (<span class="text-white font-medium">Startups Tech, Agencias de Diseño</span>) tienen una tasa de apertura perfecta (100%). Por el contrario, los sectores tradicionales (<span class="text-white font-medium">Bancos, Abogados, Industrias</span>) ignoran los correos (0%). El concepto "Casual Friday" resuena naturalmente con el primer grupo.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-brand-100 mb-2">2. Exclusividad vs. Lo Genérico (Asunto)</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Palabras como <span class="text-white font-medium">"Edición Limitada", "Preventa" o "Nueva Colección"</span> generan toda la tracción (FOMO). Los asuntos que suenan a venta tradicional corporativa (ej. "Catálogo Poleras") son percibidos como spam y descartados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="bg-white border-l-4 border-yellow-400 p-6 rounded-r-xl shadow-sm mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i class="fas fa-rocket text-yellow-500"></i> Recomendaciones Comerciales
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-palette text-brand-500 mr-2"></i>Para el Segmento Tech/Creativo</h4>
+                    <p class="text-gray-600 text-sm">Dobla la apuesta. Mantén los asuntos enfocados en exclusividad, diseño y ediciones limitadas. Este es tu mercado principal actual y están respondiendo perfectamente.</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-briefcase text-gray-500 mr-2"></i>Para el Segmento Tradicional</h4>
+                    <p class="text-gray-600 text-sm">Pivota el mensaje. En lugar de vender "Casual Friday", prueba asuntos enfocados en el bienestar del empleado. <em>Ej: "Mejora el clima laboral con beneficios tangibles para tu equipo".</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para renderizar los gráficos -->
+    <script>
+        // Configuración común de tipografía para Chart.js
+        Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+        Chart.defaults.color = '#6b7280';
+
+        // 1. Gráfico Diario (Mixto: Barras y Línea)
+        const ctxDaily = document.getElementById('dailyChart').getContext('2d');
+        new Chart(ctxDaily, {
+            type: 'bar',
+            data: {
+                labels: ['03-Mar', '04-Mar', '05-Mar', '06-Mar'],
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'Tasa de Apertura (%)',
+                        data: [33, 50, 67, 50],
+                        borderColor: '#0ea5e9', // brand-500
+                        backgroundColor: '#0ea5e9',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        yAxisID: 'y1',
+                        markerType: 'circle'
+                    },
+                    {
+                        type: 'bar',
+                        label: 'Enviados',
+                        data: [3, 2, 3, 2],
+                        backgroundColor: '#e5e7eb', // gray-200
+                        borderRadius: 4,
+                        yAxisID: 'y'
+                    },
+                    {
+                        type: 'bar',
+                        label: 'Abiertos',
+                        data: [1, 1, 2, 1],
+                        backgroundColor: '#10b981', // green-500
+                        borderRadius: 4,
+                        yAxisID: 'y'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: { position: 'top', labels: { usePointStyle: true } },
+                    tooltip: { backgroundColor: 'rgba(17, 24, 39, 0.9)' }
+                },
+                scales: {
+                    y: { type: 'linear', display: true, position: 'left', min: 0, ticks: { stepSize: 1 } },
+                    y1: { type: 'linear', display: true, position: 'right', min: 0, max: 100, grid: { drawOnChartArea: false }, ticks: { callback: function(value) { return value + '%' } } }
+                }
+            }
+        });
+
+        // 2. Gráfico de Segmentos (Barras Horizontales)
+        const ctxSegment = document.getElementById('segmentChart').getContext('2d');
+        new Chart(ctxSegment, {
+            type: 'bar',
+            data: {
+                labels: ['Diseño / Creatividad', 'Startup Tech', 'Legal / Abogados', 'Finanzas / Banca', 'Consultoría', 'Manufactura'],
+                datasets: [{
+                    label: 'Tasa de Apertura (%)',
+                    data: [100, 100, 0, 0, 0, 0],
+                    backgroundColor: [
+                        '#0ea5e9', // brand-500
+                        '#0ea5e9', 
+                        '#9ca3af', // gray-400
+                        '#9ca3af',
+                        '#9ca3af',
+                        '#9ca3af'
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { 
+                        backgroundColor: 'rgba(17, 24, 39, 0.9)',
+                        callbacks: { label: function(context) { return context.raw + '%'; } }
+                    }
+                },
+                scales: {
+                    x: { min: 0, max: 100, ticks: { callback: function(value) { return value + '%' } } }
+                }
+            }
+        });
+
+        // 3. Gráfico de Asuntos (Doughnut)
+        const ctxSubject = document.getElementById('subjectChart').getContext('2d');
+        new Chart(ctxSubject, {
+            type: 'doughnut',
+            data: {
+                labels: ['Asuntos Creativos (Abiertos)', 'Asuntos Tradicionales (No Abiertos)'],
+                datasets: [{
+                    data: [4, 5], // 4 abiertos creativos, 5 tradicionales enviados no abiertos
+                    backgroundColor: [
+                        '#10b981', // green-500
+                        '#f43f5e'  // rose-500
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true } },
+                    tooltip: { backgroundColor: 'rgba(17, 24, 39, 0.9)' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

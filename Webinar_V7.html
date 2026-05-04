@@ -39,7 +39,7 @@
 
 <div class="pdf-export-status" id="pdf-export-status" role="status" aria-live="polite"></div>
 
-<div id="slide-counter">1 / 29</div>
+<div id="slide-counter">1 / 41</div>
 
 <div id="presentation">
 
@@ -972,7 +972,7 @@
   <section class="slide sqm-dashboard-slide" id="slide-sqm-dashboard-result">
     <iframe
       class="sqm-dashboard-frame"
-      src="Webinar Optimiza tu trabajo con IA/De Excel a dashboard/Resultado/SQM_dashboard_ejecutivo.html"
+      src="Material de clases/De Excel a dashboard/Resultado/SQM_dashboard_ejecutivo.html"
       title="Dashboard financiero ejecutivo SQM"
       loading="eager"></iframe>
   </section>
@@ -1047,7 +1047,430 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 27 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
+  <!-- ============ SLIDE 27 — ANÁLISIS DE PROSPECCIÓN COMERCIAL ============ -->
+  <section class="slide slide-dark audio-action-slide sqm-dashboard-prompt-slide" id="slide-commercial-prospecting-prompt">
+    <div class="audio-action-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="audio-action-shell">
+      <h2 class="slide-title audio-action-title fade-in">
+        Análisis de Prospección Comercial
+      </h2>
+
+      <div class="audio-action-prompt fade-in fade-in-delay-1">
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
+          <div>
+            <h3>Rol</h3>
+            <p>Eres un analista comercial que interpreta datos de prospección.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">O</div>
+          <div>
+            <h3>Objetivo</h3>
+            <p>Analizar el rendimiento de los correos enviados y detectar patrones útiles.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">C</div>
+          <div>
+            <h3>Contexto</h3>
+            <p>Recibirás una tabla con fechas, asuntos, segmentos y aperturas.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">E</div>
+          <div>
+            <h3>Ejemplo</h3>
+            <p>Puedes entregar resúmenes por día, segmento o asunto.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block audio-prompt-block--format">
+          <div class="audio-prompt-block__mark" aria-hidden="true">F</div>
+          <div>
+            <h3>Formato</h3>
+            <p>Devuelve tablas claras y un breve análisis final. Genera un gráfico visual en el chat que muestre claramente la tasa de apertura por día.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 28 — ARCHIVO EXCEL CORREOS ============ -->
+  <section class="slide commercial-excel-slide" id="slide-commercial-excel-source">
+    <img src="images/Excel_correos.png" alt="Planilla Excel de correos enviados" class="commercial-excel-image">
+  </section>
+
+  <!-- ============ SLIDE 29 — DASHBOARD CAMPAÑA POLERAS ============ -->
+  <section class="slide commercial-dashboard-slide" id="slide-commercial-dashboard-result">
+    <iframe
+      class="commercial-dashboard-frame"
+      src="dashboard_campana_poleras.html"
+      title="Dashboard de campaña Poleras"
+      loading="eager"
+      scrolling="yes"></iframe>
+  </section>
+
+  <!-- ============ SLIDE 30 — CUENTA REGRESIVA 10 MINUTOS ============ -->
+  <section class="slide slide-dark countdown-slide" id="slide-countdown-commercial-30" data-countdown-seconds="600" data-slide-number="30">
+    <div class="countdown-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+      <span class="countdown-bg__beam countdown-bg__beam--one"></span>
+      <span class="countdown-bg__beam countdown-bg__beam--two"></span>
+    </div>
+
+    <div class="countdown-stage" aria-label="Cuenta regresiva de diez minutos">
+      <svg class="countdown-ring" viewBox="0 0 240 240" role="img" aria-hidden="true">
+        <circle class="countdown-ring__track" cx="120" cy="120" r="104"></circle>
+        <circle class="countdown-ring__progress" cx="120" cy="120" r="104"></circle>
+      </svg>
+      <div class="countdown-time" aria-live="polite">10:00</div>
+    </div>
+
+    <div class="countdown-controls" aria-label="Controles de cuenta regresiva">
+      <button type="button" class="countdown-control countdown-pause" aria-label="Pausar cuenta regresiva" aria-pressed="false">
+        <svg class="countdown-pause__icon countdown-pause__icon--pause" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <svg class="countdown-pause__icon countdown-pause__icon--play" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 5v14l11-7-11-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span>Pausar</span>
+      </button>
+
+      <button type="button" class="countdown-control countdown-restart" aria-label="Reiniciar cuenta regresiva">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Reiniciar</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 31 — PROPUESTA COMERCIAL URGENTE ============ -->
+  <section class="slide proposal-transcript-slide" id="slide-proposal-transcript">
+    <div class="proposal-transcript-layout">
+      <figure class="proposal-transcript-media fade-in">
+        <img src="images/conversaci%C3%B3n%20.png" alt="Conversación usada como insumo para la propuesta comercial">
+      </figure>
+
+      <div class="proposal-transcript-copy fade-in fade-in-delay-1">
+        <div class="slide-tag">Transcripción de audio</div>
+        <h2 class="slide-title proposal-transcript-title">Propuesta Comercial Urgente</h2>
+
+        <div class="proposal-transcript-text">
+          <p>Oye compadre, te cuento rápido pa’ que avancemos con este cliente.</p>
+          <p>Mira, ya vamos a cerrar el negocio con esta empresa. . . ¿cómo se llama? Estudio Valor, sí, esos.<br>Necesito que armís la propuesta para mañana en la mañana sí o sí, porque el loco me pidió el documento temprano.</p>
+          <p>Son. . . ehh. . . ciento veinte poleras, ya, 120, todas del modelo Casual Friday, las negras.<br>Y ponle ahí que es con orden de compra, porque ellos ya trabajan así.<br>Ah, y el pago que quede a 30 días, eso es importante.</p>
+          <p>Y. . . mira, como van a ser varias poleras, yo al principio les iba a dar un 10 % de descuento, pero. . .<br>naaah, al final mejor déjales un 20 %, porque este negocio se nos viene grande, compadre, vamos a cerrar alto acá.</p>
+          <p>Además, cachai que conozco a otra persona en otra empresa que también quiere poleras, así que esto nos puede abrir más puertas.</p>
+          <p>Ah, y haz la propuesta con el formato nuestro, el que usamos siempre: portada, descripción del servicio, detalle de precios, total, condiciones comerciales, ya tú sabes.</p>
+          <p>Eso, compadrito. Me mandas el borrador cuando lo tengai. Chau.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 32 — PROPUESTA COMERCIAL URGENTE ============ -->
+  <section class="slide slide-dark audio-action-slide sqm-dashboard-prompt-slide proposal-prompt-slide" id="slide-proposal-commercial-prompt">
+    <div class="audio-action-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="audio-action-shell">
+      <h2 class="slide-title audio-action-title fade-in">
+        Propuesta Comercial Urgente
+      </h2>
+
+      <div class="audio-action-prompt fade-in fade-in-delay-1">
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
+          <div>
+            <h3>Rol</h3>
+            <p>Eres un asistente experto en generación de propuestas comerciales, con capacidad para completar documentos a partir de transcripciones, plantillas base y tablas de precios.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">O</div>
+          <div>
+            <h3>Objetivo</h3>
+            <p>Generar una propuesta comercial final y entregarla como archivo descargable, lista para ser enviada al cliente.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">C</div>
+          <div>
+            <h3>Contexto</h3>
+            <p>Debes usar únicamente tres fuentes de información: la transcripción del audio, la propuesta comercial base y la tabla de precios. Completa todos los campos en blanco de la propuesta usando la información mencionada en el audio. El producto y su precio unitario deben tomarse exclusivamente desde la tabla de precios.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">E</div>
+          <div>
+            <h3>Ejemplo / Reglas</h3>
+            <p>Calcula correctamente el subtotal, descuento y total final según lo indicado en el audio. Usa la fecha de hoy. No agregues información externa, no inventes datos y no modifiques el contenido que no corresponda completar.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block audio-prompt-block--format">
+          <div class="audio-prompt-block__mark" aria-hidden="true">F</div>
+          <div>
+            <h3>Formato</h3>
+            <p>Entrega la propuesta comercial en el mismo formato, diseño y estructura de la propuesta base, respetando estilos, secciones, márgenes, colores y orden original. Al finalizar, entrega aquí el link para descargar el archivo generado.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 33 — INSUMOS Y PROPUESTA GENERADA ============ -->
+  <section class="slide proposal-assets-slide" id="slide-proposal-assets">
+    <div class="proposal-assets-shell">
+      <div class="proposal-assets-heading fade-in">
+        <div class="slide-tag">Insumos del ejercicio</div>
+        <h2 class="slide-title">De archivos base a propuesta final</h2>
+      </div>
+
+      <div class="proposal-assets-grid fade-in fade-in-delay-1">
+        <figure class="proposal-assets-figure proposal-assets-figure--pricing">
+          <img src="images/Tabla_de_precios.png" alt="Tabla de precios vigente">
+          <figcaption>Tabla de precios</figcaption>
+        </figure>
+        <figure class="proposal-assets-figure">
+          <img src="images/Propuesta_comercial.png" alt="Propuesta comercial base">
+          <figcaption>Propuesta base</figcaption>
+        </figure>
+        <figure class="proposal-assets-figure">
+          <img src="images/Propuesta_realizada_IA.png" alt="Propuesta comercial realizada con IA">
+          <figcaption>Propuesta generada con IA</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 34 — PRESENTACIÓN COMERCIAL PASO 1 ============ -->
+  <section class="slide slide-dark audio-action-slide sqm-dashboard-prompt-slide proposal-prompt-slide" id="slide-presentation-step-1">
+    <div class="audio-action-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="audio-action-shell">
+      <h2 class="slide-title audio-action-title fade-in">
+        Presentación Comercial paso 1
+      </h2>
+
+      <div class="audio-action-prompt fade-in fade-in-delay-1">
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
+          <div>
+            <h3>Rol</h3>
+            <p>Eres un asistente experto en crear presentaciones comerciales claras, breves y ordenadas, listas para ser usadas en herramientas de IA o plataformas de diseño.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">O</div>
+          <div>
+            <h3>Objetivo</h3>
+            <p>Generar una presentación comercial estructurada que reúna el catálogo básico del producto, la tabla de precios vigente y una cotización basada en la transcripción anterior.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">C</div>
+          <div>
+            <h3>Contexto</h3>
+            <p>Debes usar únicamente la información disponible en la transcripción anterior, el catálogo del producto y la tabla de precios vigente. No agregues información externa ni inventes datos no mencionados.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">E</div>
+          <div>
+            <h3>Ejemplo / Reglas</h3>
+            <p>La presentación debe incluir: 1) catálogo básico del producto, 2) tabla de precios vigente y 3) cotización generada desde los datos de la transcripción. Si falta algún dato, indícalo como “No indicado”.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block audio-prompt-block--format">
+          <div class="audio-prompt-block__mark" aria-hidden="true">F</div>
+          <div>
+            <h3>Formato</h3>
+            <p>Entrega el resultado como texto estructurado, con títulos claros por sección y contenido breve, listo para copiar y pegar en una plataforma de IA o herramienta con IA para generar una presentación comercial.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 35 — PRESENTACIÓN COMERCIAL PASO 2 ============ -->
+  <section class="slide slide-dark audio-action-slide sqm-dashboard-prompt-slide proposal-prompt-slide" id="slide-presentation-step-2">
+    <div class="audio-action-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="audio-action-shell">
+      <h2 class="slide-title audio-action-title fade-in">
+        Presentación Comercial paso 2
+      </h2>
+
+      <div class="audio-action-prompt fade-in fade-in-delay-1">
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
+          <div>
+            <h3>Rol</h3>
+            <p>Eres un diseñador gráfico senior y especialista en branding corporativo, con experiencia creando manuales de marca profesionales, visuales y fáciles de aplicar.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">O</div>
+          <div>
+            <h3>Objetivo</h3>
+            <p>Generar un Manual de Marca para Conecta Chile que formalice el uso correcto de su identidad visual y sirva como guía para mantener coherencia en todas sus comunicaciones.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">C</div>
+          <div>
+            <h3>Contexto</h3>
+            <p>La marca corresponde a Conecta Chile: https://www.conectachile.cl/. Debes usar como referencia su sitio web, logo, colores, estilo visual, tono comunicacional y elementos gráficos disponibles para construir una guía coherente con su identidad corporativa.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">E</div>
+          <div>
+            <h3>Ejemplo</h3>
+            <p>El manual debe incluir: introducción de la marca, esencia de marca, logo y versiones permitidas, paleta de colores, tipografías, usos correctos e incorrectos, estilo visual, tono comunicacional, aplicaciones digitales, redes sociales, presentaciones y documentos corporativos.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block audio-prompt-block--format">
+          <div class="audio-prompt-block__mark" aria-hidden="true">F</div>
+          <div>
+            <h3>Formato</h3>
+            <p>Entrega dos documentos finales: 1. Un documento profesional en PDF, visualmente ordenado, con portada, índice, secciones claras, ejemplos gráficos y una estructura limpia, moderna y corporativa. Este PDF debe estar pensado para ser leído y usado por el equipo interno. 2. Un documento en formato Markdown (.md), con la misma información del manual, pero estructurado para ser entregado a futuras IA como referencia de marca para crear presentaciones, documentos, propuestas comerciales, piezas gráficas, correos y contenidos corporativos. El texto debe ser breve, ejecutivo, claro y fácil de aplicar por cualquier persona del equipo. No inventes información no disponible; si falta algún recurso oficial, indícalo como pendiente o referencial.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 36 — PRESENTACIÓN COMERCIAL PASO 3 ============ -->
+  <section class="slide slide-dark audio-action-slide sqm-dashboard-prompt-slide proposal-prompt-slide" id="slide-presentation-step-3">
+    <div class="audio-action-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="audio-action-shell">
+      <h2 class="slide-title audio-action-title fade-in">
+        Presentación Comercial paso 3
+      </h2>
+
+      <div class="audio-action-prompt fade-in fade-in-delay-1">
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
+          <div>
+            <h3>Rol</h3>
+            <p>Eres un asistente experto en crear presentaciones comerciales claras, breves y ordenadas, listas para ser usadas en herramientas de IA o plataformas de diseño.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">O</div>
+          <div>
+            <h3>Objetivo</h3>
+            <p>Generar una presentación comercial estructurada que reúna el catálogo básico del producto, la tabla de precios vigente y una cotización basada en la transcripción anterior.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">C</div>
+          <div>
+            <h3>Contexto</h3>
+            <p>Debes usar únicamente la información disponible en la transcripción anterior, el catálogo del producto, la tabla de precios vigente, el logo adjunto y el Manual de Marca entregado. No agregues información externa ni inventes datos no mencionados.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">E</div>
+          <div>
+            <h3>Ejemplo / Reglas</h3>
+            <p>La presentación debe incluir: 1) catálogo básico del producto, 2) tabla de precios vigente y 3) cotización generada desde los datos de la transcripción. Usa el logo, colores, tipografías, estilo visual, tono comunicacional y formato definido en el Manual de Marca. Si falta algún dato, indícalo como “No indicado”.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block audio-prompt-block--format">
+          <div class="audio-prompt-block__mark" aria-hidden="true">F</div>
+          <div>
+            <h3>Formato</h3>
+            <p>Entrega el resultado como texto estructurado, con títulos claros por sección y contenido breve, listo para copiar y pegar en una plataforma de IA o herramienta con IA para generar una presentación comercial respetando la identidad visual de la marca.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 37 — PROPUESTA COMERCIAL CONECTA CHILE ============ -->
+  <section class="slide proposal-dashboard-slide" id="slide-proposal-dashboard-result">
+    <iframe
+      class="proposal-dashboard-frame"
+      src="propuesta_comercial_conecta.html"
+      title="Propuesta comercial Conecta Chile"
+      loading="eager"
+      scrolling="yes"></iframe>
+  </section>
+
+  <!-- ============ SLIDE 38 — CUENTA REGRESIVA 10 MINUTOS ============ -->
+  <section class="slide slide-dark countdown-slide" id="slide-countdown-proposal-38" data-countdown-seconds="600" data-slide-number="38">
+    <div class="countdown-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+      <span class="countdown-bg__beam countdown-bg__beam--one"></span>
+      <span class="countdown-bg__beam countdown-bg__beam--two"></span>
+    </div>
+
+    <div class="countdown-stage" aria-label="Cuenta regresiva de diez minutos">
+      <svg class="countdown-ring" viewBox="0 0 240 240" role="img" aria-hidden="true">
+        <circle class="countdown-ring__track" cx="120" cy="120" r="104"></circle>
+        <circle class="countdown-ring__progress" cx="120" cy="120" r="104"></circle>
+      </svg>
+      <div class="countdown-time" aria-live="polite">10:00</div>
+    </div>
+
+    <div class="countdown-controls" aria-label="Controles de cuenta regresiva">
+      <button type="button" class="countdown-control countdown-pause" aria-label="Pausar cuenta regresiva" aria-pressed="false">
+        <svg class="countdown-pause__icon countdown-pause__icon--pause" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <svg class="countdown-pause__icon countdown-pause__icon--play" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 5v14l11-7-11-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span>Pausar</span>
+      </button>
+
+      <button type="button" class="countdown-control countdown-restart" aria-label="Reiniciar cuenta regresiva">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Reiniciar</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 39 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--05" id="slide-12">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio05-auto.png" alt="" class="slide-bg__img">
@@ -1080,7 +1503,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 28 — CULTURA DE ADOPCIÓN ============ -->
+  <!-- ============ SLIDE 40 — CULTURA DE ADOPCIÓN ============ -->
   <section class="slide slide-dark" id="slide-13">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/cultura-roi.jpg" alt="" class="slide-bg__img s15-bg-img">
@@ -1125,7 +1548,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 29 — PREGUNTAS Y CIERRE ============ -->
+  <!-- ============ SLIDE 41 — PREGUNTAS Y CIERRE ============ -->
   <section class="slide slide-dark" id="slide-15">
     <div class="floating-shapes">
       <span></span><span></span><span></span><span></span><span></span>
