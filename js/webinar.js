@@ -1623,8 +1623,8 @@
   }
 
   // ===== SLIDE NAVIGATION =====
-  const slides = document.querySelectorAll('.slide');
-  const totalSlides = slides.length;
+  let slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  let totalSlides = slides.length;
   let currentSlide = 0;
   let isAnimating = false;
 
@@ -1632,6 +1632,11 @@
   const nextArrow = document.getElementById('next-arrow');
   const counter = document.getElementById('slide-counter');
   const progressBar = document.getElementById('progress-bar');
+  const slideOverviewToggle = document.getElementById('slide-overview-toggle');
+  const slideOverview = document.getElementById('slide-overview');
+  const slideOverviewClose = document.getElementById('slide-overview-close');
+  const slideOverviewGrid = document.getElementById('slide-overview-grid');
+  const slideOverviewCount = document.getElementById('slide-overview-count');
   const pdfCurrentButton = document.getElementById('pdf-current');
   const pdfAllButton = document.getElementById('pdf-all');
   const pdfExportStatus = document.getElementById('pdf-export-status');
@@ -1657,6 +1662,10 @@
   let adoptionBuilt = false;
   let adoptionAnimated = false;
   let isExporting = false;
+  let isOverviewOpen = false;
+  let overviewRenderToken = 0;
+  let overviewRenderPromise = null;
+  let overviewRenderTimer = null;
   let pdfStatusTimer = null;
 
   function setSummaryFocus(focus) {
@@ -1905,19 +1914,41 @@
     item.addEventListener('mouseleave', clearAdoptionHighlight);
   });
 
+  function refreshSlidesList() {
+    const activeSlide = slides[currentSlide];
+    slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    totalSlides = slides.length;
+
+    if (activeSlide) {
+      const activeIndex = slides.indexOf(activeSlide);
+      if (activeIndex >= 0) {
+        currentSlide = activeIndex;
+      }
+    }
+
+    if (currentSlide >= totalSlides) {
+      currentSlide = Math.max(0, totalSlides - 1);
+    }
+
+    return slides;
+  }
+
   function updateUI() {
-    counter.textContent = (currentSlide + 1) + ' / ' + totalSlides;
-    progressBar.style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+    const safeTotal = Math.max(1, totalSlides);
+    counter.textContent = totalSlides ? (currentSlide + 1) + ' / ' + totalSlides : '0 / 0';
+    progressBar.style.width = totalSlides ? ((currentSlide + 1) / safeTotal * 100) + '%' : '0%';
     prevArrow.classList.toggle('disabled', currentSlide === 0);
     nextArrow.classList.toggle('disabled', currentSlide === totalSlides - 1);
   }
 
   function goToSlide(index, direction) {
+    refreshSlidesList();
     if (isExporting || isAnimating || index < 0 || index >= totalSlides || index === currentSlide) return;
-    isAnimating = true;
 
     const oldSlide = slides[currentSlide];
     const newSlide = slides[index];
+    if (!oldSlide || !newSlide) return;
+    isAnimating = true;
 
     if (newSlide.id === 'slide-1') {
       slideOneHero.activate();
@@ -1999,6 +2030,24 @@
   // Keyboard
   document.addEventListener('keydown', (e) => {
     if (isExporting) return;
+    if (isOverviewOpen) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeSlideOverview(true);
+        return;
+      }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (slideOverviewGrid) slideOverviewGrid.scrollBy({ top: 260, behavior: 'smooth' });
+        return;
+      }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (slideOverviewGrid) slideOverviewGrid.scrollBy({ top: -260, behavior: 'smooth' });
+        return;
+      }
+      return;
+    }
     if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && document.activeElement && document.activeElement.id === 'slide4-time-slider') {
       return;
     }
@@ -2009,6 +2058,247 @@
   // Arrow clicks
   prevArrow.addEventListener('click', prevSlide);
   nextArrow.addEventListener('click', nextSlide);
+
+  // ===== SLIDE OVERVIEW =====
+  function getSlideOverviewTitle(slide, index) {
+    if (!slide) return 'Slide ' + (index + 1);
+    const title = slide.querySelector('.slide-title, .cover-title, h1, h2');
+    const text = title ? title.textContent.replace(/\s+/g, ' ').trim() : '';
+    return text || 'Slide ' + (index + 1);
+  }
+
+  function updateSlideOverviewCount() {
+    if (!slideOverviewCount) return;
+    slideOverviewCount.textContent = totalSlides + (totalSlides === 1 ? ' slide' : ' slides');
+  }
+
+  function createSlideOverviewCard(slide, index) {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'slide-overview-card';
+    card.dataset.slideIndex = String(index);
+    card.setAttribute('aria-label', 'Ir a slide ' + (index + 1) + ': ' + getSlideOverviewTitle(slide, index));
+    card.classList.toggle('is-current', index === currentSlide);
+
+    const number = document.createElement('span');
+    number.className = 'slide-overview-card__number';
+    number.textContent = String(index + 1);
+
+    const thumb = document.createElement('span');
+    thumb.className = 'slide-overview-card__thumb';
+
+    const placeholder = document.createElement('span');
+    placeholder.className = 'slide-overview-card__placeholder';
+    placeholder.textContent = 'Generando';
+    thumb.appendChild(placeholder);
+
+    card.appendChild(number);
+    card.appendChild(thumb);
+    renderSlideOverviewFallback(card, slide, index);
+
+    card.addEventListener('click', function() {
+      const targetIndex = Number(card.dataset.slideIndex);
+      navigateFromOverview(targetIndex);
+    });
+
+    return card;
+  }
+
+  function renderSlideOverviewFallback(card, slide, index) {
+    if (!card || !slide) return;
+    const thumb = card.querySelector('.slide-overview-card__thumb');
+    if (!thumb) return;
+
+    const fallback = document.createElement('span');
+    fallback.className = 'slide-overview-card__fallback';
+
+    const sourceImage = slide.querySelector('img[src]');
+    if (sourceImage) {
+      const image = document.createElement('img');
+      image.src = sourceImage.getAttribute('src');
+      image.alt = '';
+      fallback.appendChild(image);
+    }
+
+    const label = document.createElement('span');
+    label.className = 'slide-overview-card__fallback-title';
+    label.textContent = getSlideOverviewTitle(slide, index);
+    fallback.appendChild(label);
+
+    thumb.innerHTML = '';
+    thumb.appendChild(fallback);
+  }
+
+  function buildSlideOverviewGrid() {
+    if (!slideOverviewGrid) return;
+    refreshSlidesList();
+    slideOverviewGrid.innerHTML = '';
+    updateSlideOverviewCount();
+
+    slides.forEach(function(slide, index) {
+      slideOverviewGrid.appendChild(createSlideOverviewCard(slide, index));
+    });
+
+    const currentCard = slideOverviewGrid.querySelector('.slide-overview-card.is-current');
+    if (currentCard) {
+      window.setTimeout(function() {
+        currentCard.scrollIntoView({ block: 'center', inline: 'nearest' });
+      }, 0);
+    }
+  }
+
+  async function waitForOverviewAssets() {
+    if (typeof window.html2canvas !== 'function') {
+      throw new Error('html2canvas is not available for slide overview.');
+    }
+    if (document.fonts && document.fonts.ready) {
+      try {
+        await document.fonts.ready;
+      } catch (err) {
+        // Font loading failures should not block the slide overview.
+      }
+    }
+    await waitForPaint();
+  }
+
+  async function captureOverviewThumbnail(slide) {
+    const restoreSlide = makeSlideVisibleForExport(slide);
+    try {
+      await prepareOriginalSlideForExport(slide, 'overview');
+      const canvas = await window.html2canvas(slide, {
+        backgroundColor: '#000000',
+        scale: 0.18,
+        useCORS: true,
+        allowTaint: false,
+        imageTimeout: 2500,
+        logging: false,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        windowWidth: window.innerWidth,
+        windowHeight: window.innerHeight,
+        scrollX: 0,
+        scrollY: 0,
+        ignoreElements: function(element) {
+          return slide.id === 'slide-1' && element.tagName === 'CANVAS';
+        },
+        onclone: function(clonedDocument) {
+          prepareCloneForExport(clonedDocument, slide.id, 'deck');
+        }
+      });
+      const imageData = canvas.toDataURL('image/jpeg', 0.72);
+      canvas.width = 1;
+      canvas.height = 1;
+      return imageData;
+    } finally {
+      restoreSlide();
+      if (slide.id === 'slide-1' && slides[currentSlide] !== slide) {
+        slideOneHero.deactivate();
+      }
+      if (slide.id === 'slide-models-premium' && slides[currentSlide] !== slide) {
+        premiumModelsSlide.deactivate();
+      }
+    }
+  }
+
+  async function renderSlideOverviewThumbnails(token, overviewSlides) {
+    if (!slideOverviewGrid) return;
+
+    try {
+      await waitForOverviewAssets();
+    } catch (err) {
+      overviewSlides.forEach(function(slide, index) {
+        const card = slideOverviewGrid.querySelector('[data-slide-index="' + index + '"]');
+        renderSlideOverviewFallback(card, slide, index);
+      });
+      return;
+    }
+
+    for (let i = 0; i < overviewSlides.length; i += 1) {
+      if (token !== overviewRenderToken || !isOverviewOpen) return;
+
+      const card = slideOverviewGrid.querySelector('[data-slide-index="' + i + '"]');
+      const thumb = card ? card.querySelector('.slide-overview-card__thumb') : null;
+      if (!card || !thumb) continue;
+
+      try {
+        const imageData = await captureOverviewThumbnail(overviewSlides[i]);
+        if (token !== overviewRenderToken || !isOverviewOpen) return;
+
+        const image = document.createElement('img');
+        image.src = imageData;
+        image.alt = getSlideOverviewTitle(overviewSlides[i], i);
+        thumb.innerHTML = '';
+        thumb.appendChild(image);
+      } catch (err) {
+        renderSlideOverviewFallback(card, overviewSlides[i], i);
+      }
+    }
+  }
+
+  function openSlideOverview() {
+    if (!slideOverview || !slideOverviewGrid || isExporting) return;
+    isOverviewOpen = true;
+    overviewRenderToken += 1;
+    document.body.classList.add('slide-overview-open');
+    slideOverview.classList.add('is-open');
+    slideOverview.setAttribute('aria-hidden', 'false');
+    buildSlideOverviewGrid();
+    if (overviewRenderTimer) {
+      window.clearTimeout(overviewRenderTimer);
+    }
+    overviewRenderPromise = null;
+    overviewRenderTimer = window.setTimeout(function() {
+      overviewRenderTimer = null;
+      overviewRenderPromise = renderSlideOverviewThumbnails(overviewRenderToken, slides.slice());
+    }, 900);
+  }
+
+  function closeSlideOverview(returnFocus) {
+    if (!slideOverview) return;
+    isOverviewOpen = false;
+    overviewRenderToken += 1;
+    if (overviewRenderTimer) {
+      window.clearTimeout(overviewRenderTimer);
+      overviewRenderTimer = null;
+    }
+    document.body.classList.remove('slide-overview-open');
+    slideOverview.classList.remove('is-open');
+    slideOverview.setAttribute('aria-hidden', 'true');
+    if (returnFocus && slideOverviewToggle) {
+      slideOverviewToggle.focus();
+    }
+  }
+
+  async function navigateFromOverview(targetIndex) {
+    closeSlideOverview(false);
+    if (overviewRenderPromise) {
+      try {
+        await overviewRenderPromise;
+      } catch (err) {
+        // Thumbnail rendering should never block navigation.
+      }
+    }
+    if (targetIndex === currentSlide) return;
+    goToSlide(targetIndex, targetIndex > currentSlide ? 'next' : 'prev');
+  }
+
+  if (slideOverviewToggle) {
+    slideOverviewToggle.addEventListener('click', openSlideOverview);
+  }
+
+  if (slideOverviewClose) {
+    slideOverviewClose.addEventListener('click', function() {
+      closeSlideOverview(true);
+    });
+  }
+
+  if (slideOverview) {
+    slideOverview.addEventListener('click', function(e) {
+      if (e.target === slideOverview) {
+        closeSlideOverview(true);
+      }
+    });
+  }
 
   // ===== SLIDE ANIMATIONS =====
   function triggerSlideAnimations(slideIndex) {

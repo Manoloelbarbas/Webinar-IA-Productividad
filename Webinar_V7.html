@@ -20,6 +20,12 @@
 <button class="nav-arrow" id="next-arrow" title="Siguiente (→)">›</button>
 
 <div class="pdf-actions" id="pdf-actions" aria-label="Descargas PDF">
+  <button class="pdf-action" id="slide-overview-toggle" type="button" title="Ver todas las slides">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm10 0h6v6h-6v-6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <span>Slides</span>
+  </button>
   <button class="pdf-action" id="pdf-current" type="button" title="Descargar lámina actual en PDF">
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
@@ -39,7 +45,24 @@
 
 <div class="pdf-export-status" id="pdf-export-status" role="status" aria-live="polite"></div>
 
-<div id="slide-counter">1 / 41</div>
+<div id="slide-counter">1 / 46</div>
+
+<div class="slide-overview" id="slide-overview" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="slide-overview-title">
+  <div class="slide-overview__panel" role="document">
+    <header class="slide-overview__header">
+      <div>
+        <h2 id="slide-overview-title">Vista general</h2>
+        <p id="slide-overview-count">0 slides</p>
+      </div>
+      <button class="slide-overview__close" id="slide-overview-close" type="button" aria-label="Cerrar vista general">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+    <div class="slide-overview__grid" id="slide-overview-grid" aria-label="Miniaturas de slides"></div>
+  </div>
+</div>
 
 <div id="presentation">
 
@@ -70,8 +93,46 @@
     </div>
   </section>
 
+  <!-- ============ SLIDE 2 — DESAFIA: CAPACITACIONES IA ============ -->
+  <section class="slide desafia-training-slide" id="slide-desafia-training">
+    <div class="desafia-training-shell">
+      <img class="desafia-training-logo fade-in" src="images/Logo Largo Desafia.png" alt="DesafIA">
+      <div class="desafia-training-divider fade-in fade-in-delay-1" aria-hidden="true"></div>
 
-  <!-- ============ SLIDE 2 — EXPOSITOR: ANDRÉS HIDALGO ============ -->
+      <div class="desafia-training-content fade-in fade-in-delay-2">
+        <h2>Capacitaciones en Inteligencia Artificial y Automatización para Empresas</h2>
+
+        <div class="desafia-training-list" aria-label="Beneficios del curso">
+          <article class="desafia-training-item">
+            <span class="desafia-training-check" aria-hidden="true">✓</span>
+            <div>
+              <h3>Adopción progresiva de IA</h3>
+              <p>Desde prompting hasta automatización y agentes.</p>
+            </div>
+          </article>
+
+          <article class="desafia-training-item">
+            <span class="desafia-training-check" aria-hidden="true">✓</span>
+            <div>
+              <h3>Casos de uso reales según tu área de trabajo</h3>
+              <p>Aplicados directamente a tus tareas y procesos (finanzas, compras, operaciones, etc.).</p>
+            </div>
+          </article>
+
+          <article class="desafia-training-item">
+            <span class="desafia-training-check" aria-hidden="true">✓</span>
+            <div>
+              <h3>Acceso a herramientas reales desde el día 1</h3>
+              <p>Ejercicios prácticos, herramientas y APIs para aplicar IA en tu trabajo.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ SLIDE 3 — EXPOSITOR: ANDRÉS HIDALGO ============ -->
   <section class="slide slide-dark speaker-slide speaker-card-slide speaker-card-slide--andres" id="slide-speaker-andres">
     <div class="speaker-bg" aria-hidden="true">
       <div class="slide-bg__grid"></div>
@@ -99,7 +160,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 3 — EXPOSITOR: MANUEL CÉSPEDES ============ -->
+  <!-- ============ SLIDE 4 — EXPOSITOR: MANUEL CÉSPEDES ============ -->
   <section class="slide slide-dark speaker-slide speaker-card-slide speaker-card-slide--manuel" id="slide-speaker-manuel">
     <div class="speaker-bg" aria-hidden="true">
       <div class="slide-bg__grid"></div>
@@ -137,7 +198,7 @@
 
 
 
-  <!-- ============ SLIDE 4 — PRESENTACIÓN PARTICIPANTES ============ -->
+  <!-- ============ SLIDE 5 — PRESENTACIÓN PARTICIPANTES ============ -->
   <section class="slide slide-dark title-only-slide intro-minute-slide" id="slide-intro-minute">
     <div class="title-only-bg" aria-hidden="true">
       <div class="slide-bg__grid"></div>
@@ -150,7 +211,7 @@
     </h2>
   </section>
 
-  <!-- ============ SLIDE 5 — RESUMEN DEL WEBINAR ============ -->
+  <!-- ============ SLIDE 6 — RESUMEN DEL WEBINAR ============ -->
   <section class="slide slide-dark summary-slide course-summary-slide" id="slide-summary">
     <div class="summary-bg" aria-hidden="true">
       <div class="slide-bg__grid"></div>
@@ -158,59 +219,74 @@
     </div>
 
     <div class="summary-shell course-summary-shell">
-      <div class="course-summary-head fade-in">
-        <div class="course-summary-kicker">CURSO:</div>
+      <header class="course-summary-head fade-in">
+        <div class="course-summary-kicker">CURSO</div>
         <h2 class="slide-title course-summary-title fade-in fade-in-delay-1">
-          Taller IA aplicada para<br><span class="animated-title-underline">Equipos de trabajo</span>
+          IA Aplicada<br><span class="animated-title-underline">al Trabajo</span>
         </h2>
         <div class="course-summary-meta fade-in fade-in-delay-2" aria-label="Datos del curso">
-          <span>Duración: 12 horas</span>
-          <span>Modalidad: Taller práctico sincrónico</span>
+          <span><strong>Duración</strong>12 horas</span>
+          <span><strong>Modalidad</strong>Taller práctico sincrónico</span>
         </div>
-      </div>
+      </header>
 
       <div class="course-summary-grid fade-in fade-in-delay-2" aria-label="Temario del curso">
         <article class="course-module">
-          <h3>Fundamentos de IA Generativa</h3>
-          <ul>
-            <li>Tendencias relevantes 2026 y su impacto.</li>
-            <li>Qué es la IA generativa, oportunidades y riesgos.</li>
-            <li>Demostraciones de aplicaciones utilizando prompting, herramientas, agentes y automatización.</li>
-          </ul>
+          <div class="course-module__number" aria-hidden="true">01</div>
+          <div class="course-module__body">
+            <h3>Panorama actual de la IA</h3>
+            <ul>
+              <li>Tendencias 2026, adopción y retorno esperado.</li>
+              <li>IA tradicional, generativa y agentica.</li>
+              <li>Modelos de frontera, oportunidades y riesgos.</li>
+              <li>Demostraciones iniciales de casos de uso.</li>
+            </ul>
+          </div>
         </article>
 
         <article class="course-module">
-          <h3>Prompting, herramientas y aplicaciones</h3>
-          <ul>
-            <li>Cómo hablarle a la IA: Prompting efectivo usando metodología ROSEF.</li>
-            <li>Análisis de datos y resultados utilizando IA.</li>
-            <li>IA aplicada en herramientas (ChatGPT, Otter, Gamma) para minutas, presentaciones y contenidos.</li>
-            <li>Casos de uso en generación de minutas, propuestas, presentaciones, análisis, verificaciones y otros.</li>
-          </ul>
+          <div class="course-module__number" aria-hidden="true">02</div>
+          <div class="course-module__body">
+            <h3>Prompting y análisis aplicado</h3>
+            <ul>
+              <li>Prompting estructurado con metodología ROCEF.</li>
+              <li>Minutas, correos, control de facturas y análisis de datos.</li>
+              <li>De Excel a dashboard ejecutivo.</li>
+              <li>Propuestas y presentaciones generadas con IA.</li>
+            </ul>
+          </div>
         </article>
 
         <article class="course-module">
-          <h3>Agentes, APIs, automatización y casos de uso</h3>
-          <ul>
-            <li>Introducción a los agentes de IA, desde el prompt a procesos empaquetados.</li>
-            <li>Ejercicios prácticos de construcción de agentes (ChatGPT, Copilot y Gemini).</li>
-            <li>Introducción a herramientas de automatización No-Code y APIs.</li>
-            <li>Demostraciones de casos reales de uso con automatización No-Code.</li>
-          </ul>
+          <div class="course-module__number" aria-hidden="true">03</div>
+          <div class="course-module__body">
+            <h3>Herramientas y productividad</h3>
+            <ul>
+              <li>NotebookLM para trabajo documental.</li>
+              <li>Gamma y Claude Design para presentaciones.</li>
+              <li>Codex / Claude Code para tareas con archivos y planillas.</li>
+              <li>Casos de uso prácticos para equipos de oficina.</li>
+            </ul>
+          </div>
         </article>
 
         <article class="course-module course-module--project">
-          <h3>Proyecto aplicado</h3>
-          <ul>
-            <li>Ejercicios de automatización y revisión de oportunidades de quick wins en la empresa.</li>
-            <li>Proyecto en equipos; aplicar la materia a un caso real de uso y presentación.</li>
-          </ul>
+          <div class="course-module__number" aria-hidden="true">04</div>
+          <div class="course-module__body">
+            <h3>Agentes, automatización y proyecto aplicado</h3>
+            <ul>
+              <li>Agentes simples y automatización de tareas.</li>
+              <li>n8n, Make y APIs para flujos de trabajo.</li>
+              <li>Quick wins para la empresa.</li>
+              <li>Proyecto aplicado en equipo y presentación final.</li>
+            </ul>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ SLIDE 6 — TENSIÓN ============ -->
+  <!-- ============ SLIDE 7 — TENSIÓN ============ -->
   <section class="slide slide-accent" id="slide-3">
     <div class="t3-stage">
       <div class="t3-eyebrow fade-in"></div>
@@ -253,7 +329,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 7 — RIESGO ============ -->
+  <!-- ============ SLIDE 8 — RIESGO ============ -->
   
   <section class="slide slide-dark evolution-slide" id="slide-4a">
     
@@ -319,112 +395,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 8 — COMPARATIVA DE MODELOS PREMIUM ============ -->
-  <section class="slide slide-dark premium-models-slide" id="slide-models-premium">
-    <div class="premium-models-bg" aria-hidden="true">
-      <div class="slide-bg__grid"></div>
-    </div>
-
-    <div class="premium-models-shell">
-      <div class="premium-models-copy">
-        
-        <h2 class="slide-title premium-models-title fade-in fade-in-delay-1">El salto real está en el <span class="animated-title-underline">modelo de frontera</span></h2>
-      </div>
-
-      <div class="premium-models-grid">
-        <article class="premium-model-card premium-model-card--chatgpt fade-in fade-in-delay-2" data-premium-platform="chatgpt">
-          <div class="premium-model-card__head">
-            <div class="premium-model-card__brand">
-              <div class="premium-model-card__logo" data-fallback="CG">
-                <img src="images/Logo_chatgpt.png" alt="Logo ChatGPT" loading="eager" decoding="async" onerror="this.remove()">
-              </div>
-              <div class="premium-model-card__brand-copy">
-                <h3>ChatGPT</h3>
-                <p>Gratis vs pago</p>
-              </div>
-            </div>
-            <div class="premium-model-card__delta"></div>
-          </div>
-
-          <div class="premium-model-card__chart-shell">
-            <canvas id="premium-radar-chatgpt" role="img" aria-label="Comparativa de capacidades entre ChatGPT gratis y pago"></canvas>
-          </div>
-
-          <div class="premium-model-card__legend">
-            <span class="premium-model-card__legend-item">
-              <span class="premium-model-card__legend-swatch premium-model-card__legend-swatch--free"></span>
-              Gratis
-            </span>
-            <span class="premium-model-card__legend-item premium-model-card__legend-item--paid">
-              <span class="premium-model-card__legend-swatch premium-model-card__legend-swatch--paid"></span>
-              Pago
-            </span>
-          </div>
-        </article>
-
-        <article class="premium-model-card premium-model-card--gemini fade-in fade-in-delay-3" data-premium-platform="gemini">
-          <div class="premium-model-card__head">
-            <div class="premium-model-card__brand">
-              <div class="premium-model-card__logo" data-fallback="GM">
-                <img src="images/Logo_gemini.png" alt="Logo Gemini" loading="eager" decoding="async" onerror="this.remove()">
-              </div>
-              <div class="premium-model-card__brand-copy">
-                <h3>Gemini</h3>
-                <p>Gratis vs pago</p>
-              </div>
-            </div>
-            <div class="premium-model-card__delta"></div>
-          </div>
-
-          <div class="premium-model-card__chart-shell">
-            <canvas id="premium-radar-gemini" role="img" aria-label="Comparativa de capacidades entre Gemini gratis y pago"></canvas>
-          </div>
-
-          <div class="premium-model-card__legend">
-            <span class="premium-model-card__legend-item">
-              <span class="premium-model-card__legend-swatch premium-model-card__legend-swatch--free"></span>
-              Gratis
-            </span>
-            <span class="premium-model-card__legend-item premium-model-card__legend-item--paid">
-              <span class="premium-model-card__legend-swatch premium-model-card__legend-swatch--paid"></span>
-              Pago
-            </span>
-          </div>
-        </article>
-
-        <article class="premium-model-card premium-model-card--claude fade-in fade-in-delay-4" data-premium-platform="claude">
-          <div class="premium-model-card__head">
-            <div class="premium-model-card__brand">
-              <div class="premium-model-card__logo" data-fallback="CL">
-                <img src="images/Logo_claude.png" alt="Logo Claude" loading="eager" decoding="async" onerror="this.remove()">
-              </div>
-              <div class="premium-model-card__brand-copy">
-                <h3>Claude</h3>
-                <p>Gratis vs pago</p>
-              </div>
-            </div>
-            <div class="premium-model-card__delta"></div>
-          </div>
-
-          <div class="premium-model-card__chart-shell">
-            <canvas id="premium-radar-claude" role="img" aria-label="Comparativa de capacidades entre Claude gratis y pago"></canvas>
-          </div>
-
-          <div class="premium-model-card__legend">
-            <span class="premium-model-card__legend-item">
-              <span class="premium-model-card__legend-swatch premium-model-card__legend-swatch--free"></span>
-              Gratis
-            </span>
-            <span class="premium-model-card__legend-item premium-model-card__legend-item--paid">
-              <span class="premium-model-card__legend-swatch premium-model-card__legend-swatch--paid"></span>
-              Pago
-            </span>
-          </div>
-        </article>
-      </div>
-
-    </div>
-  </section>
+  <!-- ==
 
   <!-- ============ SLIDE 9 — ADOPCIÓN GLOBAL ============ -->
   <section class="slide slide-dark" id="slide-5a">
@@ -601,7 +572,7 @@
         De reunión a plan de acción
       </h2>
 
-      <div class="audio-action-prompt fade-in fade-in-delay-1">
+      <div class="prompt-paper audio-action-prompt fade-in fade-in-delay-1">
         <section class="audio-prompt-block">
           <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
           <div>
@@ -674,7 +645,7 @@
   </section>
 
   <!-- ============ SLIDE 16 — CUENTA REGRESIVA 10 MINUTOS ============ -->
-  <section class="slide slide-dark countdown-slide" id="slide-countdown-5" data-countdown-seconds="600">
+  <section hidden class="slide slide-dark countdown-slide" id="slide-countdown-5" data-countdown-seconds="600">
     <div class="countdown-bg" aria-hidden="true">
       <div class="slide-bg__grid"></div>
       <span class="countdown-bg__beam countdown-bg__beam--one"></span>
@@ -763,7 +734,7 @@
           <span>(ROCEF simple)</span>
         </h2>
 
-        <div class="exercise-context-brief rocef-brief fade-in fade-in-delay-2" aria-label="Prompt ROCEF simple para auditoría de facturas">
+        <div class="prompt-paper exercise-context-brief rocef-brief fade-in fade-in-delay-2" aria-label="Prompt ROCEF simple para auditoría de facturas">
           <article class="rocef-step">
             <span class="rocef-step__letter">R</span>
             <div>
@@ -924,7 +895,7 @@
         De Excel a dashboard ejecutivo
       </h2>
 
-      <div class="audio-action-prompt fade-in fade-in-delay-1">
+      <div class="prompt-paper audio-action-prompt fade-in fade-in-delay-1">
         <section class="audio-prompt-block">
           <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
           <div>
@@ -1058,7 +1029,7 @@
         Análisis de Prospección Comercial
       </h2>
 
-      <div class="audio-action-prompt fade-in fade-in-delay-1">
+      <div class="prompt-paper audio-action-prompt fade-in fade-in-delay-1">
         <section class="audio-prompt-block">
           <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
           <div>
@@ -1189,7 +1160,7 @@
         Propuesta Comercial Urgente
       </h2>
 
-      <div class="audio-action-prompt fade-in fade-in-delay-1">
+      <div class="prompt-paper audio-action-prompt fade-in fade-in-delay-1">
         <section class="audio-prompt-block">
           <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
           <div>
@@ -1269,7 +1240,7 @@
         Presentación Comercial paso 1
       </h2>
 
-      <div class="audio-action-prompt fade-in fade-in-delay-1">
+      <div class="prompt-paper audio-action-prompt fade-in fade-in-delay-1">
         <section class="audio-prompt-block">
           <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
           <div>
@@ -1324,7 +1295,7 @@
         Presentación Comercial paso 2
       </h2>
 
-      <div class="audio-action-prompt fade-in fade-in-delay-1">
+      <div class="prompt-paper audio-action-prompt fade-in fade-in-delay-1">
         <section class="audio-prompt-block">
           <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
           <div>
@@ -1379,7 +1350,7 @@
         Presentación Comercial paso 3
       </h2>
 
-      <div class="audio-action-prompt fade-in fade-in-delay-1">
+      <div class="prompt-paper audio-action-prompt fade-in fade-in-delay-1">
         <section class="audio-prompt-block">
           <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
           <div>
@@ -1470,7 +1441,191 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 39 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
+
+
+
+
+
+
+<!-- ============ SLIDE 39 — EJERCICIO 04: DATOS → INSIGHT ============ -->
+  <section class="slide slide-dark exercise-slide exercise-slide--04" id="slide-11">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/notebookLM.png" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="case-layout">
+      <div class="case-layout__content">
+        <div class="slide-tag fade-in"></div>
+        <h2 class="slide-title fade-in fade-in-delay-1">De documentos extensos a respuestas útiles con IA<br><span class="animated-title-underline">NotebookLM</span></h2>
+        <div class="transform-row fade-in fade-in-delay-2">
+          <div class="transform-row__from">
+            <svg class="transform-row__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span>PDF extenso</span>
+          </div>
+          <div class="transform-row__arrow" aria-hidden="true">
+            <svg viewBox="0 0 32 12" fill="none"><path d="M0 6h28m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="transform-row__to">
+            <svg class="transform-row__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Resumen + FAQ + Checklist</span>
+          </div>
+        </div>
+        <p class="visual-phrase fade-in fade-in-delay-3">Convierte manuales largos en respuestas prácticas.</p>
+      </div>
+      <div class="case-layout__visual fade-in fade-in-delay-2">
+        <div class="exercise-num-watermark" aria-hidden="true">04</div>
+        <img src="images/notebookLM.png" alt="Dashboard holográfico con gráficos y KPIs en tonos cian y azul">
+      </div>
+    </div>
+  </section>
+
+<!-- ============ SLIDE 40 — PRESENTACIÓN COMERCIAL PASO 1 ============ -->
+  <section class="slide slide-dark audio-action-slide sqm-dashboard-prompt-slide proposal-prompt-slide" id="slide-presentation-step-1">
+    <div class="audio-action-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="audio-action-shell">
+      <h2 class="slide-title audio-action-title fade-in">
+        Guía práctica para mejorar el trabajo de oficina en Conecta Chile
+      </h2>
+
+      <div class="prompt-paper audio-action-prompt fade-in fade-in-delay-1">
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">R</div>
+          <div>
+            <h3>Rol</h3>
+            <p>Actúa como asistente de gestión interna para la empresa Conecta Chile, especializada en trabajadores de oficina, organización diaria, comunicación, productividad, bienestar laboral y uso de herramientas digitales.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">O</div>
+          <div>
+            <h3>Objetivo</h3>
+            <p>A partir de las fuentes entregadas, crea una guía práctica para implementar en Conecta Chile que ayude a sus trabajadores a mejorar su forma de trabajar, organizar tareas, comunicarse mejor y usar herramientas digitales en su día a día.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">C</div>
+          <div>
+            <h3>Contexto</h3>
+            <p>La guía será utilizada por trabajadores de Conecta Chile en oficina o modalidad híbrida. Debe enfocarse en problemas reales del trabajo administrativo, como reuniones poco efectivas, desorden de tareas, mala comunicación, bajo seguimiento y pérdida de productividad.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block">
+          <div class="audio-prompt-block__mark" aria-hidden="true">E</div>
+          <div>
+            <h3>Ejemplo / Reglas</h3>
+            <p>Incluye: resumen ejecutivo de máximo 10 líneas, problemas de oficina que ayuda a resolver, reglas para organizar la jornada, recomendaciones de comunicación, buenas prácticas de productividad, riesgos frecuentes y un checklist final aplicable.</p>
+          </div>
+        </section>
+
+        <section class="audio-prompt-block audio-prompt-block--format">
+          <div class="audio-prompt-block__mark" aria-hidden="true">F</div>
+          <div>
+            <h3>Formato</h3>
+            <p>Entrega el resultado con lenguaje simple, títulos claros, tablas cuando aporten orden y una estructura práctica orientada a trabajadores de oficina de Conecta Chile. No uses teoría innecesaria; prioriza acciones concretas, realistas y fáciles de implementar.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ============ SLIDE 41 - INFOGRAFIA NOTEBOOK LM ============ -->
+  <section class="slide slide-dark notebook-lm-slide" id="slide-notebook-lm-infografia">
+    <div class="slide-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="notebook-lm-layout">
+      <header class="notebook-lm-header fade-in">
+        <div class="slide-tag">Notebook LM</div>
+        <h2 class="slide-title">Infografia Notebook LM</h2>
+      </header>
+
+      <div class="notebook-lm-visual fade-in fade-in-delay-1">
+        <img src="images/Infografia conecta.png" alt="Infografia Notebook LM de Conecta Chile">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 42 - GUIA GESTION PRODUCTIVIDAD ============ -->
+  <section class="slide slide-dark pdf-document-slide" id="slide-conecta-guia-productividad">
+    <div class="slide-bg" aria-hidden="true">
+      <div class="slide-bg__grid"></div>
+    </div>
+
+    <div class="pdf-document-layout">
+      <header class="pdf-document-header fade-in">
+        <div class="slide-tag">Documento fuente</div>
+        <h2 class="slide-title">Guia Gestion Productividad</h2>
+      </header>
+
+      <div class="pdf-document-viewer fade-in fade-in-delay-1">
+        <iframe
+          class="pdf-document-frame"
+          src="images/documentos/ejemplo_ejercicio_conecta.pdf#view=FitH"
+          title="Ejemplo ejercicio Conecta PDF">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 43 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
+  <section class="slide slide-dark exercise-slide exercise-slide--05" id="slide-12">
+    <div class="slide-bg" aria-hidden="true">
+      <img src="images/Agentes_animacion.png" alt="" class="slide-bg__img">
+      <div class="slide-bg__overlay"></div>
+      <div class="slide-bg__grid"></div>
+    </div>
+    <div class="case-layout">
+      <div class="case-layout__content">
+        <div class="slide-tag fade-in"></div>
+        <h2 class="slide-title fade-in fade-in-delay-1">De procesos manuales a<br><span class="animated-title-underline">empresa autónoma con agentes</span></h2>
+        <div class="transform-row fade-in fade-in-delay-2">
+          <div class="transform-row__from">
+            <svg class="transform-row__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 1l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 11V9a4 4 0 014-4h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 23l-4-4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 13v2a4 4 0 01-4 4H3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Tareas, decisiones y operaciones</span>
+          </div>
+          <div class="transform-row__arrow" aria-hidden="true">
+            <svg viewBox="0 0 32 12" fill="none"><path d="M0 6h28m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="transform-row__to">
+            <svg class="transform-row__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Agentes coordinados con Claude Code y Codex</span>
+          </div>
+        </div>
+        <p class="visual-phrase fade-in fade-in-delay-3">Más autonomía operativa. Más visibilidad. Más control en tiempo real.</p>
+      </div>
+      <div class="case-layout__visual fade-in fade-in-delay-2">
+        <div class="exercise-num-watermark" aria-hidden="true">05</div>
+        <img src="images/Agentes_animacion.png" alt="Nodos luminosos conectados formando flujos automatizados en pantallas">
+      </div>
+    </div>
+  </section>
+
+
+
+
+<!-- ============ SLIDE 44 — EJERCICIO 05: AUTOMATIZACIÓN ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--05" id="slide-12">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio05-auto.png" alt="" class="slide-bg__img">
@@ -1503,10 +1658,15 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 40 — CULTURA DE ADOPCIÓN ============ -->
+
+
+
+
+
+  <!-- ============ SLIDE 45— CULTURA DE ADOPCIÓN ============ -->
   <section class="slide slide-dark" id="slide-13">
     <div class="slide-bg" aria-hidden="true">
-      <img src="images/cultura-roi.jpg" alt="" class="slide-bg__img s15-bg-img">
+      <img src="images/cultura-roi.png" alt="" class="slide-bg__img s15-bg-img">
       <div class="slide-bg__overlay s15-bg-overlay"></div>
       <div class="slide-bg__grid"></div>
     </div>
@@ -1548,7 +1708,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 41 — PREGUNTAS Y CIERRE ============ -->
+  <!-- ============ SLIDE 46 — PREGUNTAS Y CIERRE ============ -->
   <section class="slide slide-dark" id="slide-15">
     <div class="floating-shapes">
       <span></span><span></span><span></span><span></span><span></span>

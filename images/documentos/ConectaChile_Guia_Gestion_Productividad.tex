@@ -1,0 +1,379 @@
+% Conecta Chile - Guía práctica de gestión y productividad
+% Archivo listo para subir a Overleaf.
+% Compilación sugerida: pdfLaTeX.
+% Si cuentas con el logo oficial, reemplaza el recuadro de la portada por \includegraphics[width=4cm]{logo-conecta-chile.png}
+
+\documentclass[11pt,letterpaper]{article}
+
+% ------------------------------------------------------------
+% Configuración general
+% ------------------------------------------------------------
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{left=1.9cm,right=1.9cm,top=2.1cm,bottom=2.2cm}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{amssymb}
+
+% ------------------------------------------------------------
+% Paleta de marca Conecta Chile
+% ------------------------------------------------------------
+\definecolor{AzulProfundo}{HTML}{102A43}
+\definecolor{AzulConecta}{HTML}{005E9E}
+\definecolor{NaranjoSeguridad}{HTML}{F28C28}
+\definecolor{GrisAcero}{HTML}{566573}
+\definecolor{GrisTecnico}{HTML}{E3E8EF}
+\definecolor{BlancoIndustrial}{HTML}{FFFFFF}
+\definecolor{GrisMuyClaro}{HTML}{F6F8FB}
+
+% ------------------------------------------------------------
+% Hipervínculos
+% ------------------------------------------------------------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AzulConecta,
+    urlcolor=AzulConecta,
+    citecolor=AzulConecta,
+    pdftitle={Guía Práctica de Gestión y Productividad - Conecta Chile},
+    pdfauthor={Conecta Chile},
+    pdfsubject={Gestión, productividad, comunicación, teletrabajo y bienestar laboral}
+}
+
+% ------------------------------------------------------------
+% Encabezado y pie de página
+% ------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{24pt}
+\lhead{\textcolor{AzulProfundo}{\textbf{Conecta Chile}}}
+\rhead{\textcolor{GrisAcero}{Guía práctica}}
+\cfoot{\textcolor{GrisAcero}{Página \thepage\ de \pageref{LastPage}}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{GrisTecnico}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------------------------------------------------------------
+% Títulos y espaciado
+% ------------------------------------------------------------
+\titleformat{\section}
+  {\Large\bfseries\color{AzulProfundo}}
+  {\thesection.}{0.5em}{}
+  [\vspace{0.2em}{\color{NaranjoSeguridad}\titlerule[1.4pt]}]
+
+\titleformat{\subsection}
+  {\large\bfseries\color{AzulConecta}}
+  {\thesubsection}{0.5em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{AzulProfundo}}
+  {\thesubsubsection}{0.5em}{}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\setlist[itemize]{leftmargin=1.2cm,itemsep=0.25em,topsep=0.2em}
+\setlist[enumerate]{leftmargin=1.2cm,itemsep=0.25em,topsep=0.2em}
+
+% ------------------------------------------------------------
+% Columnas y estilos de tabla
+% ------------------------------------------------------------
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.25}
+
+\newcommand{\tableheader}{\rowcolor{AzulProfundo}\color{BlancoIndustrial}\bfseries}
+
+% ------------------------------------------------------------
+% Cajas visuales
+% ------------------------------------------------------------
+\newtcolorbox{ExecutiveBox}{
+    enhanced,
+    breakable,
+    colback=GrisMuyClaro,
+    colframe=AzulConecta,
+    borderline west={3pt}{0pt}{NaranjoSeguridad},
+    arc=2mm,
+    boxrule=0.4pt,
+    left=8pt,
+    right=8pt,
+    top=8pt,
+    bottom=8pt
+}
+
+\newtcolorbox{KeyBox}[1]{
+    enhanced,
+    breakable,
+    colback=BlancoIndustrial,
+    colframe=GrisTecnico,
+    coltitle=BlancoIndustrial,
+    title=\textbf{#1},
+    fonttitle=\bfseries,
+    attach boxed title to top left={xshift=0.2cm,yshift=-2mm},
+    boxed title style={colback=AzulProfundo,arc=1mm,boxrule=0pt},
+    borderline west={2pt}{0pt}{NaranjoSeguridad},
+    arc=2mm,
+    boxrule=0.5pt,
+    left=8pt,
+    right=8pt,
+    top=10pt,
+    bottom=8pt
+}
+
+\newcommand{\checkbox}{\makebox[1.2em][l]{$\square$}}
+\newcommand{\strong}[1]{\textbf{\textcolor{AzulProfundo}{#1}}}
+
+% ------------------------------------------------------------
+% Documento
+% ------------------------------------------------------------
+\begin{document}
+\pagenumbering{gobble}
+
+% ------------------------------------------------------------
+% Portada
+% ------------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+    \fill[AzulProfundo] (current page.south west) rectangle (current page.north east);
+    \fill[NaranjoSeguridad] ([yshift=-2.1cm]current page.north west) rectangle ([yshift=-2.28cm]current page.north east);
+    \fill[AzulConecta] ([xshift=-2.0cm,yshift=-5.2cm]current page.north east) circle (4.2cm);
+    \fill[AzulConecta!45!AzulProfundo] ([xshift=1.1cm,yshift=1.0cm]current page.south west) circle (4.8cm);
+    \draw[BlancoIndustrial!12,line width=0.4pt] ([xshift=1.2cm,yshift=-3.1cm]current page.north west) grid[step=0.85cm] ([xshift=20.3cm,yshift=-25.2cm]current page.north west);
+\end{tikzpicture}
+
+\vspace*{1.1cm}
+\begin{flushright}
+\begin{tikzpicture}
+    \node[draw=BlancoIndustrial,rounded corners=3pt,line width=0.7pt,inner xsep=14pt,inner ysep=8pt,text=BlancoIndustrial] {\Large\textbf{Conecta Chile}};
+\end{tikzpicture}
+\end{flushright}
+
+\vspace{3.5cm}
+{\color{BlancoIndustrial}\fontsize{31}{36}\selectfont\bfseries Guía Práctica de\\[0.15cm] Gestión y Productividad\par}
+
+\vspace{0.45cm}
+{\color{GrisTecnico}\Large Estrategias para el éxito en Conecta Chile\par}
+
+\vspace{1.1cm}
+\begin{tcolorbox}[colback=AzulConecta!25!AzulProfundo,colframe=BlancoIndustrial!35,arc=2mm,boxrule=0.4pt,width=0.78\textwidth]
+{\color{BlancoIndustrial}\large Organización diaria, comunicación efectiva, productividad, bienestar laboral y uso responsable de herramientas digitales.}
+\end{tcolorbox}
+
+\vfill
+{\color{GrisTecnico}\normalsize Documento interno de implementación \hfill \today\par}
+\end{titlepage}
+\clearpage
+\pagenumbering{arabic}
+
+\tableofcontents
+\newpage
+
+% ------------------------------------------------------------
+\section{Resumen Ejecutivo}
+
+\begin{ExecutiveBox}
+La institucionalización del teletrabajo en Conecta Chile representa el paso definitivo hacia la construcción del ``Estado del Futuro''. Esta guía no es un manual de contingencia, sino un instrumento estratégico para migrar de una modalidad remota reactiva a una gestión pública planificada y basada en resultados.
+
+El éxito de nuestra transición cultural exige abandonar la ``supervivencia operativa'' para abrazar un modelo de alto desempeño que garantice la continuidad de los servicios y la retención del talento más calificado.
+
+Adoptar esta metodología es un imperativo para modernizar nuestra gestión interna, optimizar los procesos y asegurar el bienestar integral de nuestros funcionarios bajo un estándar de excelencia administrativa.
+\end{ExecutiveBox}
+
+Para materializar esta visión, abordamos a continuación los nudos críticos que resolveremos mediante una organización rigurosa de la jornada.
+
+% ------------------------------------------------------------
+\section{Diagnóstico de Desafíos: Problemas de Oficina que Resolvemos}
+
+La modernización de Conecta Chile requiere identificar y erradicar los puntos críticos que merman la eficiencia organizacional. La transición al teletrabajo formal nos brinda la oportunidad de profesionalizar la gestión interna, vinculando cada desafío operativo con una solución estratégica que mitigue los riesgos identificados en nuestro ecosistema.
+
+\rowcolors{2}{GrisTecnico!55}{BlancoIndustrial}
+\begin{tabularx}{\textwidth}{L{0.36\textwidth} Y}
+\rowcolor{AzulProfundo}
+\color{BlancoIndustrial}\textbf{Desafío de Gestión} & \color{BlancoIndustrial}\textbf{Impacto en la Productividad} \\
+\textbf{Reuniones inefectivas y sin agenda previa} & Pérdida de tiempo operativo y dilución de los objetivos estratégicos del equipo. \\
+\textbf{Segmentación de trabajadores \mbox{(híbridos vs. presenciales)}} & Percepción de injusticia y quiebre de la cohesión interna por trato diferenciado. \\
+\textbf{Falta de seguimiento sistemático por productos} & Aislamiento profesional y pérdida de visibilidad de los logros del funcionario. \\
+\textbf{Desorden en la coordinación de tareas} & Erosión de la identidad organizacional y debilitamiento del sentido de pertenencia. \\
+\textbf{Supervisión basada en presencia y no en resultados} & Invisibilización del desempeño real y desmotivación del talento autónomo. \\
+\end{tabularx}
+\rowcolors{2}{}{}
+
+La resolución de estos desafíos es la base para transitar hacia una jornada laboral de alto desempeño, donde la autonomía individual potencia la capacidad colectiva del servicio.
+
+% ------------------------------------------------------------
+\section{Reglas de Oro para Organizar la Jornada Laboral}
+
+En Conecta Chile, el alto desempeño se sustenta en la autonomía responsable. No obstante, el teletrabajo no exime al funcionario de sus obligaciones funcionarias ni del control jerárquico establecidos en el Estatuto Administrativo, Ley 18.834. La autogestión debe operar dentro de un marco de legalidad y compromiso institucional.
+
+\begin{KeyBox}{Principios operativos de la jornada}
+\begin{itemize}
+    \item \strong{Sujeción a la jornada ordinaria:} el teletrabajador debe cumplir estrictamente con los horarios definidos en su Convenio de Aceptación y Desempeño (CAD), manteniendo la disponibilidad requerida por la jefatura bajo el amparo de la Ley 18.834.
+    \item \strong{Carácter voluntario y reversible:} esta modalidad es un acuerdo bilateral, no un derecho adquirido. La institución o el funcionario pueden solicitar el retorno a la presencialidad si las necesidades del servicio o el desempeño así lo ameritan.
+    \item \strong{Ubicación validada:} las labores deben realizarse exclusivamente en el domicilio u otro lugar previamente autorizado por la institución, garantizando condiciones de seguridad y conectividad.
+    \item \strong{Mecanismos de supervisión por resultados:} se prioriza la entrega de productos y el cumplimiento de metas sobre el control visual, fortaleciendo la cultura de rendición de cuentas.
+    \item \strong{Respeto a la desconexión:} es imperativo resguardar el tiempo de descanso y la vida privada, limitando las comunicaciones fuera de la jornada ordinaria pactada.
+\end{itemize}
+\end{KeyBox}
+
+\subsection*{Modelos de Régimen Híbrido Sugeridos}
+
+Para equilibrar la concentración y la vinculación de equipo, recomendamos:
+
+\begin{tabularx}{\textwidth}{L{0.22\textwidth} Y}
+\rowcolor{AzulProfundo}
+\color{BlancoIndustrial}\textbf{Modelo} & \color{BlancoIndustrial}\textbf{Uso recomendado} \\
+\rowcolor{GrisTecnico!55}
+\textbf{Modelo 3x2} & Tres días de teletrabajo para ejecución de tareas profundas y dos días presenciales para coordinación estratégica. \\
+\textbf{Modelo 4x1} & Cuatro días de teletrabajo y un día presencial destinado al cierre de hitos y fortalecimiento de la cultura interna. \\
+\end{tabularx}
+
+% ------------------------------------------------------------
+\section{Protocolo de Comunicación y Herramientas Digitales}
+
+La comunicación estructurada es el pegamento de los equipos en Conecta Chile. En ausencia de contacto físico diario, el flujo de información debe ser deliberado, formal y técnicamente seguro.
+
+\subsection{Herramientas Digitales Obligatorias}
+
+Para garantizar la integridad administrativa y la seguridad de los datos, el uso de estas herramientas es no negociable:
+
+\begin{enumerate}
+    \item \strong{VPN (Virtual Private Network):} canal único y obligatorio para acceder a servidores y bases de datos institucionales.
+    \item \strong{Firma Electrónica Avanzada:} requisito para la validación jurídica y administrativa de actos y documentos oficiales.
+    \item \strong{Correo Institucional:} canal oficial para instrucciones formales y registro de acuerdos administrativos.
+\end{enumerate}
+
+\subsection{Decálogo de Comunicación Efectiva}
+
+\begin{KeyBox}{10 reglas para equipos y jefaturas}
+\begin{enumerate}
+    \item \strong{Priorizar la claridad:} establezca objetivos medibles para cada interacción.
+    \item \strong{Frecuencia positiva:} realice contactos regulares de seguimiento para mitigar el aislamiento.
+    \item \strong{Documentar acuerdos:} cada decisión tomada en sincronía debe registrarse vía correo electrónico para validez administrativa.
+    \item \strong{Respeto a la jornada:} evite el envío de instrucciones fuera del horario laboral establecido.
+    \item \strong{Uso de canales adecuados:} distinga entre urgencias, mediante mensajería instantánea, y procesos formales, mediante correo.
+    \item \strong{Gestión de reuniones:} máximo 45 minutos, con agenda previa y acta de acuerdos.
+    \item \strong{Transparencia de estado:} mantenga actualizado su calendario y estado de disponibilidad en plataformas colaborativas.
+    \item \strong{Feedback constructivo:} fomente la retroalimentación constante sobre el avance de productos.
+    \item \strong{Escucha activa:} facilite la participación de todos los integrantes en las sesiones virtuales.
+    \item \strong{Tono profesional:} mantenga la cordialidad y evite ambigüedades en la comunicación escrita.
+\end{enumerate}
+\end{KeyBox}
+
+\subsection{Gestión del Flujo: Sincronía vs. Asincronía}
+
+\begin{tabularx}{\textwidth}{L{0.28\textwidth} Y}
+\rowcolor{AzulProfundo}
+\color{BlancoIndustrial}\textbf{Tipo de comunicación} & \color{BlancoIndustrial}\textbf{Uso recomendado} \\
+\rowcolor{GrisTecnico!55}
+\textbf{Sincrónico} & Videollamadas y chat para resolución de crisis, coordinación rápida y lluvias de ideas. \\
+\textbf{Asincrónico} & Correo electrónico y repositorios como estándar para instrucciones formales, envío de productos y discusiones que requieren análisis profundo. El correo es la base de nuestra trazabilidad administrativa. \\
+\end{tabularx}
+
+% ------------------------------------------------------------
+\section{Mejores Prácticas de Productividad y Bienestar Laboral}
+
+La eficiencia organizacional es indisoluble del bienestar del funcionario. Un modelo de teletrabajo exitoso requiere disciplina individual y una gestión institucional que detecte riesgos antes de que impacten la salud.
+
+\subsection{Competencias Críticas del Teletrabajador}
+
+El perfil del funcionario en teletrabajo exige seguridad en la toma de decisiones, autonomía proactiva, capacidad de autogestión del tiempo y disciplina operativa. No se trata de ``estar conectado'', sino de gestionar resultados con compromiso institucional.
+
+\subsection{Conciliación y Equidad: El Desafío del ``Doble Rol''}
+
+Las jefaturas tienen el deber ético y operativo de monitorear la carga laboral de las funcionarias para evitar que el teletrabajo profundice desigualdades de género.
+
+\begin{itemize}
+    \item \strong{Vigilancia de fatiga:} los directivos deben supervisar activamente si el teletrabajo está generando agotamiento por la asunción de tareas domésticas paralelas, o ``doble rol''.
+    \item \strong{Reparto equitativo:} se deben asignar tareas basándose exclusivamente en el cargo y la función, evitando sesgos que invisibilicen el talento de quienes teletrabajan.
+\end{itemize}
+
+\subsection{Salud Ocupacional y Ergonomía Crítica}
+
+El entorno físico no es una sugerencia, es un requisito de seguridad:
+
+\begin{KeyBox}{Condiciones mínimas del puesto de trabajo}
+\begin{itemize}
+    \item \strong{Apoyo lumbar:} la silla debe contar con soporte específico para la zona lumbar.
+    \item \strong{Pantalla a la altura de los ojos:} el borde superior del monitor debe estar al nivel de la vista para evitar tensiones cervicales.
+    \item \strong{Iluminación:} luz que no genere reflejos en la pantalla ni fatiga visual.
+    \item \strong{Pausas saludables:} micropausas de estiramiento cada 60 minutos para prevenir lesiones musculoesqueléticas.
+\end{itemize}
+\end{KeyBox}
+
+% ------------------------------------------------------------
+\section{Gestión de Riesgos y Mitigación}
+
+La prevención garantiza la sostenibilidad de nuestra operación. A continuación, se detallan los riesgos críticos y sus acciones de mitigación sugeridas bajo estándares públicos chilenos.
+
+\rowcolors{2}{GrisTecnico!55}{BlancoIndustrial}
+\begin{tabularx}{\textwidth}{L{0.34\textwidth} Y}
+\rowcolor{AzulProfundo}
+\color{BlancoIndustrial}\textbf{Riesgo Detectado} & \color{BlancoIndustrial}\textbf{Acción de Mitigación Sugerida} \\
+\textbf{Aislamiento profesional} & Calendario de reuniones de equipo y mentorías cruzadas para mantener el vínculo. \\
+\textbf{Erosión de la protección laboral} & Firma del Convenio de Aceptación y Desempeño (CAD) para formalizar derechos y deberes. \\
+\textbf{Seguridad de la información} & Uso obligatorio de VPN y capacitación semestral en ciberseguridad institucional. \\
+\textbf{Percepción de injusticia} & Comunicación transparente de los criterios de selección basados en perfiles y objetivos. \\
+\textbf{Extensión ilegal de la jornada} & Bloqueo de agendas fuera de horario y respeto al derecho a la desconexión efectiva. \\
+\end{tabularx}
+\rowcolors{2}{}{}
+
+% ------------------------------------------------------------
+\section{Checklist de Implementación Diaria para el Trabajador}
+
+Inicie cada jornada verificando el cumplimiento de estos estándares para asegurar su productividad y seguridad.
+
+\begin{KeyBox}{Condiciones técnicas y seguridad}
+\begin{itemize}
+    \item[\checkbox] \strong{Acceso seguro:} VPN activa y conectada satisfactoriamente.
+    \item[\checkbox] \strong{Validación jurídica:} Firma Electrónica Avanzada configurada y lista para uso.
+    \item[\checkbox] \strong{Conectividad:} conexión estable para videollamadas y acceso a repositorios en la nube.
+    \item[\checkbox] \strong{Registro formal:} revisión de correo institucional para identificar instrucciones prioritarias.
+\end{itemize}
+\end{KeyBox}
+
+\begin{KeyBox}{Ergonomía y entorno}
+\begin{itemize}
+    \item[\checkbox] \strong{Postura:} silla con apoyo lumbar ajustado y pies apoyados en el suelo o reposapiés.
+    \item[\checkbox] \strong{Visión:} pantalla a la altura de los ojos y luz adecuada sin reflejos molestos.
+    \item[\checkbox] \strong{Espacio:} lugar de trabajo ordenado, ventilado y libre de distracciones.
+\end{itemize}
+\end{KeyBox}
+
+\begin{KeyBox}{Coordinación y operación}
+\begin{itemize}
+    \item[\checkbox] \strong{Definición de productos:} claridad absoluta sobre las tareas y metas a entregar hoy.
+    \item[\checkbox] \strong{Comunicación de equipo:} estado de disponibilidad actualizado en el chat institucional.
+    \item[\checkbox] \strong{Gestión de archivos:} acceso verificado a los expedientes digitales necesarios para el día.
+\end{itemize}
+\end{KeyBox}
+
+\begin{KeyBox}{Bienestar y salud}
+\begin{itemize}
+    \item[\checkbox] \strong{Plan de pausas:} alarmas programadas cada 60 minutos para descanso visual y físico.
+    \item[\checkbox] \strong{Cierre de jornada:} hora de término definida y respetada para el resguardo de la vida privada.
+    \item[\checkbox] \strong{Autocuidado:} hidratación constante y condiciones térmicas adecuadas en el puesto.
+\end{itemize}
+\end{KeyBox}
+
+\vspace{0.8cm}
+\begin{tcolorbox}[enhanced,colback=AzulProfundo,colframe=AzulProfundo,arc=2mm,boxrule=0pt,left=10pt,right=10pt,top=10pt,bottom=10pt]
+{\color{BlancoIndustrial}\large\textbf{Cierre institucional}}\\[0.2cm]
+{\color{GrisTecnico}Conecta Chile se compromete con la excelencia pública y el bienestar de sus funcionarios. Juntos transformamos la administración del Estado para servir mejor a la ciudadanía.}
+\end{tcolorbox}
+
+\end{document}
