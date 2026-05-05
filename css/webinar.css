@@ -1885,8 +1885,8 @@ body:has(.desafia-training-slide.active) #laser-dot {
 
 .students-header {
   display: flex;
-  align-items: end;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: clamp(18px, 3vw, 48px);
   min-width: 0;
 }
@@ -1897,7 +1897,7 @@ body:has(.desafia-training-slide.active) #laser-dot {
 
 .students-title {
   margin: 0;
-  text-align: right;
+  text-align: left;
   color: rgba(255,255,255,0.96);
   font-size: clamp(42px, 4.2vw, 76px);
   line-height: 0.98;
@@ -1998,6 +1998,8 @@ body:has(.desafia-training-slide.active) #laser-dot {
 .students-roster {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(10, minmax(0, auto));
+  grid-auto-flow: column;
   gap: clamp(7px, 0.9vh, 10px) clamp(12px, 1.3vw, 20px);
   min-height: 0;
   margin: 0;
@@ -2024,6 +2026,15 @@ body:has(.desafia-training-slide.active) #laser-dot {
   line-height: 1.12;
   letter-spacing: 0;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, color 220ms ease, box-shadow 220ms ease;
+}
+
+.students-roster li.is-active {
+  transform: translateX(4px);
+  border-color: rgba(0,178,227,0.6);
+  background: linear-gradient(135deg, rgba(0,178,227,0.22), rgba(247,150,70,0.08));
+  color: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.11), 0 0 24px rgba(0,178,227,0.16);
 }
 
 .students-roster li::before {
@@ -2039,6 +2050,12 @@ body:has(.desafia-training-slide.active) #laser-dot {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(10px, 0.72vw, 13px);
   font-weight: 800;
+}
+
+.students-roster li.is-active::before {
+  background: #00B2E3;
+  color: #050510;
+  box-shadow: 0 0 18px rgba(0,178,227,0.38);
 }
 
 @media (max-width: 1180px) {
@@ -2094,6 +2111,8 @@ body:has(.desafia-training-slide.active) #laser-dot {
 
   .students-roster {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
   }
 
   .students-roster li {

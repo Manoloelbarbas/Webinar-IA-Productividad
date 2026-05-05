@@ -1629,6 +1629,7 @@
     if (!stack) return;
 
     const items = Array.prototype.slice.call(stack.querySelectorAll('.student-stack__item'));
+    const rosterItems = Array.prototype.slice.call(document.querySelectorAll('.students-roster li'));
     const defaultText = readout ? readout.textContent : '';
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let frame = 0;
@@ -1638,10 +1639,20 @@
       return button ? button.dataset.name || defaultText : defaultText;
     }
 
+    function getStudentIndex(item, fallbackIndex) {
+      const button = item ? item.querySelector('.student-stack__button') : null;
+      const value = button ? Number(button.dataset.studentIndex) : NaN;
+      return Number.isFinite(value) ? value : fallbackIndex;
+    }
+
     function resetTransforms() {
       items.forEach(function(item) {
         item.classList.remove('is-active');
         item.style.transform = '';
+      });
+
+      rosterItems.forEach(function(item) {
+        item.classList.remove('is-active');
       });
 
       if (readout) {
@@ -1652,6 +1663,7 @@
     function applyTransform(hoverIndex) {
       const total = items.length;
       const reduceMotion = reducedMotionQuery.matches;
+      const studentIndex = getStudentIndex(items[hoverIndex], hoverIndex);
 
       items.forEach(function(item, i) {
         item.classList.toggle('is-active', i === hoverIndex);
@@ -1672,6 +1684,10 @@
         if (item.style.transform !== transform) {
           item.style.transform = transform;
         }
+      });
+
+      rosterItems.forEach(function(item) {
+        item.classList.toggle('is-active', Number(item.dataset.studentIndex) === studentIndex);
       });
 
       if (readout && items[hoverIndex]) {
