@@ -5475,13 +5475,13 @@ body:has(.proposal-assets-slide.active) #laser-dot {
   /* CONTROLES GLOBALES PARA LAS DOS TARJETAS (POSICIÓN Y ANCHO TOTAL) */
   --t3-duo-offset-y: 0px;   /* Subir o bajar ambos cuadros juntos */
   --t3-duo-offset-x: 0px;   /* Mover izquierda/derecha ambos cuadros */
-  --t3-duo-max-width: min(1000px, 92vw); /* Achicar este valor para que no sean tan anchos */
+  --t3-duo-max-width: min(1120px, 92vw); /* Achicar este valor para que no sean tan anchos */
   --t3-duo-gap: 200px;       /* AUMENTAR PARA QUEDAR MÁS SEPARADOS O REDUCIR PARA QUEDAR MÁS JUNTOS */
 
   --t3-invest-num-offset-x: 0px;
   --t3-invest-num-offset-y: 0px;
-  --t3-invest-num-size: clamp(108px, 11vw, 188px);
-  --t3-invest-unit-size: clamp(48px, 4.95vw, 84px);
+  --t3-invest-num-size: clamp(100px, 10vw, 170px);
+  --t3-invest-unit-size: clamp(44px, 4.5vw, 76px);
 
   --t3-mature-num-offset-x: 90px;
   --t3-mature-num-offset-y: 0px;
@@ -5612,6 +5612,7 @@ body:has(.proposal-assets-slide.active) #laser-dot {
   gap: 4px;
   margin: 14px 0 18px;
   min-height: clamp(118px, 14vh, 182px);
+  overflow: visible;
 }
 #slide-3 .t3-card--invest .t3-card__num {
   left: var(--t3-invest-num-offset-x);
@@ -5624,10 +5625,11 @@ body:has(.proposal-assets-slide.active) #laser-dot {
 }
 #slide-3 .t3-card__num-value,
 #slide-3 .tension-card__num-value {
+  display: inline-block;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 900;
   font-size: clamp(108px, 11vw, 188px);
-  line-height: 0.84;
+  line-height: 1;
   letter-spacing: -0.05em;
 
 }
@@ -5638,10 +5640,11 @@ body:has(.proposal-assets-slide.active) #laser-dot {
   font-size: var(--t3-mature-num-size);
 }
 #slide-3 .t3-card__num-unit {
+  display: inline-block;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 900;
   font-size: clamp(48px, 4.95vw, 84px);
-  line-height: 0.9;
+  line-height: 1;
 }
 #slide-3 .t3-card--invest .t3-card__num-unit {
   font-size: var(--t3-invest-unit-size);
@@ -5676,6 +5679,7 @@ body:has(.proposal-assets-slide.active) #laser-dot {
   background: linear-gradient(180deg, rgba(8,14,28,0.46) 0%, rgba(6,10,20,0.28) 100%);
   border-color: rgba(255,255,255,0.08);
   box-shadow: 0 24px 46px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.02);
+  overflow: visible;
 }
 #slide-3 .t3-card--invest::before,
 #slide-3 .tension-card--muted::before {
