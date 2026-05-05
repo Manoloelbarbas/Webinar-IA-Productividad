@@ -1622,6 +1622,101 @@
     };
   }
 
+  function initStudentStack() {
+    const stack = document.querySelector('.students-stack');
+    const readout = document.getElementById('students-active-name');
+
+    if (!stack) return;
+
+    const items = Array.prototype.slice.call(stack.querySelectorAll('.student-stack__item'));
+    const defaultText = readout ? readout.textContent : '';
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+
+    function getStudentName(item) {
+      const button = item ? item.querySelector('.student-stack__button') : null;
+      return button ? button.dataset.name || defaultText : defaultText;
+    }
+
+    function resetTransforms() {
+      items.forEach(function(item) {
+        item.classList.remove('is-active');
+        item.style.transform = '';
+      });
+
+      if (readout) {
+        readout.textContent = defaultText;
+      }
+    }
+
+    function applyTransform(hoverIndex) {
+      const total = items.length;
+      const reduceMotion = reducedMotionQuery.matches;
+
+      items.forEach(function(item, i) {
+        item.classList.toggle('is-active', i === hoverIndex);
+
+        if (reduceMotion) {
+          item.style.transform = '';
+          return;
+        }
+
+        const overlapOffset = item.offsetWidth / 2;
+        const move = i > hoverIndex
+          ? Math.min(15 * (total - i - 1), overlapOffset)
+          : i < hoverIndex
+            ? -Math.min(15 * i, overlapOffset)
+            : 0;
+        const transform = move ? 'translateX(' + move + 'px)' : '';
+
+        if (item.style.transform !== transform) {
+          item.style.transform = transform;
+        }
+      });
+
+      if (readout && items[hoverIndex]) {
+        readout.textContent = getStudentName(items[hoverIndex]);
+      }
+    }
+
+    function start(fn) {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(fn);
+    }
+
+    items.forEach(function(item, index) {
+      item.addEventListener('mouseenter', function() {
+        start(function() {
+          applyTransform(index);
+        });
+      });
+
+      item.addEventListener('focusin', function() {
+        start(function() {
+          applyTransform(index);
+        });
+      });
+    });
+
+    stack.addEventListener('mouseleave', function() {
+      start(resetTransforms);
+    });
+
+    stack.addEventListener('focusout', function() {
+      window.setTimeout(function() {
+        if (!stack.contains(document.activeElement)) {
+          start(resetTransforms);
+        }
+      }, 0);
+    });
+
+    if (typeof reducedMotionQuery.addEventListener === 'function') {
+      reducedMotionQuery.addEventListener('change', function() {
+        resetTransforms();
+      });
+    }
+  }
+
   // ===== SLIDE NAVIGATION =====
   let slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
   let totalSlides = slides.length;
@@ -1651,6 +1746,7 @@
   const slideFourUrgency = initSlideFourUrgency();
   const premiumModelsSlide = initPremiumModelsSlide();
   const evolutionSlide = initEvolutionSlide();
+  initStudentStack();
 
   const adoptionDataConfig = [
     { class: 'grey', count: 2100, label: 'Nunca ha usado IA' },
