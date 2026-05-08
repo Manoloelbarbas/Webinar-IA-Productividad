@@ -80,7 +80,7 @@
             <span class="cover-brand-sep" aria-hidden="true"></span>
             <div class="cover-eyebrow fade-in fade-in-delay-1">
               <span class="cover-eyebrow__dot" aria-hidden="true"></span>
-              <span>Conecta</span>
+              <span>Anagra</span>
             </div>
           </div>
           <div class="cover-divider" aria-hidden="true"></div>
@@ -199,8 +199,9 @@
 
 
   <!-- ============ SLIDE 5 — PRESENTACIÓN PARTICIPANTES ============ -->
-  <section class="slide slide-dark title-only-slide intro-minute-slide" id="slide-intro-minute">
+  <section class="slide slide-dark title-only-slide intro-minute-slide participants-intro-slide" id="slide-intro-minute" style="--participants-bg-opacity: 4">
     <div class="title-only-bg" aria-hidden="true">
+      <div class="intro-minute-gradient"></div>
       <div class="slide-bg__grid"></div>
       <span class="title-only-beam title-only-beam--one"></span>
       <span class="title-only-beam title-only-beam--two"></span>
@@ -216,16 +217,13 @@
 
 
 
-
   
 
   <!-- ============ SLIDE 6 - ALUMNOS DEL CURSO ============ -->
-  <section class="slide slide-dark students-slide" id="slide-students">
-    <div class="students-bg" aria-hidden="true">
-      <div class="slide-bg__grid"></div>
-      <span class="students-bg__glow students-bg__glow--one"></span>
-      <span class="students-bg__glow students-bg__glow--two"></span>
-    </div>
+  <section class="slide slide-dark title-only-slide participants-intro-slide" style="--participants-bg-opacity: 0.65;">
+  <div class="title-only-bg" aria-hidden="true">
+    <div class="intro-minute-gradient"></div>
+  </div>
 
     <div class="students-shell">
       <header class="students-header fade-in">
@@ -296,7 +294,7 @@
           </li>
         </ul>
 
-        <div class="students-active-name" id="students-active-name" aria-live="polite">Pasa el mouse por un alumno</div>
+        
       </div>
 
       <ol class="students-roster fade-in fade-in-delay-2" aria-label="Lista completa de alumnos">
@@ -324,7 +322,7 @@
     </div>
   </section>
 
-  <!-- ============ SLIDE 7 - RESUMEN DEL WEBINAR ============ -->
+  <!-- ============ SLIDE 7 - RESUMEN DE PROGRAMA ============ -->
   <section class="slide slide-dark summary-slide course-summary-slide" id="slide-summary">
     <div class="summary-bg" aria-hidden="true">
       <div class="slide-bg__grid"></div>
@@ -347,12 +345,12 @@
         <article class="course-module">
           <div class="course-module__number" aria-hidden="true">01</div>
           <div class="course-module__body">
-            <h3>Panorama actual de la IA</h3>
+            <h3>Contexto y herramientas de IA</h3>
             <ul>
-              <li>Tendencias 2026, adopción y retorno esperado.</li>
-              <li>IA tradicional, generativa y agentica.</li>
-              <li>Modelos de frontera, oportunidades y riesgos.</li>
-              <li>Demostraciones iniciales de casos de uso.</li>
+              <li>IA aplicada al desarrollo de software.</li>
+              <li>Modelos, tendencias y oportunidades.</li>
+              <li>Claude Code, Codex, Copilot y Cursor.</li>
+              <li>Demos iniciales con agentes y automatización.</li>
             </ul>
           </div>
         </article>
@@ -360,12 +358,12 @@
         <article class="course-module">
           <div class="course-module__number" aria-hidden="true">02</div>
           <div class="course-module__body">
-            <h3>Prompting y análisis aplicado</h3>
+            <h3>Desarrollo asistido y automatización</h3>
             <ul>
-              <li>Prompting estructurado con metodología ROCEF.</li>
-              <li>Minutas, correos, control de facturas y análisis de datos.</li>
-              <li>De Excel a dashboard ejecutivo.</li>
-              <li>Propuestas y presentaciones generadas con IA.</li>
+              <li>Programación asistida en IDE.</li>
+              <li>Refactor, debugging y documentación.</li>
+              <li>n8n, webhooks, APIs y flujos con IA.</li>
+              <li>Automatización aplicada a casos reales.</li>
             </ul>
           </div>
         </article>
@@ -373,12 +371,12 @@
         <article class="course-module">
           <div class="course-module__number" aria-hidden="true">03</div>
           <div class="course-module__body">
-            <h3>Herramientas y productividad</h3>
+            <h3>Context Engineering y SDD</h3>
             <ul>
-              <li>NotebookLM para trabajo documental.</li>
-              <li>Gamma y Claude Design para presentaciones.</li>
-              <li>Codex / Claude Code para tareas con archivos y planillas.</li>
-              <li>Casos de uso prácticos para equipos de oficina.</li>
+              <li>Prompts, contexto y especificaciones.</li>
+              <li>Spec-Driven Development.</li>
+              <li>De idea a plan técnico y tareas.</li>
+              <li>Memoria, tokens, costo y precisión.</li>
             </ul>
           </div>
         </article>
@@ -386,12 +384,12 @@
         <article class="course-module course-module--project">
           <div class="course-module__number" aria-hidden="true">04</div>
           <div class="course-module__body">
-            <h3>Agentes, automatización y proyecto aplicado</h3>
+            <h3>Agentes, MCP y proyecto final</h3>
             <ul>
-              <li>Agentes simples y automatización de tareas.</li>
-              <li>n8n, Make y APIs para flujos de trabajo.</li>
-              <li>Quick wins para la empresa.</li>
-              <li>Proyecto aplicado en equipo y presentación final.</li>
+              <li>Agentes básicos con MCP.</li>
+              <li>Herramientas, schemas e integraciones.</li>
+              <li>Orquestación multiagente.</li>
+              <li>Proyecto aplicado y presentación final.</li>
             </ul>
           </div>
         </article>
@@ -561,8 +559,9 @@
   </section>
 
   <!-- ============ SLIDE 10 — SECCIÓN 2 ============ -->
-  <section class="slide slide-dark title-only-slide section-break-slide" id="slide-section-2">
+  <section class="slide slide-dark title-only-slide intro-minute-slide participants-intro-slide" id="slide-intro-minute" style="--participants-bg-opacity: 4">
     <div class="title-only-bg" aria-hidden="true">
+      <div class="intro-minute-gradient"></div>
       <div class="slide-bg__grid"></div>
       <span class="title-only-beam title-only-beam--one"></span>
       <span class="title-only-beam title-only-beam--two"></span>
@@ -575,7 +574,7 @@
 
   
 
-  <!-- ============ SLIDE 12 — EJERCICIO 01: AUDIO → MINUTA ============ -->
+  <!-- ============ SLIDE 12 — EJERCICIO 01:Construiremos esta app con IA ============ -->
   <section class="slide slide-dark exercise-slide exercise-slide--01" id="slide-8">
     <div class="slide-bg" aria-hidden="true">
       <img src="images/ejercicio01-audio.png" alt="" class="slide-bg__img">
@@ -585,7 +584,7 @@
     <div class="case-layout">
       <div class="case-layout__content">
       
-        <h2 class="slide-title fade-in fade-in-delay-1">De reunión a ejecución,<br><span class="animated-title-underline">en minutos</span></h2>
+        <h2 class="slide-title fade-in fade-in-delay-1">Construiremos esta app con IA<br><span class="animated-title-underline">Claude Code + Codex + Gemini</span></h2>
         <div class="transform-row fade-in fade-in-delay-2">
           <div class="transform-row__from">
             <svg class="transform-row__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 110 18 9 9 0 010-18zm-1 5v5l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
