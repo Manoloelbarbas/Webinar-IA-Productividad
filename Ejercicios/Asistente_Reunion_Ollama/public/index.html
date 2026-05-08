@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MinutIA — Asistente de informes de reunión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__brand">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 6h16M4 12h10M4 18h7" />
+        </svg>
+      </div>
+      <div class="topbar__title">
+        <h1>MinutIA</h1>
+        <p>Asistente de informes de reunión desde transcripción</p>
+      </div>
+    </div>
+    <div class="topbar__status" id="health-badge" data-state="checking" title="Comprobando conexión con Ollama…">
+      <span class="dot"></span>
+      <span class="label" id="health-label">Comprobando Ollama…</span>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- ── ZONA 1 · ENTRADA ─────────────────────────────────────────── -->
+    <section class="zone zone--input" aria-labelledby="zone-input-title">
+      <header class="zone__header">
+        <span class="zone__index">01</span>
+        <div>
+          <h2 id="zone-input-title">Entrada</h2>
+          <p>Pega o carga la transcripción de la reunión.</p>
+        </div>
+      </header>
+
+      <div class="card">
+        <label for="transcript" class="field-label">
+          Transcripción
+          <span class="counter" id="char-counter" data-state="idle">0 / 50000</span>
+        </label>
+        <textarea id="transcript" class="field-textarea" rows="10" placeholder="Pega aquí la transcripción de la reunión…" spellcheck="false"></textarea>
+
+        <div class="actions-row">
+          <button type="button" class="btn btn--ghost" id="btn-load-file">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Cargar archivo .txt
+          </button>
+          <input type="file" id="file-input" accept=".txt,text/plain" hidden />
+          <span class="hint" id="file-hint">Solo archivos .txt</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <label for="instruction" class="field-label">Instrucción para la IA</label>
+        <textarea id="instruction" class="field-textarea" rows="3" placeholder="Describe qué tipo de informe necesitas…"></textarea>
+
+        <div class="chips" role="group" aria-label="Plantillas rápidas de instrucción">
+          <button type="button" class="chip" data-prompt="Genera una minuta ejecutiva profesional, priorizando claridad y brevedad para lectura gerencial.">Minuta ejecutiva</button>
+          <button type="button" class="chip" data-prompt="Enfócate en producir un plan de acción detallado con responsables, plazos y criterios de cumplimiento.">Plan de acción</button>
+          <button type="button" class="chip" data-prompt="Prioriza la sección 8: redacta un correo de seguimiento formal, accionable y listo para enviar al equipo.">Correo de seguimiento</button>
+          <button type="button" class="chip" data-prompt="Resume la reunión para una audiencia gerencial: máximo 7 líneas en el resumen ejecutivo, sin tecnicismos.">Resumen para gerencia</button>
+          <button type="button" class="chip" data-prompt="Concentra el detalle en acuerdos tomados y responsables; sé exhaustivo en la tabla de la sección 4.">Acuerdos y responsables</button>
+        </div>
+
+        <button type="button" class="btn btn--primary btn--block" id="btn-generate" disabled>
+          <span class="btn__label">Generar informe</span>
+          <span class="btn__spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ── ZONA 2 · PROCESO ─────────────────────────────────────────── -->
+    <section class="zone zone--process" aria-labelledby="zone-process-title">
+      <header class="zone__header">
+        <span class="zone__index">02</span>
+        <div>
+          <h2 id="zone-process-title">Proceso</h2>
+          <p>Transcripción → Análisis IA → Informe ejecutivo.</p>
+        </div>
+      </header>
+
+      <div class="pipeline" id="pipeline">
+        <div class="pipeline__node" data-step="loaded">
+          <div class="pipeline__bullet">1</div>
+          <div class="pipeline__caption">Transcripción</div>
+        </div>
+        <div class="pipeline__line"></div>
+        <div class="pipeline__node" data-step="validating">
+          <div class="pipeline__bullet">2</div>
+          <div class="pipeline__caption">Validación</div>
+        </div>
+        <div class="pipeline__line"></div>
+        <div class="pipeline__node" data-step="analyzing">
+          <div class="pipeline__bullet">3</div>
+          <div class="pipeline__caption">Análisis IA</div>
+        </div>
+        <div class="pipeline__line"></div>
+        <div class="pipeline__node" data-step="generating">
+          <div class="pipeline__bullet">4</div>
+          <div class="pipeline__caption">Informe</div>
+        </div>
+        <div class="pipeline__line"></div>
+        <div class="pipeline__node" data-step="done">
+          <div class="pipeline__bullet">5</div>
+          <div class="pipeline__caption">Listo</div>
+        </div>
+      </div>
+
+      <div class="status-banner" id="status-banner" data-state="idle">
+        <div class="status-banner__icon"></div>
+        <div class="status-banner__body">
+          <strong id="status-title">Esperando transcripción</strong>
+          <span id="status-detail">Pega o carga el texto de la reunión para comenzar.</span>
+        </div>
+        <span class="status-banner__timer" id="status-timer" hidden>00:00</span>
+      </div>
+
+      <div class="meta-card">
+        <div class="meta-card__row">
+          <span class="meta-card__label">Modelo</span>
+          <span class="meta-card__value" id="meta-model">—</span>
+        </div>
+        <div class="meta-card__row">
+          <span class="meta-card__label">Servidor</span>
+          <span class="meta-card__value" id="meta-baseurl">—</span>
+        </div>
+        <div class="meta-card__row">
+          <span class="meta-card__label">Privacidad</span>
+          <span class="meta-card__value">100% local · sin nube</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ZONA 3 · SALIDA ──────────────────────────────────────────── -->
+    <section class="zone zone--output" id="zone-output" hidden aria-labelledby="zone-output-title">
+      <header class="zone__header zone__header--with-actions">
+        <div class="zone__header-left">
+          <span class="zone__index">03</span>
+          <div>
+            <h2 id="zone-output-title">Informe ejecutivo</h2>
+            <p>Documento listo para revisar, copiar y compartir.</p>
+          </div>
+        </div>
+        <div class="zone__actions">
+          <button type="button" class="btn btn--ghost" id="btn-copy-report">Copiar informe</button>
+          <button type="button" class="btn btn--ghost" id="btn-copy-email">Copiar correo</button>
+          <button type="button" class="btn btn--ghost" id="btn-download">Descargar .md</button>
+          <button type="button" class="btn btn--danger-ghost" id="btn-clear">Limpiar</button>
+        </div>
+      </header>
+
+      <div id="report-container" class="report-grid"></div>
+    </section>
+  </main>
+
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="true"></div>
+
+  <footer class="footer">
+    <p>MinutIA · Construido con metodología <strong>Spec-Driven Development</strong> · Ejecuta 100% local con Ollama</p>
+  </footer>
+</body>
+</html>
