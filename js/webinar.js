@@ -1382,6 +1382,273 @@
     };
   }
 
+  function initParadoxSlide() {
+    const slide = document.getElementById('slide-paradox-ai');
+    const canvas = document.getElementById('paradox-chart');
+    const replayBtn = document.getElementById('paradox-replay');
+    const bottleneck = document.getElementById('paradox-bottleneck');
+    const cards = slide ? slide.querySelectorAll('.paradox-card') : [];
+
+    if (!slide || !canvas) {
+      return { activate: function() {}, deactivate: function() {} };
+    }
+
+    if (typeof Chart === 'undefined') {
+      return { activate: function() {}, deactivate: function() {} };
+    }
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      return { activate: function() {}, deactivate: function() {} };
+    }
+
+    const timeLabels = ['T1', 'T2', 'T3', 'T4', 'T5', 'T6'];
+    const dataProductivity = [5, 13, 28, 50, 74, 96];
+    const dataOrg = [5, 8, 12, 15, 17, 19];
+    const colorProductivity = '#00B2E3';
+    const colorOrg = 'rgba(180,200,220,0.55)';
+
+    let chart = null;
+    let cardTimers = [];
+    let bottleneckTimer = null;
+
+    function clearTimers() {
+      cardTimers.forEach(function(t) { clearTimeout(t); });
+      cardTimers = [];
+      if (bottleneckTimer !== null) {
+        clearTimeout(bottleneckTimer);
+        bottleneckTimer = null;
+      }
+    }
+
+    function clearCardStates() {
+      cards.forEach(function(card) {
+        card.classList.remove('is-active');
+      });
+    }
+
+    function restoreChartHighlight() {
+      clearCardStates();
+      if (!chart) return;
+      chart.data.datasets[0].borderWidth = 3.5;
+      chart.data.datasets[0].borderColor = colorProductivity;
+      chart.data.datasets[0].backgroundColor = 'rgba(0,178,227,0.12)';
+      chart.data.datasets[1].borderWidth = 2.5;
+      chart.data.datasets[1].borderColor = colorOrg;
+      chart.data.datasets[1].backgroundColor = 'rgba(180,200,220,0.05)';
+      chart.update('none');
+    }
+
+    function highlightCard(target) {
+      clearCardStates();
+      cards.forEach(function(card) {
+        if (card.getAttribute('data-target') === target) {
+          card.classList.add('is-active');
+        }
+      });
+    }
+
+    function buildChartConfig() {
+      const totalDuration = 1400;
+      const delay = totalDuration / timeLabels.length;
+
+      return {
+        type: 'line',
+        data: {
+          labels: timeLabels,
+          datasets: [
+            {
+              label: 'Productividad individual',
+              data: dataProductivity,
+              borderColor: colorProductivity,
+              backgroundColor: 'rgba(0,178,227,0.12)',
+              borderWidth: 3.5,
+              pointRadius: 4,
+              pointHoverRadius: 7,
+              pointBackgroundColor: colorProductivity,
+              fill: true,
+              tension: 0.35
+            },
+            {
+              label: 'Throughput organizacional',
+              data: dataOrg,
+              borderColor: colorOrg,
+              backgroundColor: 'rgba(180,200,220,0.05)',
+              borderWidth: 2.5,
+              borderDash: [6, 4],
+              pointRadius: 3,
+              pointHoverRadius: 6,
+              pointBackgroundColor: colorOrg,
+              fill: false,
+              tension: 0.2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: {
+            x: {
+              type: 'number',
+              easing: 'easeOutQuart',
+              duration: delay,
+              from: NaN,
+              delay: function(context) {
+                if (context.type !== 'data' || context.xStarted) return 0;
+                context.xStarted = true;
+                return context.index * delay;
+              }
+            },
+            y: {
+              type: 'number',
+              easing: 'easeOutQuart',
+              duration: delay,
+              from: function(context) {
+                if (context.index === 0) return context.chart.scales.y.getPixelForValue(0);
+                return context.chart.getDatasetMeta(context.datasetIndex).data[context.index - 1].getProps(['y'], true).y;
+              },
+              delay: function(context) {
+                if (context.type !== 'data' || context.yStarted) return 0;
+                context.yStarted = true;
+                return context.index * delay;
+              }
+            }
+          },
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                color: '#cbd5e1',
+                font: { size: 12, family: 'Inter, sans-serif' },
+                usePointStyle: true,
+                padding: 14
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(9,15,28,0.96)',
+              titleColor: '#fff',
+              bodyColor: '#cbd5e1',
+              borderColor: 'rgba(255,255,255,0.08)',
+              borderWidth: 1,
+              padding: 12,
+              titleFont: { size: 14 },
+              bodyFont: { size: 13 },
+              callbacks: {
+                title: function(context) { return 'Tiempo: ' + context[0].label; },
+                label: function(context) { return context.dataset.label + ': ' + context.raw; }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255,255,255,0.05)', drawBorder: false },
+              ticks: { color: '#94a3b8', font: { size: 11 } }
+            },
+            y: {
+              grid: { color: 'rgba(255,255,255,0.05)', drawBorder: false },
+              ticks: { color: '#94a3b8', font: { size: 11 }, maxTicksLimit: 6 },
+              title: {
+                display: true,
+                text: 'Rendimiento / Tareas',
+                color: '#64748b',
+                font: { size: 11, family: 'Inter, sans-serif' }
+              }
+            }
+          }
+        }
+      };
+    }
+
+    function animateCards() {
+      cards.forEach(function(card, i) {
+        var t = setTimeout(function() {
+          card.classList.add('is-visible');
+        }, 1500 + i * 220);
+        cardTimers.push(t);
+      });
+    }
+
+    function animateBottleneck() {
+      if (!bottleneck) return;
+      bottleneckTimer = setTimeout(function() {
+        bottleneck.classList.add('is-visible');
+      }, 1200);
+    }
+
+    function buildChart(forceReplay) {
+      if (forceReplay && chart) {
+        chart.destroy();
+        chart = null;
+      }
+      if (!chart) {
+        chart = new Chart(ctx, buildChartConfig());
+      } else {
+        chart.resize();
+      }
+    }
+
+    cards.forEach(function(card) {
+      card.addEventListener('mouseenter', function() {
+        var target = card.getAttribute('data-target');
+        highlightCard(target);
+        if (!chart) return;
+        if (target === 'productivity') {
+          chart.data.datasets[0].borderWidth = 5.5;
+          chart.data.datasets[1].borderWidth = 1.5;
+          chart.data.datasets[1].borderColor = 'rgba(180,200,220,0.25)';
+          chart.update('none');
+        } else if (target === 'gap') {
+          chart.data.datasets[0].backgroundColor = 'rgba(247,150,70,0.18)';
+          chart.data.datasets[0].borderColor = '#F79646';
+          chart.update('none');
+        } else if (target === 'bottleneck') {
+          if (bottleneck) {
+            bottleneck.style.transform = 'scale(1.12)';
+            bottleneck.style.boxShadow = '0 0 52px rgba(247,150,70,0.75)';
+          }
+        }
+      });
+      card.addEventListener('mouseleave', function() {
+        restoreChartHighlight();
+        if (bottleneck) {
+          bottleneck.style.transform = '';
+          bottleneck.style.boxShadow = '';
+        }
+      });
+    });
+
+    if (replayBtn) {
+      replayBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        clearTimers();
+        cards.forEach(function(c) { c.classList.remove('is-visible'); });
+        if (bottleneck) bottleneck.classList.remove('is-visible');
+        buildChart(true);
+        animateBottleneck();
+        animateCards();
+      });
+    }
+
+    window.addEventListener('resize', function() {
+      if (chart) chart.resize();
+    }, { passive: true });
+
+    return {
+      activate: function() {
+        clearTimers();
+        buildChart(false);
+        animateBottleneck();
+        animateCards();
+      },
+      deactivate: function() {
+        clearTimers();
+        clearCardStates();
+      }
+    };
+  }
+
   function initPremiumModelsSlide() {
     const slide = document.getElementById('slide-models-premium');
     if (!slide || typeof Chart !== 'function') {
@@ -1762,6 +2029,7 @@
   const slideFourUrgency = initSlideFourUrgency();
   const premiumModelsSlide = initPremiumModelsSlide();
   const evolutionSlide = initEvolutionSlide();
+  const paradoxSlide = initParadoxSlide();
   initStudentStack();
 
   const adoptionDataConfig = [
@@ -2123,6 +2391,9 @@
       if (oldSlide.id === 'slide-4a' && newSlide.id !== 'slide-4a') {
         evolutionSlide.deactivate();
       }
+      if (oldSlide.id === 'slide-paradox-ai' && newSlide.id !== 'slide-paradox-ai') {
+        paradoxSlide.deactivate();
+      }
       if (oldSlide.id === 'slide-models-premium' && newSlide.id !== 'slide-models-premium') {
         premiumModelsSlide.deactivate();
       }
@@ -2458,6 +2729,12 @@
 
     if (slide.id === 'slide-5a') {
       setTimeout(playAdoptionGrid, 260);
+    }
+
+    if (slide.id === 'slide-paradox-ai') {
+      setTimeout(function() {
+        paradoxSlide.activate();
+      }, 220);
     }
 
     if (slide.id === 'slide-4a') {

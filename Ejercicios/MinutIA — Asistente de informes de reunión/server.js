@@ -186,7 +186,14 @@ app.post('/api/generate', (req, res) => {
       // Log seguro: no imprimimos la API Key.
       console.error('[generate] Error:', raw);
 
-      if (status === 429 || /quota|rate/i.test(raw)) {
+      if (status === 404 || /not found|not supported/i.test(raw)) {
+        return res.status(502).json({
+          ok: false,
+          error: 'MODEL_NOT_FOUND',
+          message: `El modelo "${GEMINI_MODEL}" no está disponible. Revisa la variable GEMINI_MODEL en .env.`,
+        });
+      }
+      if (status === 429 || /quota|rate limit/i.test(raw)) {
         return res.status(429).json({
           ok: false,
           error: 'GEMINI_QUOTA',
