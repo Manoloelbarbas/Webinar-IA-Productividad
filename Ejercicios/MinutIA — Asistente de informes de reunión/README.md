@@ -177,3 +177,13 @@ Ejercicios/MinutIA — Asistente de informes de reunión/
 ## Licencia
 
 Proyecto educativo. Úsalo libremente como base para tus propias herramientas.
+
+Pasos para probarla
+
+cd "Ejercicios/Asistente_Reunion_Ollama"
+npm install
+copy .env.example .env       # PowerShell / CMD
+ollama pull llama3.2:3b      # solo la primera vez
+ollama serve                 # en otra terminal (o usa la app de Ollama)
+npm start
+Luego abre http://localhost:3000 y pega la transcripción de prueba que viene en la Fase 7 de SPEC.md. El badge del topbar te indicará si Ollama está OK (verde), si falta el modelo (ámbar) o si Ollama no responde (rojo).
