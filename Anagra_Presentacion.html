@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" defer></script>
 <link rel="stylesheet" href="css/webinar.css">
+<link rel="stylesheet" href="css/slide-comparison.css">
 
 <style id="retro-bg-style">
   /* ===== Retro / Synthwave background — sólo dentro de slide #slide-12 (exercise-slide--05-retro) ===== */
@@ -2373,7 +2374,7 @@
     <div class="case-layout">
       <div class="case-layout__content">
       
-        <h2 class="slide-title fade-in fade-in-delay-1">Construiremos una app<br><span class="animated-title-underline">Claude Code + Codex + Gemini + Ollama</span></h2>
+        <h2 class="slide-title fade-in fade-in-delay-1">Asistente de codigo IDE<br><span class="animated-title-underline">Claude Code + Codex + Gemini + Ollama</span></h2>
         <div class="transform-row fade-in fade-in-delay-2">
           <div class="transform-row__from">
             <svg class="transform-row__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 110 18 9 9 0 010-18zm-1 5v5l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2387,7 +2388,7 @@
             <span>Minuta ejecutiva con acuerdos, responsables y próximos pasos</span>
           </div>
         </div>
-        <p class="visual-phrase fade-in fade-in-delay-3">Menos ambigüedad. Más ejecución.</p>
+        <p class="visual-phrase fade-in fade-in-delay-3"></p>
       </div>
       <div class="case-layout__visual fade-in fade-in-delay-2">
         <div class="exercise-num-watermark" aria-hidden="true">01</div>
@@ -2582,19 +2583,39 @@
 
 
 
-  <!-- ============ SLIDE 46 — PREGUNTAS Y CIERRE ============ -->
-  <section class="slide slide-dark closing-fireworks-slide" id="slide-15">
+  <!-- ============ SLIDE 43.5 — COMPARATIVA N8N ============ -->
+  <section class="slide slide-dark slide-comparison-wrap" id="slide-comparison-n8n">
+    <div class="slide-bg" aria-hidden="true">
+      <div class="slide-bg__overlay"></div>
+    </div>
+    <div class="comparison-slide-inner">
+      <div class="comparison-container">
+        <div class="image-wrapper image-before">
+          <img src="images/n8n_mercado_publico.png" alt="Sin IA" />
+        </div>
+        <div class="image-wrapper image-after">
+          <img src="images/n8n_gmail_compra_agil.png" alt="Con IA" />
+        </div>
+        <div class="slider-line"></div>
+        <div class="slider-knob" tabindex="0" role="slider"
+             aria-label="Comparador de imágenes" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 25" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.5 8C10.3284 8 11 7.32843 11 6.5C11 5.67157 10.3284 5 9.5 5C8.67157 5 8 5.67157 8 6.5C8 7.32843 8.67157 8 9.5 8ZM9.5 14C10.3284 14 11 13.3284 11 12.5C11 11.6716 10.3284 11 9.5 11C8.67157 11 8 11.6716 8 12.5C8 13.3284 8.67157 14 9.5 14ZM11 18.5C11 19.3284 10.3284 20 9.5 20C8.67157 20 8 19.3284 8 18.5C8 17.6716 8.67157 17 9.5 17C10.3284 17 11 17.6716 11 18.5ZM15.5 8C16.3284 8 17 7.32843 17 6.5C17 5.67157 16.3284 5 15.5 5C14.6716 5 14 5.67157 14 6.5C14 7.32843 14.6716 8 15.5 8ZM17 12.5C17 13.3284 16.3284 14 15.5 14C14.6716 14 14 13.3284 14 12.5C14 11.6716 14.6716 11 15.5 11C16.3284 11 17 11.6716 17 12.5ZM15.5 20C16.3284 20 17 19.3284 17 18.5C17 17.6716 16.3284 17 15.5 17C14.6716 17 14 17.6716 14 18.5C14 19.3284 14.6716 20 15.5 20Z" fill="#121923"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LEGACY DISABLED — FIREWORKS PREVIOUS VERSION ============ -->
+  <section hidden class="closing-fireworks-legacy" id="slide-15-legacy">
     <div class="closing-fireworks-bg" aria-hidden="true">
-      <canvas class="closing-fireworks-canvas" id="closing-fireworks-canvas"></canvas>
+      <canvas class="closing-fireworks-canvas" id="closing-fireworks-canvas-legacy"></canvas>
       <div class="closing-fireworks-vignette"></div>
     </div>
     <h2 class="closing-title fade-in" style="position:relative;z-index:1;">¿Preguntas?</h2>
     <p class="closing-sub fade-in fade-in-delay-2" style="position:relative;z-index:1;">Gracias</p>
-    <div class="fade-in fade-in-delay-4" style="position:relative;z-index:1; margin-top:40px;">
-      <span class="cover-badge" style="font-size:16px; padding:12px 32px;">DesafIA — Anagra</span>
-    </div>
-
-    <style>
+    <style media="not all" data-disabled="legacy-fireworks">
       .closing-fireworks-slide {
         position: absolute;
         overflow: hidden;
@@ -2638,7 +2659,7 @@
       }
     </style>
 
-    <script>
+    <script type="application/json" data-disabled="legacy-fireworks">
       (function () {
         const slide = document.getElementById('slide-15');
         const canvas = document.getElementById('closing-fireworks-canvas');
@@ -2797,10 +2818,103 @@
     </script>
   </section>
 
+  <!-- ============ SLIDE 46 — PREGUNTAS Y CIERRE ============ -->
+  <section class="slide slide-dark closing-fireworks-slide" id="slide-15">
+    <div class="closing-fireworks-bg" aria-hidden="true">
+      <div class="stage-container fireworks-stage-container">
+        <div class="canvas-container fireworks-canvas-container">
+          <canvas id="trails-canvas"></canvas>
+          <canvas id="main-canvas"></canvas>
+        </div>
+      </div>
+      <div class="closing-fireworks-vignette"></div>
+    </div>
+    <h2 class="closing-title fade-in" style="position:relative;z-index:1;">¿Preguntas?</h2>
+    <p class="closing-sub fade-in fade-in-delay-2" style="position:relative;z-index:1;">Gracias</p>
+    <style>
+      .closing-fireworks-slide {
+        position: absolute;
+        overflow: hidden;
+        background: #000;
+      }
+      .slide.closing-fireworks-slide > .closing-fireworks-bg {
+        position: absolute !important;
+        inset: 0 !important;
+        z-index: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .slide.closing-fireworks-slide .fireworks-stage-container,
+      .slide.closing-fireworks-slide .fireworks-canvas-container {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden;
+        background: #000;
+      }
+      .slide.closing-fireworks-slide .fireworks-canvas-container canvas {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
+        mix-blend-mode: lighten;
+        transform: translateZ(0);
+      }
+      .slide.closing-fireworks-slide #main-canvas {
+        mix-blend-mode: screen;
+      }
+      .slide.closing-fireworks-slide .closing-fireworks-vignette {
+        position: absolute !important;
+        inset: 0 !important;
+        background:
+          radial-gradient(circle at center, transparent 24%, rgba(0, 0, 0, 0.16) 64%, rgba(0, 0, 0, 0.58) 100%),
+          linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.36));
+      }
+      .slide.closing-fireworks-slide > *:not(.closing-fireworks-bg) {
+        position: relative;
+        z-index: 1;
+      }
+      #slide-15.closing-fireworks-slide .closing-title,
+      #slide-15.closing-fireworks-slide .closing-sub {
+        text-shadow: 0 8px 34px rgba(0, 0, 0, 0.82), 0 0 34px rgba(0, 178, 227, 0.22);
+      }
+      #slide-15.closing-fireworks-slide .closing-title {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: clamp(92px, 9.4vw, 172px);
+        font-weight: 650;
+        line-height: 1.14;
+        letter-spacing: 0;
+        margin: 0 0 clamp(18px, 2.4vh, 34px);
+        padding: 0 0 0.14em;
+        background:
+          radial-gradient(circle at 18% 22%, #ffffff 0%, #d9f6ff 32%, transparent 58%),
+          linear-gradient(112deg, #ffffff 0%, #8bd7e9 38%, #00B2E3 68%, #70AD47 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 18px 32px rgba(0, 178, 227, 0.18));
+      }
+      #slide-15.closing-fireworks-slide .closing-sub {
+        font-size: clamp(36px, 4.2vw, 72px);
+        font-weight: 350;
+        letter-spacing: 0;
+        color: rgba(232, 238, 245, 0.86);
+        margin-bottom: 0;
+      }
+    </style>
+
+    <script src="fondo_retro/Fuegos_artificiales/slide46_fireworks.js"></script>
+  </section>
+
 </div>
 
 <div id="adoption-tooltip" class="adoption-tooltip"></div>
 
+<script src="js/slide-comparison.js" defer></script>
 <script src="js/webinar.js" defer></script>
 </body>
 </html>
